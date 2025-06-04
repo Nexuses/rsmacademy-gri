@@ -35,8 +35,8 @@ const TrainerProfile = () => {
     <div className="py-12 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-3">Learn from the Best</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-3xl font-bold text-navy mb-3">Learn from the Best</h2>
+          <p className="text-lg text-darkGray max-w-2xl mx-auto">
             Our training is facilitated by GRI Certified Trainers with extensive practical experience 
             in sustainability reporting and ESG strategy.
           </p>
@@ -44,7 +44,7 @@ const TrainerProfile = () => {
 
         <div className="space-y-8">
           {trainers.map((trainer, index) => (
-            <div key={index} className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl overflow-hidden shadow-md">
+            <div key={index} className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-100">
               <div className="flex flex-col md:flex-row">
                 <div className="md:w-1/3">
                   <img 
@@ -56,31 +56,31 @@ const TrainerProfile = () => {
                 </div>
                 <div className="md:w-2/3 p-6">
                   <div className="mb-4">
-                    <h3 className="text-2xl font-bold text-gray-800">{trainer.name}</h3>
-                    <p className="text-green-700 font-medium">{trainer.title}</p>
+                    <h3 className="text-2xl font-bold text-navy">{trainer.name}</h3>
+                    <p className="text-primary font-medium">{trainer.title}</p>
                   </div>
                   
-                  <p className="text-gray-600 mb-4">{trainer.description}</p>
+                  <p className="text-darkGray mb-4">{trainer.description}</p>
                   
                   <div className="grid grid-cols-3 gap-3 mb-4">
                     {trainer.achievements.map((achievement, i) => (
                       <div key={i} className="bg-white p-3 rounded-lg text-center">
-                        <div className="text-green-600 flex justify-center mb-1">
+                        <div className="text-primary flex justify-center mb-1">
                           {achievement.icon}
                         </div>
-                        <h4 className="text-sm font-semibold">{achievement.title}</h4>
-                        <p className="text-xs text-gray-500">{achievement.desc}</p>
+                        <h4 className="text-sm font-semibold text-navy">{achievement.title}</h4>
+                        <p className="text-xs text-mediumGray">{achievement.desc}</p>
                       </div>
                     ))}
                   </div>
 
-                  <div className="bg-white p-3 rounded-lg mb-4 italic text-gray-600">
+                  <div className="bg-white p-3 rounded-lg mb-4 italic text-darkGray">
                     "{trainer.quote}"
                   </div>
                   
                   <div className="flex flex-wrap gap-2">
                     {trainer.skills.map((skill, i) => (
-                      <span key={i} className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
+                      <span key={i} className="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-sm font-medium">
                         {skill}
                       </span>
                     ))}
@@ -92,7 +92,7 @@ const TrainerProfile = () => {
         </div>
 
         <div className="mt-8 text-center">
-          <button className="px-6 py-3 bg-green-700 hover:bg-green-800 text-white rounded-lg font-bold transition shadow-md">
+          <button className="px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg font-bold transition shadow-md">
             Meet Our Training Team
           </button>
         </div>
