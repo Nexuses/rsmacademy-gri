@@ -50,11 +50,11 @@ const CourseAgenda = () => {
   ];
 
   return (
-    <div className="py-16 bg-gray-50">
+    <div className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Course Agenda</h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">Course Agenda</h2>
+          <p className="text-lg text-darkGray max-w-3xl mx-auto">
             Our four-day intensive program covers all aspects of GRI sustainability reporting 
             through interactive sessions, practical exercises, and expert guidance.
           </p>
@@ -62,21 +62,21 @@ const CourseAgenda = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {modules.map((module, index) => (
-            <div key={index} className="bg-white rounded-xl shadow-md overflow-hidden border-t-4 border-green-600 hover:shadow-lg transition-shadow">
+            <div key={index} className="bg-white rounded-xl shadow-md overflow-hidden border-t-4 border-primary hover:shadow-lg transition-shadow">
               <div className="p-6">
                 <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-xl font-bold text-gray-800">{module.day}</h3>
-                  <div className="flex items-center text-gray-500">
+                  <h3 className="text-xl font-bold text-navy">{module.day}</h3>
+                  <div className="flex items-center text-mediumGray">
                     <Clock className="h-4 w-4 mr-1" />
                     <span className="text-sm">09:00 - 17:00</span>
                   </div>
                 </div>
-                <h4 className="text-lg font-semibold text-green-700 mb-4">{module.title}</h4>
+                <h4 className="text-lg font-semibold text-primary mb-4">{module.title}</h4>
                 <ul className="space-y-2">
                   {module.topics.map((topic, topicIndex) => (
                     <li key={topicIndex} className="flex items-start">
-                      <Check className="h-4 w-4 text-green-500 mt-1 mr-2 flex-shrink-0" />
-                      <span className="text-gray-700">{topic}</span>
+                      <Check className="h-4 w-4 text-primary mt-1 mr-2 flex-shrink-0" />
+                      <span className="text-darkGray">{topic}</span>
                     </li>
                   ))}
                 </ul>
@@ -85,7 +85,7 @@ const CourseAgenda = () => {
           ))}
         </div>
 
-        <div className="bg-green-800 text-white rounded-xl p-8 shadow-lg">
+        <div className="bg-navy text-white rounded-xl p-8 shadow-lg">
           <div className="md:flex justify-between items-center">
             <div>
               <h3 className="text-2xl font-bold mb-2">Ready to become GRI Certified?</h3>
@@ -95,7 +95,7 @@ const CourseAgenda = () => {
               </p>
             </div>
             <div className="mt-6 md:mt-0">
-              <button className="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-md">
+              <button className="px-6 py-3 bg-secondary hover:bg-secondary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-md">
                 Download Full Agenda
               </button>
             </div>

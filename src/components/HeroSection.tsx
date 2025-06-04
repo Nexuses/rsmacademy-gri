@@ -1,13 +1,39 @@
 import React from 'react';
-import { Calendar, Clock, Users, Download } from 'lucide-react';
+import { Calendar, Clock, Users, Download, Share2, Facebook, Twitter, Linkedin, Mail } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 
 const HeroSection = () => {
+  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const shareTitle = 'GRI Certified Sustainability Professional Training';
+  
+  const shareLinks = [
+    {
+      name: 'Facebook',
+      icon: <Facebook className="h-5 w-5" />,
+      url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`
+    },
+    {
+      name: 'Twitter',
+      icon: <Twitter className="h-5 w-5" />,
+      url: `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareTitle)}`
+    },
+    {
+      name: 'LinkedIn',
+      icon: <Linkedin className="h-5 w-5" />,
+      url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`
+    },
+    {
+      name: 'Email',
+      icon: <Mail className="h-5 w-5" />,
+      url: `mailto:?subject=${encodeURIComponent(shareTitle)}&body=${encodeURIComponent(shareUrl)}`
+    }
+  ];
+
   return (
-    <div className="relative overflow-hidden bg-gradient-to-r from-green-900 to-green-800 text-white">
+    <div className="relative overflow-hidden bg-gradient-to-r from-navy to-primary text-white">
       {/* Video background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-black/50 z-10"></div>
+        <div className="absolute inset-0 bg-navy/60 z-10"></div>
         <video 
           autoPlay 
           loop 
@@ -23,31 +49,31 @@ const HeroSection = () => {
         </video>
       </div>
       
-      <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
+      <div className="container mx-auto px-4 py-24 md:py-36 relative z-10">
         <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-3/5 md:pr-12 mb-10 md:mb-0">
-            <div className="inline-block px-3 py-1 bg-green-700 text-green-100 rounded-full text-sm font-semibold mb-4 animate-pulse">
+            <div className="inline-block px-3 py-1 bg-primary text-white rounded-full text-sm font-semibold mb-4 animate-pulse">
               Limited Seats Available
             </div>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
               GRI Certified Sustainability Professional Training
             </h1>
-            <div className="flex flex-wrap items-center text-lg mb-8">
+            <div className="flex flex-wrap items-center text-xl mb-8">
               <div className="flex items-center mr-6 mb-2">
-                <Calendar className="h-5 w-5 mr-2" />
+                <Calendar className="h-6 w-6 mr-2" />
                 <span>29 Jun - 2 Jul 2025</span>
               </div>
               <div className="flex items-center mr-6 mb-2">
-                <Clock className="h-5 w-5 mr-2" />
+                <Clock className="h-6 w-6 mr-2" />
                 <span>9:00 AM - 5:00 PM (GMT+3)</span>
               </div>
               <div className="flex items-center mb-2">
-                <Users className="h-5 w-5 mr-2" />
-                <span>Limited to 25 participants</span>
+                <Users className="h-6 w-6 mr-2" />
+                <span>Limited Seats</span>
               </div>
             </div>
             
-            <p className="text-lg mb-8 text-green-50">
+            <p className="text-lg mb-8 text-white">
               Become a GRI Certified Sustainability Professional and master the globally recognized 
               standards for sustainability reporting. This comprehensive training equips you with 
               essential tools to lead your organization towards transparent, responsible, 
@@ -55,22 +81,48 @@ const HeroSection = () => {
             </p>
             
             <div className="flex flex-wrap gap-4">
-              <button className="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-lg">
+              <button className="px-10 py-5 bg-secondary hover:bg-secondary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-lg text-xl">
                 Apply Now
               </button>
-              <button className="px-6 py-3 bg-transparent hover:bg-white/10 border-2 border-white text-white rounded-lg font-bold transition flex items-center gap-2">
-                <Download className="h-5 w-5" />
+              <button className="px-10 py-5 bg-transparent hover:bg-white/10 border-2 border-white text-white rounded-lg font-bold transition flex items-center gap-2 text-xl">
+                <Download className="h-6 w-6" />
                 Brochure
               </button>
             </div>
           </div>
           
           <div className="md:w-2/5">
-            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-xl shadow-2xl">
+            {/* Share buttons positioned above the card */}
+            <div className="flex justify-center mb-6">
+              <div className="flex items-center space-x-3 bg-navy/40 backdrop-blur-sm rounded-full px-5 py-3 shadow-md">
+                <div className="flex items-center mr-2">
+                  <Share2 className="h-6 w-6 mr-2" />
+                  <span className="text-base font-medium">Share</span>
+                </div>
+                {shareLinks.map((link) => (
+                  <a 
+                    key={link.name}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 hover:bg-white/20 rounded-full transition-colors"
+                    title={`Share on ${link.name}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.open(link.url, '_blank', 'width=600,height=400');
+                    }}
+                  >
+                    {link.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+            
+            <div className="bg-navy/30 backdrop-blur-sm p-8 rounded-xl shadow-2xl">
               <CountdownTimer targetDate="2025-06-29T09:00:00" />
               <div className="text-center mt-6">
-                <p className="text-green-100 mb-4">Secure your spot before registration closes</p>
-                <button className="w-full px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-lg">
+                <p className="text-white mb-4">Secure your spot before registration closes</p>
+                <button className="w-full px-10 py-5 bg-secondary hover:bg-secondary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-lg text-xl">
                   Reserve Your Seat
                 </button>
               </div>
