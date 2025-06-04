@@ -11,6 +11,7 @@ import RegistrationSection from './components/RegistrationSection';
 // import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 
+
 function App() {
   // Update document title
   React.useEffect(() => {
