@@ -1,5 +1,5 @@
 import React from 'react';
-import { Play, ArrowUpRight, Laptop, Users, Briefcase } from 'lucide-react';
+import { ArrowUpRight, Laptop, Users, Briefcase } from 'lucide-react';
 
 const LearningApproach = () => {
   const approaches = [
@@ -38,34 +38,14 @@ const LearningApproach = () => {
         <div className="relative mb-12">
           <div className="bg-primary rounded-xl overflow-hidden">
             <div className="aspect-w-16 aspect-h-9 relative" style={{ maxHeight: '360px' }}>
-              <video 
-                id="overview-video"
+              <img 
+                src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg"
+                alt="GRI Standards Course Overview"
                 className="w-full h-full object-cover"
-                poster="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg"
-                preload="metadata"
-              >
-                <source src="/full-video.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <div 
-                className="absolute inset-0 flex items-center justify-center cursor-pointer"
-                onClick={() => {
-                  const video = document.getElementById('overview-video') as HTMLVideoElement;
-                  if (video) {
-                    video.controls = true;
-                    video.play();
-                    // Hide the overlay once video starts playing
-                    const overlay = video.nextElementSibling as HTMLElement;
-                    if (overlay) overlay.style.display = 'none';
-                  }
-                }}
-              >
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-white text-center">
-                  <button className="bg-white/20 rounded-full p-3 inline-block mb-3 hover:bg-white/30 transition-colors">
-                    <Play className="w-6 h-6" />
-                  </button>
-                  <h3 className="text-xl font-semibold mb-1">GRI Standards: Course Overview</h3>
-                  <p className="text-sm">0:40</p>
+                  <h3 className="text-2xl md:text-3xl font-semibold mb-1">GRI Standards: Course Overview</h3>
                 </div>
               </div>
             </div>
