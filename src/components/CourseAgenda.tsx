@@ -1,85 +1,99 @@
-import React from 'react';
-import { Clock, Check } from 'lucide-react';
+import React, { useState } from 'react';
+import { Check, ChevronDown, BookOpen, BookText, ShieldCheck, Target } from 'lucide-react';
+import { downloadBrochure } from '../utils/download';
 
 const CourseAgenda = () => {
+  const [hoveredDay, setHoveredDay] = useState<string | null>(null);
+
   const modules = [
     {
       day: 'Day 1',
-      title: 'Introduction to Sustainability Reporting',
+      title: 'Introduction to Sustainability Reporting and the GRI Standards',
+      icon: BookOpen,
       topics: [
-        'Overview of sustainability reporting landscape',
-        'Introduction to GRI Standards and framework',
-        'Reporting principles and quality',
-        'Materiality assessment process',
-        'Stakeholder engagement strategies'
+        'Understand the concept and purpose of sustainability reporting',
+        'Explore the role and mission of the Global Reporting Initiative (GRI)',
+        'Learn why transparency in ESG performance matters to stakeholders and regulators',
+        'Get familiar with key sustainability terms and the global reporting landscape'
       ]
     },
     {
       day: 'Day 2',
-      title: 'GRI Universal Standards in Practice',
+      title: 'Introduction to Sustainability Reporting and the GRI Standards',
+      icon: BookText,
       topics: [
-        'GRI 1: Foundation - Core concepts and principles',
-        'GRI 2: General Disclosures - Organizational reporting',
-        'GRI 3: Material Topics - Identifying and managing impacts',
-        'Practical exercises and case studies',
-        'Implementing double materiality in reporting'
+        'Dive deeper into the GRI Standards framework: Universal, Sector, and Topic Standards',
+        'Learn how to apply reporting principles and define your reporting boundaries',
+        'Conduct stakeholder engagement and identify organizational impacts',
+        'Understand how to determine and prioritize material topics for reporting'
       ]
     },
     {
       day: 'Day 3',
-      title: 'Topic-Specific Standards & Sector Standards',
+      title: 'Reporting on Human Rights with the GRI Standards',
+      icon: ShieldCheck,
       topics: [
-        'Economic, environmental, and social disclosures',
-        'Sector-specific materiality considerations',
-        'Human rights reporting and due diligence',
-        'Climate change disclosures and TCFD alignment',
-        'Practical reporting exercises with feedback'
+        'Learn how to identify and address human rights issues through GRI disclosures',
+        'Understand due diligence processes related to labor, equity, and social responsibility',
+        'Explore GRI Standards related to human rights and their implementation',
+        'Apply knowledge through case-based learning and real-world scenarios'
       ]
     },
     {
       day: 'Day 4',
-      title: 'Reporting Process & Certification Preparation',
+      title: 'Integrating the SDGs into Sustainability Reporting',
+      icon: Target,
       topics: [
-        'Developing a sustainability reporting strategy',
-        'Data collection and management systems',
-        'Report assurance and verification',
-        'Aligning with UN SDGs and other frameworks',
-        'GRI Certification exam preparation and practice'
+        'Understand the United Nations Sustainable Development Goals (SDGs) and their relevance to business',
+        'Learn how to link your sustainability efforts to the SDG framework',
+        'Follow step-by-step guidance on integrating SDGs into GRI-based reporting',
+        'Review reporting examples and case studies from organizations leading in SDG alignment'
       ]
     }
   ];
 
   return (
     <div className="py-16 bg-white">
-      <div className="container mx-auto px-4">
+      <div className="container-padding">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">Course Agenda</h2>
           <p className="text-lg text-darkGray max-w-3xl mx-auto">
-            Our four-day intensive program covers all aspects of GRI sustainability reporting 
-            through interactive sessions, practical exercises, and expert guidance.
+            This 4-day GRI Certified Training is designed to guide participants through the key pillars of sustainability reporting. Each day builds on
+            foundational knowledge, helping you apply the GRI Standards effectively while aligning with international ESG expectations.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div className="space-y-4 mb-12 p-6 rounded-lg">
+          {/* <h3 className="text-2xl font-bold mb-4">Courses in this program (4)</h3> */}
+          
           {modules.map((module, index) => (
-            <div key={index} className="bg-white rounded-xl shadow-md overflow-hidden border-t-4 border-primary hover:shadow-lg transition-shadow">
-              <div className="p-6">
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-xl font-bold text-navy">{module.day}</h3>
-                  <div className="flex items-center text-mediumGray">
-                    <Clock className="h-4 w-4 mr-1" />
-                    <span className="text-sm">09:00 - 17:00</span>
-                  </div>
+            <div 
+              key={index} 
+              className="rounded-lg overflow-hidden border border-primary"
+              onMouseEnter={() => setHoveredDay(module.day)}
+              onMouseLeave={() => setHoveredDay(null)}
+            >
+              <div className="w-full flex justify-between items-center p-4 text-primary text-left">
+                <div className="flex items-center">
+                  {React.createElement(module.icon, { className: "h-5 w-5 mr-3" })}
+                  <span className="text-lg font-medium">{module.day}: {module.title}</span>
                 </div>
-                <h4 className="text-lg font-semibold text-primary mb-4">{module.title}</h4>
-                <ul className="space-y-2">
-                  {module.topics.map((topic, topicIndex) => (
-                    <li key={topicIndex} className="flex items-start">
-                      <Check className="h-4 w-4 text-primary mt-1 mr-2 flex-shrink-0" />
-                      <span className="text-darkGray">{topic}</span>
-                    </li>
-                  ))}
-                </ul>
+                <ChevronDown className={`h-5 w-5 transition-transform duration-500 ${hoveredDay === module.day ? 'transform rotate-180' : ''}`} />
+              </div>
+              
+              <div 
+                className={`transition-all duration-700 ease-in-out overflow-hidden ${hoveredDay === module.day ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+              >
+                <div className="p-6 bg-white">
+                  <ul className="space-y-3">
+                    {module.topics.map((topic, topicIndex) => (
+                      <li key={topicIndex} className="flex items-start">
+                        <Check className="h-4 w-4 text-primary mt-1 mr-3 flex-shrink-0" />
+                        <span className="text-darkGray">{topic}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           ))}
@@ -88,15 +102,16 @@ const CourseAgenda = () => {
         <div className="bg-navy text-white rounded-xl p-8 shadow-lg">
           <div className="md:flex justify-between items-center">
             <div>
-              <h3 className="text-2xl font-bold mb-2">Ready to become GRI Certified?</h3>
+              <h3 className="text-2xl font-bold mb-2">Ready to Become GRI Certified?</h3>
               <p className="max-w-2xl">
-                Upon completion of this training, participants will be prepared to take the GRI Certification Exam 
-                and join the global community of certified sustainability professionals.
+                Join a growing network of global professionals certified by the GRI. This training prepares you to pass the GRI Certification Exam with confidence.
               </p>
             </div>
             <div className="mt-6 md:mt-0">
-              <button className="px-6 py-3 bg-secondary hover:bg-secondary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-md">
-                Download Full Agenda
+              <button 
+                onClick={downloadBrochure}
+                className="px-6 py-3 bg-secondary hover:bg-secondary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-md">
+                Download Brochure
               </button>
             </div>
           </div>

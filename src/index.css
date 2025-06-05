@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .container-padding {
+    @apply px-2 md:px-6 w-full max-w-7xl mx-auto;
+  }
+}
