@@ -1,57 +1,120 @@
 import React from 'react';
-import { DollarSign, Building, BookOpen, Users } from 'lucide-react';
+import { Award, Users, MessageSquare, BookOpen } from 'lucide-react';
+import SmallBanner from '../../public/small-banner.png';
 
 const CourseHighlights = () => {
-  const highlights = [
-    {
-      title: "SAR 9,995+",
-      subtitle: "AVERAGE SALARY INCREASE",
-      icon: <DollarSign className="w-12 h-12 text-primary" />,
-      bgImage: "bg-[url('https://images.pexels.com/photos/3943716/pexels-photo-3943716.jpeg')]"
-    },
-    {
-      title: "Top companies hiring",
-      subtitle: "GET HIRED BY LEADING ORGANIZATIONS",
-      icon: <Building className="w-12 h-12 text-primary" />,
-      bgImage: "bg-[url('https://images.pexels.com/photos/1170412/pexels-photo-1170412.jpeg')]"
-    },
-    {
-      title: "Real-world projects",
-      subtitle: "LEARN BY DOING",
-      icon: <BookOpen className="w-12 h-12 text-primary" />,
-      bgImage: "bg-[url('https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg')]"
-    },
-    {
-      title: "Live Q&A sessions",
-      subtitle: "INTERACT WITH INDUSTRY EXPERTS",
-      icon: <Users className="w-12 h-12 text-primary" />,
-      bgImage: "bg-[url('https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg')]"
-    }
-  ];
-
   return (
-    <div className="py-12 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {highlights.map((highlight, index) => (
-            <div 
-              key={index}
-              className="group relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
-            >
-              <div className={`absolute inset-0 opacity-5 ${highlight.bgImage} bg-cover bg-center`} />
-              <div className="relative p-6">
-                <div className="mb-4">
-                  {highlight.icon}
+    <div className="py-6 bg-white mt-12">
+      <div className="container-padding">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          {/* Left column */}
+          <div className="space-y-3">
+            {/* Vocational Learning card (previously GRI Certified) */}
+            <div className="bg-[#FEF9EF] rounded-xl shadow-sm p-4 border border-gray-100 h-32">
+              <div className="flex items-start justify-between">
+                <div>
+                  <h3 className="text-lg font-bold text-[#333] mb-1">
+                    Vocational Learning
+                  </h3>
+                  <p className="text-xs text-[#666] tracking-wide">
+                    Practical, job-ready skills through real case studies and exercises.
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold text-navy mb-2">
-                  {highlight.title}
-                </h3>
-                <p className="text-sm text-darkGray uppercase tracking-wider">
-                  {highlight.subtitle}
-                </p>
+                <div className="w-10 h-10 bg-[#f8f8f5] rounded-full flex items-center justify-center ml-2 flex-shrink-0">
+                  <BookOpen className="w-5 h-5 text-gray-300" />
+                </div>
               </div>
             </div>
-          ))}
+            
+            {/* Interactive Sessions card */}
+            <div className="bg-[#FEF9EF] rounded-xl shadow-sm p-4 border border-gray-100 h-32">
+              <div className="flex items-start justify-between">
+                <div>
+                  <h3 className="text-lg font-bold text-[#333] mb-1">
+                    Interactive Sessions
+                  </h3>
+                  <p className="text-xs text-[#666] tracking-wide">
+                    Live, expert-led discussions to deepen your understanding.
+                  </p>
+                </div>
+                <div className="w-10 h-10 bg-[#f8f8f5] rounded-full flex items-center justify-center ml-2 flex-shrink-0">
+                  <MessageSquare className="w-5 h-5 text-gray-300" />
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Center column - GRI Certified Training Partner */}
+          <div className="flex items-stretch">
+            <div className="bg-[#FEF9EF] rounded-xl shadow-sm p-4 border border-gray-100 flex-1 relative overflow-hidden">
+              <div className="flex flex-col h-full relative z-10">
+                {/* Icon centered at the top */}
+                <div className="flex justify-center mb-4">
+                  <div className="w-10 h-10 bg-[#f8f8f5] rounded-full flex items-center justify-center">
+                    <Award className="w-5 h-5 text-gray-300" />
+                  </div>
+                </div>
+                
+                {/* Content centered */}
+                <div className="text-center mb-6">
+                  <h3 className="text-lg font-bold text-[#333] mb-1">
+                    GRI Certified Training Partner
+                  </h3>
+                  <p className="text-xs text-[#666] tracking-wide">
+                    Delivered in collaboration with the Global Reporting Initiative.
+                  </p>
+                </div>
+                
+                {/* Banner at the bottom - styled to blend with background */}
+                <div className="mt-auto">
+                  <div className="bg-white bg-opacity-60 rounded-lg p-2 mx-auto w-full">
+                    <img 
+                      src={SmallBanner as string} 
+                      alt="GRI Certified Training Partner Banner"
+                      className="w-full object-contain"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Right column */}
+          <div className="space-y-3">
+            {/* Dual Certification card */}
+            <div className="bg-[#FEF9EF] rounded-xl shadow-sm p-4 border border-gray-100 h-32">
+              <div className="flex items-start justify-between">
+                <div>
+                  <h3 className="text-lg font-bold text-[#333] mb-1">
+                    Dual Certification
+                  </h3>
+                  <p className="text-xs text-[#666] tracking-wide">
+                    Earn recognized certificates from GRI and RSM Saudi Academy.
+                  </p>
+                </div>
+                <div className="w-10 h-10 bg-[#f8f8f5] rounded-full flex items-center justify-center ml-2 flex-shrink-0">
+                  <Award className="w-5 h-5 text-gray-300" />
+                </div>
+              </div>
+            </div>
+            
+            {/* Exclusive Q&A card */}
+            <div className="bg-[#FEF9EF] rounded-xl shadow-sm p-4 border border-gray-100 h-32">
+              <div className="flex items-start justify-between">
+                <div>
+                  <h3 className="text-lg font-bold text-[#333] mb-1">
+                    Exclusive Q&A with ESG Expert
+                  </h3>
+                  <p className="text-xs text-[#666] tracking-wide">
+                    Interact with regional sustainability leadership.
+                  </p>
+                </div>
+                <div className="w-10 h-10 bg-[#f8f8f5] rounded-full flex items-center justify-center ml-2 flex-shrink-0">
+                  <Users className="w-5 h-5 text-gray-300" />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

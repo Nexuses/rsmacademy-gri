@@ -1,100 +1,87 @@
-import React from 'react';
-import { Award, Book, Briefcase, CheckCircle, Users } from 'lucide-react';
+import { Award, Briefcase, Leaf, Users } from 'lucide-react';
 
 const TrainerProfile = () => {
   const trainers = [
     {
-      name: "Kareem Abu Eid",
-      title: "RSM MENA ESG Lead & GRI Certified Trainer",
-      image: "https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg",
-      description: "With over 15 years of experience in sustainability management, Kareem has helped dozens of organizations implement effective ESG strategies and reporting frameworks.",
-      quote: "My approach focuses on practical application—turning sustainability theory into actionable strategies that create real business value.",
-      skills: ['ESG Strategy', 'GRI Reporting', 'Sustainability Management'],
+      name: "Merin Abraham",
+      title: "GRI Certified Trainer",
+      image: "/Merin.png",
+      description: "Merin brings a unique blend of academic expertise and real-world sustainability knowledge. With a Master's in Sustainable Built Environment from UNSW and a LEED Green Associate certification, she has led sustainable architecture, ESG integration, and green building strategy across consulting, education, and design sectors.",
       achievements: [
-        { icon: <Award />, title: "GRI Certified", desc: "Official GRI certification" },
-        { icon: <Briefcase />, title: "Industry Expert", desc: "15+ years experience" },
-        { icon: <Users />, title: "Master Facilitator", desc: "2,000+ professionals trained" }
+        { icon: <Award className="h-5 w-5" />, title: "GRI Certified", desc: "Official GRI Trainer" },
+        { icon: <Briefcase className="h-5 w-5" />, title: "Built Environment Expert", desc: "Specialist in urban sustainability and environmental design" },
+        { icon: <Users className="h-5 w-5" />, title: "Cross-Sector Insight", desc: "Experience in academia, consultancy, and urban planning" }
       ]
     },
     {
-      name: "Sarah Al-Rashid",
-      title: "Senior Sustainability Consultant & GRI Trainer",
-      image: "https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg",
-      description: "Sarah specializes in helping organizations integrate ESG principles into their business strategies, with particular expertise in MENA region sustainability practices.",
-      quote: "Sustainability isn't just about reporting—it's about creating lasting positive impact through strategic transformation.",
-      skills: ['ESG Integration', 'Carbon Accounting', 'UN SDGs'],
+      name: "Yousef Abdulhadi",
+      title: "GRI Certified Trainer",
+      image: "/Yousef.png",
+      description: "Yousef is a sustainability strategist with a strong background in engineering, GHG accounting, and climate risk. He has supported ESG implementation in industries including manufacturing, retail, energy, and tech—guiding companies in aligning with international sustainability standards.",
       achievements: [
-        { icon: <Award />, title: "GRI Certified", desc: "Advanced certification" },
-        { icon: <Book />, title: "Thought Leader", desc: "Published researcher" },
-        { icon: <Briefcase />, title: "Regional Expert", desc: "MENA specialist" }
+        { icon: <Award className="h-5 w-5" />, title: "GRI Certified", desc: "Accredited Trainer in GRI Standards" },
+        { icon: <Briefcase className="h-5 w-5" />, title: "Industry Experience", desc: "Worked across industrial, commercial, and energy sectors" },
+        { icon: <Leaf className="h-5 w-5" />, title: "Climate & Risk Focus", desc: "Expertise in GHG emissions, ESG strategy, and reporting" }
       ]
     }
   ];
 
   return (
     <div className="py-12 bg-white">
-      <div className="container mx-auto px-4">
+      <div className="container-padding">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-navy mb-3">Learn from the Best</h2>
+          <h2 className="text-3xl font-bold text-navy mb-3">Learn from GRI-Certified Trainers</h2>
           <p className="text-lg text-darkGray max-w-2xl mx-auto">
-            Our training is facilitated by GRI Certified Trainers with extensive practical experience 
-            in sustainability reporting and ESG strategy.
+            Advance your sustainability journey with guidance from GRI Certified Trainers who blend 
+            technical expertise with hands-on experience. Our instructors bring deep knowledge in ESG 
+            reporting, stakeholder engagement, and materiality—empowering you to apply the GRI 
+            Standards with clarity and confidence across diverse industries.
           </p>
         </div>
 
         <div className="space-y-8">
           {trainers.map((trainer, index) => (
             <div key={index} className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-100">
-              <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/3">
-                  <img 
-                    src={trainer.image} 
-                    alt={trainer.name} 
-                    className="w-full h-full object-cover"
-                    style={{ minHeight: '300px' }}
-                  />
-                </div>
-                <div className="md:w-2/3 p-6">
-                  <div className="mb-4">
-                    <h3 className="text-2xl font-bold text-navy">{trainer.name}</h3>
-                    <p className="text-primary font-medium">{trainer.title}</p>
+              <div className="p-6 md:p-8">
+                <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
+                  {/* Image with cropped circular display */}
+                  <div className="flex-shrink-0">
+                    <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-gray-50 shadow-sm">
+                      <img 
+                        src={trainer.image} 
+                        alt={trainer.name} 
+                        className="w-full h-full object-cover object-top"
+                      />
+                    </div>
                   </div>
                   
-                  <p className="text-darkGray mb-4">{trainer.description}</p>
-                  
-                  <div className="grid grid-cols-3 gap-3 mb-4">
-                    {trainer.achievements.map((achievement, i) => (
-                      <div key={i} className="bg-white p-3 rounded-lg text-center">
-                        <div className="text-primary flex justify-center mb-1">
-                          {achievement.icon}
+                  {/* Content section */}
+                  <div className="flex-1 text-center md:text-left">
+                    <div className="mb-4">
+                      <h3 className="text-2xl font-bold text-navy">{trainer.name}</h3>
+                      <p className="text-primary font-medium">{trainer.title}</p>
+                    </div>
+                    
+                    <p className="text-darkGray mb-5">{trainer.description}</p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      {trainer.achievements.map((achievement, i) => (
+                        <div key={i} className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+                          <div className="text-primary bg-white p-2 rounded-full shadow-sm">
+                            {achievement.icon}
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-navy text-sm">{achievement.title}</h4>
+                            <p className="text-xs text-mediumGray">{achievement.desc}</p>
+                          </div>
                         </div>
-                        <h4 className="text-sm font-semibold text-navy">{achievement.title}</h4>
-                        <p className="text-xs text-mediumGray">{achievement.desc}</p>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="bg-white p-3 rounded-lg mb-4 italic text-darkGray">
-                    "{trainer.quote}"
-                  </div>
-                  
-                  <div className="flex flex-wrap gap-2">
-                    {trainer.skills.map((skill, i) => (
-                      <span key={i} className="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-sm font-medium">
-                        {skill}
-                      </span>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="mt-8 text-center">
-          <button className="px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg font-bold transition shadow-md">
-            Meet Our Training Team
-          </button>
         </div>
       </div>
     </div>

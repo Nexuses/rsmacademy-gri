@@ -45,7 +45,7 @@ const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
       <div className="grid grid-cols-4 gap-2 text-center">
         {timeUnits.map((unit, index) => (
           <div key={index} className="flex flex-col">
-            <div className="bg-green-800/50 rounded-lg py-3 px-2">
+            <div className="bg-primary/50 rounded-lg py-3 px-2">
               <span className="text-3xl font-bold">{unit.value}</span>
             </div>
             <span className="text-sm mt-1">{unit.label}</span>
