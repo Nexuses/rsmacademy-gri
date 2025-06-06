@@ -55,7 +55,7 @@ const CourseAgenda = () => {
   return (
     <div className="pt-16 bg-white">
       <div className="container-padding">
-        <div className="text-center mb-12">
+        <div className="text-center mb-6">
           <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">Course Agenda</h2>
           <p className="text-lg text-darkGray max-w-3xl mx-auto">
             This 4-day GRI Certified Training is designed to guide participants through the key pillars of sustainability reporting. Each day builds on

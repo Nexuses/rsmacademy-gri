@@ -7,6 +7,7 @@ import {
   Twitter,
   Linkedin,
   Mail,
+  Video,
 } from "lucide-react";
 import CountdownTimer from "./CountdownTimer";
 import { downloadBrochure } from "../utils/download";
@@ -84,10 +85,10 @@ const HeroSection = () => {
                 <Clock className="h-6 w-6 mr-2" />
                 <span>9:00 AM - 5:00 PM (GMT+3)</span>
               </div>
-              {/* <div className="flex items-center mb-2">
-                <Users className="h-6 w-6 mr-2" />
-                <span>Limited Seats</span>
-              </div> */}
+              <div className="flex items-center mb-2">
+                <Video className="h-6 w-6 mr-2" />
+                <span>Mode: Virtual</span>
+              </div>
             </div>
 
             <p className="text-lg mb-8 text-white">
@@ -147,9 +148,11 @@ const HeroSection = () => {
                 <p className="text-white mb-4">
                   Secure your spot before registration closes
                 </p>
-                <button className="w-full px-10 py-5 bg-primary hover:bg-primary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-lg text-xl">
-                  Reserve Your Seat
-                </button>
+                <a href="#register">
+                  <button className="w-full px-10 py-5 bg-primary hover:bg-primary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-lg text-xl">
+                    Reserve Your Seat
+                  </button>
+                </a>
               </div>
             </div>
           </div>

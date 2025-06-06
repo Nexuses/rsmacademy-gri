@@ -1,5 +1,4 @@
-// Utility for sending enrollment emails using EmailJS
-import emailjs from '@emailjs/browser';
+// Utility for sending enrollment emails using backend API
 
 interface EnrollmentData {
   fullName: string;
@@ -8,35 +7,27 @@ interface EnrollmentData {
   enrollmentType: string;
 }
 
-// You need to create an EmailJS account and get these values from there
-const EMAILJS_SERVICE_ID = 'your_service_id'; // Replace with your EmailJS service ID
-const EMAILJS_TEMPLATE_ID = 'your_template_id'; // Replace with your EmailJS template ID
-const EMAILJS_PUBLIC_KEY = 'your_public_key'; // Replace with your EmailJS public key
+// API URL
+const API_URL = 'http://localhost:3001/api/send-email';
 
 export const sendEnrollmentEmail = async (data: EnrollmentData): Promise<boolean> => {
   try {
-    // Prepare the template parameters
-    const templateParams = {
-      to_name: 'RSM Saudi Academy Team',
-      from_name: data.fullName,
-      from_email: data.email,
-      phone: data.phone,
-      enrollment_type: data.enrollmentType,
-      reply_to: data.email,
-    };
+    // Call the backend API
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
 
-    // Send email using EmailJS
-    const response = await emailjs.send(
-      EMAILJS_SERVICE_ID,
-      EMAILJS_TEMPLATE_ID,
-      templateParams,
-      EMAILJS_PUBLIC_KEY
-    );
+    const result = await response.json();
     
-    if (response.status !== 200) {
-      throw new Error('Failed to send enrollment email');
+    if (!response.ok) {
+      throw new Error(result.message || 'Failed to send enrollment email');
     }
     
+    console.log('Email sent successfully:', result.messageId);
     return true;
   } catch (error) {
     console.error('Error sending enrollment email:', error);
