@@ -8,7 +8,7 @@ interface EnrollmentData {
 }
 
 // API URL
-const API_URL = 'http://localhost:3001/api/send-email';
+const API_URL = 'https://gri-training.rsmacademy-sa.com/api/send-email';
 
 export const sendEnrollmentEmail = async (data: EnrollmentData): Promise<boolean> => {
   try {
