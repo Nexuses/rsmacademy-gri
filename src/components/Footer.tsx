@@ -97,7 +97,7 @@ export default function Footer() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
-      className="bg-[#1B1B1B] text-white py-16"
+      className="bg-[#1B1B1B] text-white pt-16 pb-16"
     >
       <div className="container-padding">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">

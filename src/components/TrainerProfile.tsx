@@ -1,4 +1,5 @@
 import { Award, Briefcase, Leaf, Users } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const TrainerProfile = () => {
   const trainers = [
@@ -26,12 +27,48 @@ const TrainerProfile = () => {
     }
   ];
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { 
+      y: 0, 
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 12
+      }
+    }
+  };
+
+  const iconVariants = {
+    hidden: { scale: 0 },
+    visible: { 
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 200,
+        delay: 0.2
+      }
+    }
+  };
+
   return (
-    <div className="py-12 bg-white">
+    <div className="pb-16 bg-white">
       <div className="container-padding">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-navy mb-3">Learn from GRI-Certified Trainers</h2>
-          <p className="text-lg text-darkGray max-w-2xl mx-auto">
+          <p className="text-lg text-darkGray mx-auto" style={{ maxWidth: "90%", lineHeight: "1.5" }}>
             Advance your sustainability journey with guidance from GRI Certified Trainers who blend 
             technical expertise with hands-on experience. Our instructors bring deep knowledge in ESG 
             reporting, stakeholder engagement, and materiality—empowering you to apply the GRI 
@@ -41,11 +78,24 @@ const TrainerProfile = () => {
 
         <div className="space-y-8">
           {trainers.map((trainer, index) => (
-            <div key={index} className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-100">
+            <motion.div 
+              key={index} 
+              className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-100"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+            >
               <div className="p-6 md:p-8">
                 <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
                   {/* Image with cropped circular display */}
-                  <div className="flex-shrink-0">
+                  <motion.div 
+                    className="flex-shrink-0"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                  >
                     <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-gray-50 shadow-sm">
                       <img 
                         src={trainer.image} 
@@ -53,34 +103,65 @@ const TrainerProfile = () => {
                         className="w-full h-full object-cover object-top"
                       />
                     </div>
-                  </div>
+                  </motion.div>
                   
                   {/* Content section */}
                   <div className="flex-1 text-center md:text-left">
-                    <div className="mb-4">
+                    <motion.div 
+                      className="mb-4"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                    >
                       <h3 className="text-2xl font-bold text-navy">{trainer.name}</h3>
                       <p className="text-primary font-medium">{trainer.title}</p>
-                    </div>
+                    </motion.div>
                     
-                    <p className="text-darkGray mb-5">{trainer.description}</p>
+                    <motion.p 
+                      className="text-darkGray mb-5"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.3 }}
+                    >
+                      {trainer.description}
+                    </motion.p>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <motion.div 
+                      className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                      variants={containerVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                    >
                       {trainer.achievements.map((achievement, i) => (
-                        <div key={i} className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
-                          <div className="text-primary bg-white p-2 rounded-full shadow-sm">
+                        <motion.div 
+                          key={i} 
+                          className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg"
+                          variants={itemVariants}
+                          whileHover={{ 
+                            scale: 1.03, 
+                            boxShadow: "0 4px 12px rgba(0,0,0,0.05)"
+                          }}
+                        >
+                          <motion.div 
+                            className="text-primary bg-white p-2 rounded-full shadow-sm"
+                            variants={iconVariants}
+                          >
                             {achievement.icon}
-                          </div>
+                          </motion.div>
                           <div>
                             <h4 className="font-semibold text-navy text-sm">{achievement.title}</h4>
                             <p className="text-xs text-mediumGray">{achievement.desc}</p>
                           </div>
-                        </div>
+                        </motion.div>
                       ))}
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

@@ -117,8 +117,8 @@ const RegistrationSection = () => {
           </button>
 
           <div>
-            <h2 className="text-xl md:text-2xl font-bold mb-2 text-navy">
-              Let's get you started!
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-navy">
+              Ready to Enroll?
             </h2>
             <p className="text-darkGray mb-6">
               Enroll now and take the first step toward GRI Certification.
@@ -231,49 +231,47 @@ const RegistrationSection = () => {
   );
 
   return (
-    <div className="py-16 md:py-20 bg-gray-50" id="register">
+    <div className="py-16 bg-gray-50" id="register">
       <div className="container-padding">
         <div className="max-w-7xl mx-auto bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
           <div className="flex flex-col lg:flex-row">
             {/* Left side - Enrollment Info */}
-            <div className="w-full lg:w-1/2 p-6 md:p-8 lg:p-10">
-              <div className="bg-primary/5 rounded-xl shadow-md overflow-hidden border border-gray-200 p-6 md:p-8 hover:shadow-lg transition-all">
-                <h2 className="text-xl md:text-2xl font-bold mb-3 text-navy">
-                  Ready to Enroll?
-                </h2>
+              <div className="w-full lg:w-1/2 p-6 md:p-8 lg:p-10 bg-primary/5 rounded-xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-all">
+    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-navy">
+      Ready to Enroll?
+    </h2>
 
-                <div className="mt-6 mb-8">
-                  <button
-                    onClick={() => setShowSignup(true)}
-                    className="w-full bg-primary hover:bg-primary/90 text-white rounded-lg py-3 md:py-4 font-bold text-base md:text-lg transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
-                  >
-                    Register Now
-                  </button>
-                </div>
+              <div className="mt-6 mb-8">
+                <button
+                  onClick={() => setShowSignup(true)}
+                  className="w-full bg-primary hover:bg-primary/90 text-white rounded-lg py-3 md:py-4 font-bold text-base md:text-lg transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                >
+                  Register Now
+                </button>
+              </div>
 
-                <div className="mb-6">
-                  <p className="text-base text-darkGray leading-relaxed">
-                    Advance your sustainability journey with our GRI Certified
-                    Sustainability Professional Training — designed for
-                    individuals and organizations committed to ESG excellence.
-                  </p>
-                </div>
+              <div className="mb-6">
+                <p className="text-base text-darkGray leading-relaxed">
+                  Advance your sustainability journey with our GRI Certified
+                  Sustainability Professional Training — designed for
+                  individuals and organizations committed to ESG excellence.
+                </p>
+              </div>
 
-                <div className="space-y-5 md:space-y-6">
-                  <h3 className="text-lg md:text-xl font-bold text-navy">
-                    By enrolling, you'll gain:
-                  </h3>
+              <div className="space-y-5 md:space-y-6">
+                <h3 className="text-lg md:text-xl font-bold text-navy">
+                  By enrolling, you'll gain:
+                </h3>
 
-                  <div className="space-y-4">
-                    {features.map((feature, index) => (
-                      <div key={index} className="flex items-start group">
-                        <CheckCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0 mt-1 group-hover:text-green-600 transition-colors" />
-                        <span className="text-sm md:text-base text-darkGray group-hover:text-navy transition-colors">
-                          {feature}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                <div className="space-y-4">
+                  {features.map((feature, index) => (
+                    <div key={index} className="flex items-start group">
+                      <CheckCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0 mt-1 group-hover:text-green-600 transition-colors" />
+                      <span className="text-sm md:text-base text-darkGray group-hover:text-navy transition-colors">
+                        {feature}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -295,7 +293,7 @@ const RegistrationSection = () => {
                   <Calendar className="h-8 w-8 text-white" />
                   <div>
                     <h3 className="text-base md:text-lg font-semibold mb-1">
-                      Cohort Start Date:
+                      Course Start Date:
                     </h3>
                     <p className="text-xl md:text-2xl font-bold text-white">
                       29th June 2025
