@@ -12,19 +12,35 @@ const API_URL = 'https://gri-training.rsmacademy-sa.com/api/send-email';
 
 export const sendEnrollmentEmail = async (data: EnrollmentData): Promise<boolean> => {
   try {
+    console.log('Sending enrollment email to:', API_URL, data);
+    
     // Call the backend API
     const response = await fetch(API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Origin': window.location.origin,
       },
+      mode: 'cors', // Enable CORS mode
+      credentials: 'same-origin', // Include credentials only for same origin
       body: JSON.stringify(data),
     });
 
-    const result = await response.json();
+    console.log('Response status:', response.status);
+    
+    // Handle non-JSON responses gracefully
+    let result;
+    const contentType = response.headers.get('content-type');
+    if (contentType && contentType.includes('application/json')) {
+      result = await response.json();
+    } else {
+      const text = await response.text();
+      console.log('Non-JSON response:', text);
+      result = { message: text };
+    }
     
     if (!response.ok) {
-      throw new Error(result.message || 'Failed to send enrollment email');
+      throw new Error(result.message || `Failed with status ${response.status}`);
     }
     
     console.log('Email sent successfully:', result.messageId);

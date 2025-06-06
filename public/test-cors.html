@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CORS Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      cursor: pointer;
+    }
+    pre {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 5px;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>API CORS Test</h1>
+  
+  <div>
+    <button id="testGet">Test GET /api/test-cors</button>
+    <button id="testStatus">Test GET /api/status</button>
+    <button id="testPost">Test POST /api/send-email</button>
+  </div>
+  
+  <h2>Result:</h2>
+  <pre id="result">Click a button to test...</pre>
+  
+  <script>
+    const apiRoot = 'https://gri-training.rsmacademy-sa.com';
+    const resultEl = document.getElementById('result');
+    
+    // Test GET /api/test-cors
+    document.getElementById('testGet').addEventListener('click', async () => {
+      resultEl.textContent = 'Loading...';
+      try {
+        const response = await fetch(`${apiRoot}/api/test-cors`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          mode: 'cors',
+        });
+        
+        const data = await response.json();
+        resultEl.textContent = JSON.stringify(data, null, 2);
+      } catch (error) {
+        resultEl.textContent = 'Error: ' + error.message;
+      }
+    });
+    
+    // Test GET /api/status
+    document.getElementById('testStatus').addEventListener('click', async () => {
+      resultEl.textContent = 'Loading...';
+      try {
+        const response = await fetch(`${apiRoot}/api/status`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          mode: 'cors',
+        });
+        
+        const data = await response.json();
+        resultEl.textContent = JSON.stringify(data, null, 2);
+      } catch (error) {
+        resultEl.textContent = 'Error: ' + error.message;
+      }
+    });
+    
+    // Test POST /api/send-email
+    document.getElementById('testPost').addEventListener('click', async () => {
+      resultEl.textContent = 'Loading...';
+      try {
+        const testData = {
+          fullName: 'Test User',
+          email: 'test@example.com',
+          phone: '1234567890',
+          enrollmentType: 'individual'
+        };
+        
+        const response = await fetch(`${apiRoot}/api/send-email`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          mode: 'cors',
+          body: JSON.stringify(testData)
+        });
+        
+        let result;
+        try {
+          result = await response.json();
+        } catch (e) {
+          result = await response.text();
+        }
+        
+        resultEl.textContent = typeof result === 'string' 
+          ? result 
+          : JSON.stringify(result, null, 2);
+      } catch (error) {
+        resultEl.textContent = 'Error: ' + error.message;
+      }
+    });
+  </script>
+</body>
+</html> 

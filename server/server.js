@@ -26,14 +26,25 @@ if (isProduction) {
 
 // Middleware
 app.use(cors({
-  origin: '*', // Allow all origins temporarily for debugging
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true,
+  origin: true, // This allows all origins, but maintains the Access-Control-Allow-Origin header
+  methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'PATCH', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'X-Requested-With', 'Accept'],
+  credentials: true, // Changed to true to allow credentials if needed
   optionsSuccessStatus: 204
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Add middleware to handle OPTIONS requests
+app.options('*', cors());
+
+// Handle preflight requests for the specific API endpoint
+app.options('/api/send-email', (req, res) => {
+  res.header('Access-Control-Allow-Origin', 'https://gri-training.rsmacademy-sa.com');
+  res.header('Access-Control-Allow-Methods', 'POST');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.status(204).send();
+});
 
 // Email credentials
 const EMAIL_USER = process.env.SMTP_USER || 'alexander.b@skilloncall.com';
@@ -50,13 +61,24 @@ const transporter = nodemailer.createTransport({
 
 // API endpoint for sending emails
 app.post('/api/send-email', async (req, res) => {
-  const { fullName, email, phone, enrollmentType } = req.body;
+  console.log('Received request to /api/send-email');
+  console.log('Headers:', JSON.stringify(req.headers, null, 2));
+  console.log('Body:', JSON.stringify(req.body, null, 2));
 
-  if (!fullName || !email || !phone || !enrollmentType) {
-    return res.status(400).json({ success: false, message: 'Missing required fields' });
-  }
+  // Set CORS headers explicitly for this endpoint
+  res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+  res.header('Access-Control-Allow-Methods', 'POST');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Origin, X-Requested-With, Accept');
+  res.header('Access-Control-Allow-Credentials', 'true');
 
   try {
+    const { fullName, email, phone, enrollmentType } = req.body;
+
+    if (!fullName || !email || !phone || !enrollmentType) {
+      console.log('Missing required fields');
+      return res.status(400).json({ success: false, message: 'Missing required fields' });
+    }
+
     // Prepare email options
     const mailOptions = {
       from: EMAIL_USER,
@@ -147,20 +169,52 @@ app.post('/api/send-email', async (req, res) => {
   } catch (error) {
     console.error('Error sending email:', error);
     
+    // Detailed error logging
+    if (error.response) {
+      console.error('Nodemailer response error:', error.response.body);
+    }
+    
     return res.status(500).json({ 
       success: false, 
       message: 'Failed to send email',
-      error: error.message 
+      error: error.message,
+      stack: process.env.NODE_ENV === 'production' ? null : error.stack
     });
   }
 });
 
+// Add a simple test endpoint for CORS
+app.get('/api/test-cors', (req, res) => {
+  console.log('Received request to /api/test-cors');
+  console.log('Origin:', req.headers.origin);
+  
+  // Set CORS headers explicitly
+  res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+  res.header('Access-Control-Allow-Methods', 'GET');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+  res.status(200).json({ 
+    success: true, 
+    message: 'CORS test successful',
+    headers: req.headers,
+    timestamp: new Date().toISOString()
+  });
+});
+
 // Add a diagnostic endpoint
 app.get('/api/status', (req, res) => {
+  // Set CORS headers explicitly for this endpoint
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET');
+  
   res.status(200).json({ 
     status: 'ok',
     environment: process.env.NODE_ENV || 'development',
-    cors: true
+    cors: true,
+    origin: req.headers.origin || 'none',
+    host: req.headers.host,
+    referer: req.headers.referer || 'none',
+    userAgent: req.headers['user-agent']
   });
 });
 
