@@ -144,15 +144,6 @@ app.post('/api/send-email', async (req, res) => {
               <li style="margin-bottom: 8px;">Aligning sustainability reporting with UN SDGs</li>
               <li style="margin-bottom: 8px;">Improving quality and credibility of reports</li>
             </ul>
-            
-            <p style="color: #333; font-size: 16px; line-height: 1.6;">You will receive additional information, including the Zoom link and preparation materials, closer to the start date.</p>
-            
-          </div>
-          
-          <!-- Footer -->
-          <div style="background-color: #f7f9fc; padding: 20px 25px; text-align: center; font-size: 14px; color: #666;">
-            <p style="margin: 0 0 10px;">If you have any questions, please contact us at support@rsmacademy.com</p>
-            <p style="margin: 0;">© 2025 RSM Academy. All rights reserved.</p>
           </div>
         </div>
       `
