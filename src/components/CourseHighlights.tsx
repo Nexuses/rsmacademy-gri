@@ -1,6 +1,14 @@
 import React from 'react';
-import { Award, Users, GraduationCap, Scroll, HelpCircle } from 'lucide-react';
+import { Award, Users, BookOpen, Bookmark, MessageCircle } from 'lucide-react';
 import SmallBanner from '../../public/small-banner.png';
+
+const IconWrapper = ({ children }: { children: React.ReactNode }) => (
+  <div className="mr-4 flex-shrink-0">
+    <div className="bg-blue-100 p-2.5 rounded-full shadow-md">
+      {children}
+    </div>
+  </div>
+);
 
 const CourseHighlights = () => {
   return (
@@ -12,11 +20,9 @@ const CourseHighlights = () => {
             {/* Vocational Learning card */}
             <div className="bg-navy rounded-xl shadow-sm p-5 border border-navy h-[calc(50%-0.375rem)] relative">
               <div className="flex items-start">
-                <div className="mr-4 flex-shrink-0">
-                  <div className="bg-blue-100 p-2.5 rounded-full">
-                    <GraduationCap className="w-8 h-8 text-blue-500" />
-                  </div>
-                </div>
+                <IconWrapper>
+                  <BookOpen className="w-7 h-7 text-blue-600" strokeWidth={1.75} />
+                </IconWrapper>
                 
                 <div className="pt-1">
                   <h3 className="text-xl font-bold text-white mb-1.5">
@@ -32,11 +38,9 @@ const CourseHighlights = () => {
             {/* Interactive Sessions card */}
             <div className="bg-navy rounded-xl shadow-sm p-5 border border-navy h-[calc(50%-0.375rem)] relative">
               <div className="flex items-start">
-                <div className="mr-4 flex-shrink-0">
-                  <div className="bg-blue-100 p-2.5 rounded-full">
-                    <Users className="w-8 h-8 text-blue-500" />
-                  </div>
-                </div>
+                <IconWrapper>
+                  <Users className="w-7 h-7 text-blue-600" strokeWidth={1.75} />
+                </IconWrapper>
                 
                 <div className="pt-1">
                   <h3 className="text-xl font-bold text-white mb-1.5">
@@ -57,8 +61,8 @@ const CourseHighlights = () => {
                 {/* Content centered */}
                 <div className="text-center mb-3">
                   <div className="mx-auto mb-4">
-                    <div className="bg-blue-100 p-2.5 rounded-full inline-block">
-                      <Award className="w-8 h-8 text-blue-500" />
+                    <div className="bg-blue-100 p-2.5 rounded-full inline-block shadow-md">
+                      <Award className="w-8 h-8 text-blue-600" strokeWidth={1.75} />
                     </div>
                   </div>
                   <h3 className="text-xl font-bold text-white mb-1.5">
@@ -88,11 +92,9 @@ const CourseHighlights = () => {
             {/* Dual Certification card */}
             <div className="bg-navy rounded-xl shadow-sm p-5 border border-navy h-[calc(50%-0.375rem)] relative">
               <div className="flex items-start">
-                <div className="mr-4 flex-shrink-0">
-                  <div className="bg-blue-100 p-2.5 rounded-full">
-                    <Scroll className="w-8 h-8 text-blue-500" />
-                  </div>
-                </div>
+                <IconWrapper>
+                  <Bookmark className="w-7 h-7 text-blue-600" strokeWidth={1.75} />
+                </IconWrapper>
                 
                 <div className="pt-1">
                   <h3 className="text-xl font-bold text-white mb-1.5">
@@ -108,11 +110,9 @@ const CourseHighlights = () => {
             {/* Exclusive Q&A card */}
             <div className="bg-navy rounded-xl shadow-sm p-5 border border-navy h-[calc(50%-0.375rem)] relative">
               <div className="flex items-start">
-                <div className="mr-4 flex-shrink-0">
-                  <div className="bg-blue-100 p-2.5 rounded-full">
-                    <HelpCircle className="w-8 h-8 text-blue-500" />
-                  </div>
-                </div>
+                <IconWrapper>
+                  <MessageCircle className="w-7 h-7 text-blue-600" strokeWidth={1.75} />
+                </IconWrapper>
                 
                 <div className="pt-1">
                   <h3 className="text-xl font-bold text-white mb-1.5">

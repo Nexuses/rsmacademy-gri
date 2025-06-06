@@ -1,29 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { CheckCircle, X, Calendar, Clock, Video } from "lucide-react";
+import { useForm } from "react-hook-form";
 import { sendEnrollmentEmail } from "../utils/email";
-import emailjs from '@emailjs/browser';
+
+type FormData = {
+  fullName: string;
+  email: string;
+  phone: string;
+  enrollmentType: string;
+  password: string;
+};
 
 const RegistrationSection = () => {
   const [showSignup, setShowSignup] = useState(false);
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    phone: "",
-    enrollmentType: "individual",
-    password: "",
-  });
   const [loading, setLoading] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     success: boolean;
     message: string;
   } | null>(null);
 
-  // Initialize EmailJS on component mount
-  useEffect(() => {
-    // Initialize EmailJS with your public key
-    // This can also be done in a higher level component like App.tsx
-    emailjs.init("your_public_key"); // Replace with your actual public key
-  }, []);
+  const { register, handleSubmit, reset } = useForm<FormData>({
+    defaultValues: {
+      fullName: "",
+      email: "",
+      phone: "",
+      enrollmentType: "individual",
+      password: "",
+    },
+  });
 
   const features = [
     "Direct access to GRI Certified Trainers with global and regional ESG expertise",
@@ -33,27 +37,16 @@ const RegistrationSection = () => {
     "Post-training support and opportunities to connect with ESG professionals",
   ];
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async (data: FormData) => {
     setLoading(true);
     setSubmitStatus(null);
 
     try {
       const success = await sendEnrollmentEmail({
-        fullName: formData.fullName,
-        email: formData.email,
-        phone: formData.phone,
-        enrollmentType: formData.enrollmentType,
+        fullName: data.fullName,
+        email: data.email,
+        phone: data.phone,
+        enrollmentType: data.enrollmentType,
       });
 
       if (success) {
@@ -62,13 +55,7 @@ const RegistrationSection = () => {
           message: "Enrollment successful! Check your email for confirmation.",
         });
         // Reset form after successful submission
-        setFormData({
-          fullName: "",
-          email: "",
-          phone: "",
-          enrollmentType: "individual",
-          password: "",
-        });
+        reset();
       } else {
         setSubmitStatus({
           success: false,
@@ -112,6 +99,7 @@ const RegistrationSection = () => {
           <button
             onClick={() => setShowSignup(false)}
             className="absolute right-4 top-4 text-mediumGray hover:text-darkGray transition-colors"
+            type="button"
           >
             <X className="h-6 w-6" />
           </button>
@@ -136,76 +124,66 @@ const RegistrationSection = () => {
               </div>
             )}
 
-            <form className="space-y-4" onSubmit={handleSubmit}>
+            <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
               <div>
-                <label className="block text-sm font-medium text-darkGray mb-1">
+                <label htmlFor="fullName" className="block text-sm font-medium text-darkGray mb-1">
                   Full Name*
                 </label>
                 <input
+                  id="fullName"
                   type="text"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleInputChange}
-                  required
                   className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                   placeholder="Enter your full name"
+                  {...register("fullName", { required: true })}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-darkGray mb-1">
+                <label htmlFor="email" className="block text-sm font-medium text-darkGray mb-1">
                   Email Address*
                 </label>
                 <input
+                  id="email"
                   type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
                   className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                   placeholder="Enter your email"
+                  {...register("email", { required: true })}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-darkGray mb-1">
+                <label htmlFor="phone" className="block text-sm font-medium text-darkGray mb-1">
                   Phone Number*
                 </label>
                 <input
+                  id="phone"
                   type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  required
                   className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                   placeholder="Enter your phone number"
+                  {...register("phone", { required: true })}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-darkGray mb-1">
+                <label htmlFor="enrollmentType" className="block text-sm font-medium text-darkGray mb-1">
                   Enrollment Type*
                 </label>
                 <select
-                  name="enrollmentType"
-                  value={formData.enrollmentType}
-                  onChange={handleInputChange}
-                  required
+                  id="enrollmentType"
                   className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                  {...register("enrollmentType", { required: true })}
                 >
                   <option value="individual">For Individual</option>
                   <option value="business">For Business</option>
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-darkGray mb-1">
+                <label htmlFor="password" className="block text-sm font-medium text-darkGray mb-1">
                   Password*
                 </label>
                 <input
+                  id="password"
                   type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleInputChange}
-                  required
                   className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                   placeholder="Create a password"
+                  {...register("password", { required: true })}
                 />
               </div>
               <button
@@ -236,15 +214,16 @@ const RegistrationSection = () => {
         <div className="max-w-7xl mx-auto bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
           <div className="flex flex-col lg:flex-row">
             {/* Left side - Enrollment Info */}
-              <div className="w-full lg:w-1/2 p-6 md:p-8 lg:p-10 bg-primary/5 rounded-xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-all">
-    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-navy">
-      Ready to Enroll?
-    </h2>
+            <div className="w-full lg:w-1/2 p-6 md:p-8 lg:p-10 bg-primary/5 rounded-xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-all">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-navy">
+                Ready to Enroll?
+              </h2>
 
               <div className="mt-6 mb-8">
                 <button
                   onClick={() => setShowSignup(true)}
                   className="w-full bg-primary hover:bg-primary/90 text-white rounded-lg py-3 md:py-4 font-bold text-base md:text-lg transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                  type="button"
                 >
                   Register Now
                 </button>

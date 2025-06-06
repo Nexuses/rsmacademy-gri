@@ -16,7 +16,7 @@ const CourseOverview = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 mb-16">
-          <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+          <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-primary">
             <div className="p-8">
               <div className="flex items-center mb-4">
                 <BookOpen className="h-6 w-6 text-primary mr-3" />
@@ -44,7 +44,7 @@ const CourseOverview = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+          <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-primary">
             <div className="p-8">
               <div className="flex items-center mb-4">
                 <Award className="h-6 w-6 text-primary mr-3" />

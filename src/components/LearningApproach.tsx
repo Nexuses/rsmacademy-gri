@@ -1,5 +1,6 @@
 import { useInView, animate, useMotionValue, motion } from "framer-motion";
 import { useEffect, useRef } from "react";
+import { BarChart, Leaf, FileText, GraduationCap } from "lucide-react";
 
 // Counter animation component
 const Counter = ({ from = 0, to, duration = 2, decimals = 0 }: { from?: number; to: number; duration?: number; decimals?: number }) => {
@@ -34,22 +35,22 @@ const LearningApproach = () => {
     {
       title: "Understand the GRI Standards",
       description: "Learn how the GRI Standards are structured and how to use them in your reports — including Universal, Sector, and Topic Standards.",
-      icon: "📊"
+      icon: <BarChart className="w-8 h-8 text-primary" />
     },
     {
       title: "Report on Key Sustainability Issues",
       description: "Gain the ability to report on human rights, environmental impact, and governance, while meeting global due diligence and disclosure expectations.",
-      icon: "🌱"
+      icon: <Leaf className="w-8 h-8 text-primary" />
     },
     {
       title: "Create Clear and Trusted Reports",
       description: "Learn how to improve the quality, accuracy, and transparency of your reports to meet the needs of stakeholders and regulators.",
-      icon: "📝"
+      icon: <FileText className="w-8 h-8 text-primary" />
     },
     {
       title: "Align with the UN SDGs and Get Certified",
       description: "See how your work connects to the UN Sustainable Development Goals, and get ready to pass the GRI Certification Exam with confidence.",
-      icon: "🎓"
+      icon: <GraduationCap className="w-8 h-8 text-primary" />
     }
   ];
 
