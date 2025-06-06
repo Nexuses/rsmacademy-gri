@@ -15,19 +15,22 @@ dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const isProduction = process.env.NODE_ENV === 'production' || true; // Force production mode for now
 
 // Serve static files in production
-if (process.env.NODE_ENV === 'production') {
+if (isProduction) {
+  console.log('Running in production mode - serving static files from dist directory');
   // Serve static files from the 'dist' directory
   app.use(express.static(path.resolve(__dirname, '../dist')));
 }
 
 // Middleware
 app.use(cors({
-  origin: ['https://gri-training.rsmacademy-sa.com', 'http://localhost:5173', 'http://localhost:3000'],
-  methods: ['GET', 'POST'],
+  origin: '*', // Allow all origins temporarily for debugging
+  methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
+  credentials: true,
+  optionsSuccessStatus: 204
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -152,14 +155,28 @@ app.post('/api/send-email', async (req, res) => {
   }
 });
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+// Add a diagnostic endpoint
+app.get('/api/status', (req, res) => {
+  res.status(200).json({ 
+    status: 'ok',
+    environment: process.env.NODE_ENV || 'development',
+    cors: true
+  });
 });
 
 // Catch-all route to serve index.html for client-side routing in production
-if (process.env.NODE_ENV === 'production') {
-  app.get('*', (req, res) => {
+if (isProduction) {
+  app.get('*', (req, res, next) => {
+    // Skip API routes
+    if (req.path.startsWith('/api')) {
+      return next();
+    }
+    console.log('Serving index.html for route:', req.path);
     res.sendFile(path.resolve(__dirname, '../dist/index.html'));
   });
-} 
+}
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+}); 

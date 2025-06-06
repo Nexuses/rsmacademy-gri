@@ -33,12 +33,17 @@ This project uses EmailJS to send enrollment emails directly from the frontend w
 npm install
 ```
 
-2. Start the development server:
+2. Start the backend server in one terminal:
+```bash
+npm run server
+```
+
+3. Start the frontend development server in another terminal:
 ```bash
 npm run dev
 ```
 
-3. Open your browser and navigate to the URL shown in the terminal.
+4. Open your browser and navigate to the URL shown in the terminal (typically http://localhost:5173).
 
 ## Building for Production
 
@@ -46,4 +51,18 @@ npm run dev
 npm run build
 ```
 
-This will generate optimized production files in the `dist` directory. 
+This will generate optimized production files in the `dist` directory.
+
+## Deploying to Production
+
+1. Build the frontend:
+```bash
+npm run build
+```
+
+2. Start the production server:
+```bash
+npm start
+```
+
+The server will serve both the API and the static frontend files from the `dist` directory. 
