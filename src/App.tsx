@@ -28,16 +28,18 @@ function App() {
   return (
     <div className="font-sans">
       <Navbar />
-      <HeroSection />
-      <CourseHighlights />
-      <LearningApproach />
-      <CourseOverview />
-      <TrainerProfile />
-      <ChiefGuest />
-      <CourseAgenda />
-      {/* <Testimonials /> */}
-      <RegistrationSection />
-      {/* <FAQ /> */}
+      <div className="flex flex-col">
+        <HeroSection />
+        <CourseHighlights />
+        <LearningApproach />
+        <CourseOverview />
+        <TrainerProfile />
+        <ChiefGuest />
+        <CourseAgenda />
+        {/* <Testimonials /> */}
+        <RegistrationSection />
+        {/* <FAQ /> */}
+      </div>
       <Footer />
     </div>
   );

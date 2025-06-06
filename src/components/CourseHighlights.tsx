@@ -1,44 +1,50 @@
 import React from 'react';
-import { Award, Users, MessageSquare, BookOpen } from 'lucide-react';
+import { Award, Users, GraduationCap, Scroll, HelpCircle } from 'lucide-react';
 import SmallBanner from '../../public/small-banner.png';
 
 const CourseHighlights = () => {
   return (
-    <div className="py-6 bg-white mt-12">
+    <div className="pt-16 bg-white">
       <div className="container-padding">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {/* Left column */}
           <div className="space-y-3">
-            {/* Vocational Learning card (previously GRI Certified) */}
-            <div className="bg-navy rounded-xl shadow-sm p-4 border border-navy h-32">
-              <div className="flex items-start justify-between">
-                <div>
-                  <h3 className="text-lg font-bold text-white mb-1">
+            {/* Vocational Learning card */}
+            <div className="bg-navy rounded-xl shadow-sm p-5 border border-navy h-[calc(50%-0.375rem)] relative">
+              <div className="flex items-start">
+                <div className="mr-4 flex-shrink-0">
+                  <div className="bg-blue-100 p-2.5 rounded-full">
+                    <GraduationCap className="w-8 h-8 text-blue-500" />
+                  </div>
+                </div>
+                
+                <div className="pt-1">
+                  <h3 className="text-xl font-bold text-white mb-1.5">
                     Vocational Learning
                   </h3>
-                  <p className="text-xs text-gray-300 tracking-wide">
+                  <p className="text-sm text-gray-300 tracking-wide max-w-[95%]">
                     Practical, job-ready skills through real case studies and exercises.
                   </p>
-                </div>
-                <div className="w-10 h-10 bg-[#001d54] rounded-full flex items-center justify-center ml-2 flex-shrink-0">
-                  <BookOpen className="w-5 h-5 text-gray-300" />
                 </div>
               </div>
             </div>
             
             {/* Interactive Sessions card */}
-            <div className="bg-navy rounded-xl shadow-sm p-4 border border-navy h-32">
-              <div className="flex items-start justify-between">
-                <div>
-                  <h3 className="text-lg font-bold text-white mb-1">
+            <div className="bg-navy rounded-xl shadow-sm p-5 border border-navy h-[calc(50%-0.375rem)] relative">
+              <div className="flex items-start">
+                <div className="mr-4 flex-shrink-0">
+                  <div className="bg-blue-100 p-2.5 rounded-full">
+                    <Users className="w-8 h-8 text-blue-500" />
+                  </div>
+                </div>
+                
+                <div className="pt-1">
+                  <h3 className="text-xl font-bold text-white mb-1.5">
                     Interactive Sessions
                   </h3>
-                  <p className="text-xs text-gray-300 tracking-wide">
+                  <p className="text-sm text-gray-300 tracking-wide max-w-[95%]">
                     Live, expert-led discussions to deepen your understanding.
                   </p>
-                </div>
-                <div className="w-10 h-10 bg-[#001d54] rounded-full flex items-center justify-center ml-2 flex-shrink-0">
-                  <MessageSquare className="w-5 h-5 text-gray-300" />
                 </div>
               </div>
             </div>
@@ -46,28 +52,26 @@ const CourseHighlights = () => {
           
           {/* Center column - GRI Certified Training Partner */}
           <div className="flex items-stretch">
-            <div className="bg-navy rounded-xl shadow-sm p-4 border border-navy flex-1 relative overflow-hidden">
-              <div className="flex flex-col h-full relative z-10">
-                {/* Icon centered at the top */}
-                <div className="flex justify-center mb-4">
-                  <div className="w-10 h-10 bg-[#001d54] rounded-full flex items-center justify-center">
-                    <Award className="w-5 h-5 text-gray-300" />
-                  </div>
-                </div>
-                
+            <div className="bg-navy rounded-xl shadow-sm p-5 border border-navy flex-1 relative h-full">
+              <div className="flex flex-col h-full justify-between">
                 {/* Content centered */}
-                <div className="text-center mb-6">
-                  <h3 className="text-lg font-bold text-white mb-1">
+                <div className="text-center mb-3">
+                  <div className="mx-auto mb-4">
+                    <div className="bg-blue-100 p-2.5 rounded-full inline-block">
+                      <Award className="w-8 h-8 text-blue-500" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-1.5">
                     GRI Certified Training Partner
                   </h3>
-                  <p className="text-xs text-gray-300 tracking-wide">
+                  <p className="text-sm text-gray-300 tracking-wide">
                     Delivered in collaboration with the Global Reporting Initiative.
                   </p>
                 </div>
                 
                 {/* Banner at the bottom - styled to blend with background */}
                 <div className="mt-auto">
-                  <div className="bg-white bg-opacity-20 rounded-lg p-2 mx-auto w-full">
+                  <div className="mx-auto w-full">
                     <img 
                       src={SmallBanner as string} 
                       alt="GRI Certified Training Partner Banner"
@@ -82,35 +86,41 @@ const CourseHighlights = () => {
           {/* Right column */}
           <div className="space-y-3">
             {/* Dual Certification card */}
-            <div className="bg-navy rounded-xl shadow-sm p-4 border border-navy h-32">
-              <div className="flex items-start justify-between">
-                <div>
-                  <h3 className="text-lg font-bold text-white mb-1">
+            <div className="bg-navy rounded-xl shadow-sm p-5 border border-navy h-[calc(50%-0.375rem)] relative">
+              <div className="flex items-start">
+                <div className="mr-4 flex-shrink-0">
+                  <div className="bg-blue-100 p-2.5 rounded-full">
+                    <Scroll className="w-8 h-8 text-blue-500" />
+                  </div>
+                </div>
+                
+                <div className="pt-1">
+                  <h3 className="text-xl font-bold text-white mb-1.5">
                     Dual Certification
                   </h3>
-                  <p className="text-xs text-gray-300 tracking-wide">
+                  <p className="text-sm text-gray-300 tracking-wide max-w-[95%]">
                     Earn recognized certificates from GRI and RSM Saudi Academy.
                   </p>
-                </div>
-                <div className="w-10 h-10 bg-[#001d54] rounded-full flex items-center justify-center ml-2 flex-shrink-0">
-                  <Award className="w-5 h-5 text-gray-300" />
                 </div>
               </div>
             </div>
             
             {/* Exclusive Q&A card */}
-            <div className="bg-navy rounded-xl shadow-sm p-4 border border-navy h-32">
-              <div className="flex items-start justify-between">
-                <div>
-                  <h3 className="text-lg font-bold text-white mb-1">
+            <div className="bg-navy rounded-xl shadow-sm p-5 border border-navy h-[calc(50%-0.375rem)] relative">
+              <div className="flex items-start">
+                <div className="mr-4 flex-shrink-0">
+                  <div className="bg-blue-100 p-2.5 rounded-full">
+                    <HelpCircle className="w-8 h-8 text-blue-500" />
+                  </div>
+                </div>
+                
+                <div className="pt-1">
+                  <h3 className="text-xl font-bold text-white mb-1.5">
                     Exclusive Q&A with ESG Expert
                   </h3>
-                  <p className="text-xs text-gray-300 tracking-wide">
+                  <p className="text-sm text-gray-300 tracking-wide max-w-[95%]">
                     Interact with regional sustainability leadership.
                   </p>
-                </div>
-                <div className="w-10 h-10 bg-[#001d54] rounded-full flex items-center justify-center ml-2 flex-shrink-0">
-                  <Users className="w-5 h-5 text-gray-300" />
                 </div>
               </div>
             </div>

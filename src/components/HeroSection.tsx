@@ -66,7 +66,7 @@ const HeroSection = () => {
         </video>
       </div>
 
-      <div className="container-padding py-24 md:py-36 relative z-10">
+      <div className="container-padding pt-32 pb-16 md:pt-40 md:pb-20 relative z-10">
         <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-3/5 md:pr-12 mb-10 md:mb-0">
             <div className="inline-block px-3 py-1 bg-primary text-white rounded-full text-sm font-semibold mb-4 animate-pulse">
