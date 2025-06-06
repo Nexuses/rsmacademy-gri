@@ -16,8 +16,19 @@ dotenv.config({ path: path.resolve(__dirname, '../.env') });
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Serve static files in production
+if (process.env.NODE_ENV === 'production') {
+  // Serve static files from the 'dist' directory
+  app.use(express.static(path.resolve(__dirname, '../dist')));
+}
+
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: ['https://gri-training.rsmacademy-sa.com', 'http://localhost:5173', 'http://localhost:3000'],
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -144,4 +155,11 @@ app.post('/api/send-email', async (req, res) => {
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-}); 
+});
+
+// Catch-all route to serve index.html for client-side routing in production
+if (process.env.NODE_ENV === 'production') {
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../dist/index.html'));
+  });
+} 
