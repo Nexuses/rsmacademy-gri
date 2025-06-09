@@ -56,7 +56,7 @@ const CourseAgenda = () => {
     <div className="pt-16 bg-white">
       <div className="container-padding">
         <div className="text-center mb-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">Course Agenda</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">Training Module Structure</h2>
           <p className="text-lg text-darkGray max-w-3xl mx-auto">
             This 4-day GRI Certified Training is designed to guide participants through the key pillars of sustainability reporting. Each day builds on
             foundational knowledge, helping you apply the GRI Standards effectively while aligning with international ESG expectations.
@@ -102,16 +102,13 @@ const CourseAgenda = () => {
         <div className="bg-navy text-white rounded-xl p-8 shadow-lg">
           <div className="md:flex justify-between items-center">
             <div>
-              <h3 className="text-2xl font-bold mb-2">Ready to Become GRI Certified?</h3>
-              <p className="max-w-2xl">
-                Join a growing network of global professionals certified by the GRI. This training prepares you to pass the GRI Certification Exam with confidence.
-              </p>
+              <h3 className="text-2xl font-bold mb-2">Register today to expand your expertise in the field of Global Reporting Initiative</h3>
             </div>
             <div className="mt-6 md:mt-0">
               <button 
                 onClick={downloadBrochure}
                 className="px-6 py-3 bg-secondary hover:bg-secondary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-md">
-                Download Brochure
+                Join the Program
               </button>
             </div>
           </div>

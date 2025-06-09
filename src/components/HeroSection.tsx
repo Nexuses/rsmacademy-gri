@@ -53,7 +53,7 @@ const HeroSection = () => {
     <div className="relative overflow-hidden bg-gradient-to-r from-navy to-primary text-white">
       {/* Video background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gray-900/70 z-10"></div>
+        <div className="absolute inset-0 bg-black/60 z-10"></div>
         <video
           autoPlay
           loop
@@ -102,7 +102,7 @@ const HeroSection = () => {
             <div className="flex flex-wrap gap-4">
               <a href="#register">
                 <button className="px-8 py-4 bg-secondary hover:bg-secondary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-lg text-lg">
-                  Apply Now
+                  Register Now
                 </button>
               </a>
               <button

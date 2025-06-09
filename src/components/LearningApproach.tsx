@@ -68,13 +68,16 @@ const LearningApproach = () => {
           <div className="bg-primary rounded-xl overflow-hidden">
             <div className="aspect-w-16 aspect-h-9 relative" style={{ maxHeight: '360px' }}>
               <img 
-                src="https://images.pexels.com/photos/2559941/pexels-photo-2559941.jpeg"
+                src="/banner.jpg"
                 alt="Sustainability and Environmental Reporting"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-white text-center">
-                  <h3 className="text-2xl md:text-3xl font-semibold mb-1">GRI Standards: Course Overview</h3>
+                <div className="text-white text-center flex flex-col items-center justify-center">
+                  <h3 className="text-2xl md:text-3xl font-semibold mb-6">Discover the GRI Standards: Watch the Training Overview</h3>
+                  <button className="w-16 h-16 bg-[#009CDE] rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-all duration-300 shadow-lg">
+                    <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[18px] border-l-white border-b-[10px] border-b-transparent ml-1"></div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -102,7 +105,7 @@ const LearningApproach = () => {
           ))}
         </div>
 
-        <div className="bg-navy text-white rounded-xl overflow-hidden shadow-xl">
+        <div className="bg-primary text-white rounded-xl overflow-hidden shadow-xl">
           <div className="p-8">
             <h3 className="text-2xl font-bold mb-4">Why This Training Matters</h3>
             <p className="mb-6">
@@ -112,7 +115,7 @@ const LearningApproach = () => {
             </p>
             <div className="grid grid-cols-3 gap-6 text-center">
               <motion.div 
-                className="p-4 bg-secondary/20 rounded-lg"
+                className="p-4 bg-white/20 rounded-lg"
                 initial={{ y: 50, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
@@ -122,7 +125,7 @@ const LearningApproach = () => {
                 <p className="text-sm">Countries Using GRI</p>
               </motion.div>
               <motion.div 
-                className="p-4 bg-secondary/20 rounded-lg"
+                className="p-4 bg-white/20 rounded-lg"
                 initial={{ y: 50, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
@@ -132,7 +135,7 @@ const LearningApproach = () => {
                 <p className="text-sm">Of the World's Largest 250 Companies</p>
               </motion.div>
               <motion.div 
-                className="p-4 bg-secondary/20 rounded-lg"
+                className="p-4 bg-white/20 rounded-lg"
                 initial={{ y: 50, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
