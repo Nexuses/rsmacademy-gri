@@ -47,8 +47,9 @@ app.options('/api/send-email', (req, res) => {
 });
 
 // Email credentials
-const EMAIL_USER = process.env.SMTP_USER || 'alexander.b@skilloncall.com';
-const EMAIL_PASS = process.env.SMTP_PASS || 'utuokepbhrogjyzg';
+const EMAIL_USER = process.env.SMTP_USER;
+const EMAIL_PASS = process.env.SMTP_PASS;
+const SLACK_EMAIL = process.env.SLACK_EMAIL;
 
 // Create nodemailer transporter
 const transporter = nodemailer.createTransport({
@@ -83,8 +84,8 @@ app.post('/api/send-email', async (req, res) => {
     const mailOptions = {
       from: EMAIL_USER,
       to: email,
-      cc: EMAIL_USER,
-      subject: 'Confirmation: GRI Certified Sustainability Training Registration',
+      cc: [EMAIL_USER, SLACK_EMAIL],
+      subject: 'GRI Certified Sustainability Professional Training',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
           <!-- Header with gradient background similar to the landing page -->
@@ -95,9 +96,19 @@ app.post('/api/send-email', async (req, res) => {
           
           <!-- Main content -->
           <div style="background-color: white; padding: 30px 25px;">
-            <p style="color: #333; font-size: 16px; line-height: 1.6;">Dear <strong>${fullName}</strong>,</p>
+            <p style="color: #333; font-size: 16px; line-height: 1.6;">Dear <strong>Participant</strong>,</p>
             
-            <p style="color: #333; font-size: 16px; line-height: 1.6;">Thank you for registering for the <strong>GRI Certified Sustainability Professional Training</strong>. We're excited to have you join us for this transformative program designed to equip professionals with in-demand ESG skills and prepare them for official GRI certification.</p>
+            <p style="color: #333; font-size: 16px; line-height: 1.6;">Thank you for registering for the <strong>GRI Certified Sustainability Professional Training</strong>.</p>
+            
+            <p style="color: #333; font-size: 16px; line-height: 1.6;">We're excited to have you join this globally recognized program designed to equip professionals with the knowledge and tools to lead in sustainability and ESG reporting.</p>
+            
+            <p style="color: #333; font-size: 16px; line-height: 1.6;">Our team will reach out to you shortly via email with additional details, including the session schedule, access instructions, and next steps to complete your enrollment.</p>
+            
+            <p style="color: #333; font-size: 16px; line-height: 1.6;">If you have immediate questions or are registering on behalf of a group, please feel free to contact us at <a href="mailto:info@rsmacademy-sa.com" style="color: #0066cc; text-decoration: underline;">info@rsmacademy-sa.com</a>.</p>
+            
+            <p style="color: #333; font-size: 16px; line-height: 1.6;">We look forward to supporting your journey toward GRI Certification.</p>
+            
+            <p style="color: #333; font-size: 16px; line-height: 1.6;">Warm regards,<br>RSM Saudi Arabia Professional Academy Team</p>
             
             <!-- Registration details card -->
             <div style="background-color: #f7f9fc; border-left: 4px solid #0066cc; padding: 20px; border-radius: 5px; margin: 25px 0;">
@@ -111,39 +122,12 @@ app.post('/api/send-email', async (req, res) => {
             <!-- Course information -->
             <h3 style="color: #003366; font-size: 18px; margin-bottom: 15px;">Course Information</h3>
             
-            <div style="display: flex; align-items: center; margin-bottom: 15px;">
-              <div style="min-width: 24px; margin-right: 10px;">📅</div>
-              <div>
-                <p style="margin: 0; color: #333; font-weight: bold;">29 Jun - 2 Jul 2025</p>
-                <p style="margin: 0; color: #666; font-size: 14px;">9:00 AM - 5:00 PM (GMT+3)</p>
-              </div>
+            <!-- Message about upcoming contact -->
+            <div style="background-color: #f0f7ff; padding: 20px; border-radius: 5px; margin: 25px 0; border-left: 4px solid #0066cc;">
+              <p style="margin: 0; color: #333; font-size: 15px; line-height: 1.5;">
+                <strong>Note:</strong> Our team will provide you with detailed information about training dates, format, and all necessary preparation instructions in our follow-up communication.
+              </p>
             </div>
-            
-            <div style="display: flex; align-items: center; margin-bottom: 15px;">
-              <div style="min-width: 24px; margin-right: 10px;">🎓</div>
-              <div>
-                <p style="margin: 0; color: #333; font-weight: bold;">Virtual Training</p>
-                <p style="margin: 0; color: #666; font-size: 14px;">Live sessions delivered via Zoom</p>
-              </div>
-            </div>
-            
-            <div style="display: flex; align-items: center; margin-bottom: 25px;">
-              <div style="min-width: 24px; margin-right: 10px;">⏱️</div>
-              <div>
-                <p style="margin: 0; color: #333; font-weight: bold;">4-day intensive program</p>
-                <p style="margin: 0; color: #666; font-size: 14px;">32 hours of comprehensive training</p>
-              </div>
-            </div>
-            
-            <!-- What you'll learn section -->
-            <h3 style="color: #003366; font-size: 18px; margin-bottom: 15px;">What You'll Learn</h3>
-            <ul style="padding-left: 15px; color: #333; margin-bottom: 25px;">
-              <li style="margin-bottom: 8px;">Comprehensive understanding of GRI Standards structure</li>
-              <li style="margin-bottom: 8px;">Application of GRI reporting principles</li>
-              <li style="margin-bottom: 8px;">Human rights reporting in accordance with GRI</li>
-              <li style="margin-bottom: 8px;">Aligning sustainability reporting with UN SDGs</li>
-              <li style="margin-bottom: 8px;">Improving quality and credibility of reports</li>
-            </ul>
           </div>
         </div>
       `
