@@ -1,4 +1,4 @@
-import { Award, Briefcase, Leaf, Users } from 'lucide-react';
+import { Briefcase, Leaf, Users } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const TrainerProfile = () => {
@@ -6,23 +6,25 @@ const TrainerProfile = () => {
     {
       name: "Merin Abraham",
       title: "GRI Certified Trainer",
+      linkedin: "https://www.linkedin.com/in/merin-abraham-895960251/",
       image: "/Merin.png",
-      description: "Merin brings a unique blend of academic expertise and real-world sustainability knowledge. With a Master's in Sustainable Built Environment from UNSW and a LEED Green Associate certification, she has led sustainable architecture, ESG integration, and green building strategy across consulting, education, and design sectors.",
+      description: "An architect-turned-sustainability specialist, Merin couples a Master's in Sustainable Built Environment (UNSW) with LEED Green Associate credentials. Her work spans consultancy, teaching and innovative urban-design projects, weaving ESG principles into hospitality, healthcare and mixed-use developments across the GCC, Australia and Asia.",
       achievements: [
-        { icon: <Award className="h-5 w-5" />, title: "GRI Certified", desc: "Official GRI Trainer" },
-        { icon: <Briefcase className="h-5 w-5" />, title: "Built Environment Expert", desc: "Specialist in urban sustainability and environmental design" },
-        { icon: <Users className="h-5 w-5" />, title: "Cross-Sector Insight", desc: "Experience in academia, consultancy, and urban planning" }
+        { icon: <Leaf className="h-5 w-5" />, title: "Integrates ESG and green-building standards into large-scale master-plans" },
+        { icon: <Users className="h-5 w-5" />, title: "Guides client teams through GRI-aligned sustainability reports and retrofit programmes" },
+        { icon: <Briefcase className="h-5 w-5" />, title: "Blends academic insight with on-the-ground project delivery for practical outcomes" }
       ]
     },
     {
       name: "Yousef Abdulhadi",
       title: "GRI Certified Trainer",
+      linkedin: "https://www.linkedin.com/in/yousef-abdulhadi-beng-60925713b/",
       image: "/Yousef.png",
-      description: "Yousef is a sustainability strategist with a strong background in engineering, GHG accounting, and climate risk. He has supported ESG implementation in industries including manufacturing, retail, energy, and tech—guiding companies in aligning with international sustainability standards.",
+      description: "With an engineering foundation and deep expertise in GHG accounting, climate-risk management and ESG strategy, Yousef helps organisations translate sustainability ambitions into measurable action. He has steered manufacturing, retail and energy clients across the MENA region through complex emissions inventories and transformation roadmaps, leveraging fluency in both Arabic and English to bridge global standards with local realities.",
       achievements: [
-        { icon: <Award className="h-5 w-5" />, title: "GRI Certified", desc: "Accredited Trainer in GRI Standards" },
-        { icon: <Briefcase className="h-5 w-5" />, title: "Industry Experience", desc: "Worked across industrial, commercial, and energy sectors" },
-        { icon: <Leaf className="h-5 w-5" />, title: "Climate & Risk Focus", desc: "Expertise in GHG emissions, ESG strategy, and reporting" }
+        { icon: <Briefcase className="h-5 w-5" />, title: "Builds and verifies GHG inventories in line with leading protocols" },
+        { icon: <Leaf className="h-5 w-5" />, title: "Develops climate-risk assessments and forward-looking ESG strategies" },
+        { icon: <Users className="h-5 w-5" />, title: "Advises cross-sector clients on embedding sustainability within core operations" }
       ]
     }
   ];
@@ -114,7 +116,20 @@ const TrainerProfile = () => {
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: 0.2 }}
                     >
-                      <h3 className="text-2xl font-bold text-navy">{trainer.name}</h3>
+                      <div className="flex items-center gap-2 justify-center md:justify-start">
+                        <h3 className="text-2xl font-bold text-navy">{trainer.name}</h3>
+                        <a 
+                          href={trainer.linkedin} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="inline-flex items-center justify-center bg-[#0077B5] hover:bg-[#005885] text-white p-1 rounded-md transition-colors"
+                          aria-label={`Connect with ${trainer.name} on LinkedIn`}
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
+                          </svg>
+                        </a>
+                      </div>
                       <p className="text-primary font-medium">{trainer.title}</p>
                     </motion.div>
                     
@@ -135,6 +150,7 @@ const TrainerProfile = () => {
                       whileInView="visible"
                       viewport={{ once: true }}
                     >
+                      <h4 className="font-bold text-navy md:col-span-3 mb-1">Highlights</h4>
                       {trainer.achievements.map((achievement, i) => (
                         <motion.div 
                           key={i} 
@@ -153,7 +169,6 @@ const TrainerProfile = () => {
                           </motion.div>
                           <div>
                             <h4 className="font-semibold text-navy text-sm">{achievement.title}</h4>
-                            <p className="text-xs text-mediumGray">{achievement.desc}</p>
                           </div>
                         </motion.div>
                       ))}
