@@ -89,7 +89,7 @@ app.post("/api/send-email", async (req, res) => {
   res.header("Access-Control-Allow-Credentials", "true");
 
   try {
-    const { fullName, email, phone, enrollmentType } = req.body;
+    const { fullName, email, phone, enrollmentType, organizationName } = req.body;
 
     if (!fullName || !email || !phone || !enrollmentType) {
       console.log("Missing required fields");
@@ -146,6 +146,9 @@ app.post("/api/send-email", async (req, res) => {
               <p style="margin: 10px 0; color: #333;"><strong>Enrollment Type:</strong> ${
                 enrollmentType === "individual" ? "Individual" : "Business"
               }</p>
+              ${enrollmentType === "business" && organizationName ? `
+              <p style="margin: 10px 0; color: #333;"><strong>Organization:</strong> ${organizationName}</p>
+              ` : ''}
             </div>
             
             <!-- Course information -->
@@ -243,6 +246,7 @@ app.get("/api/preview-email", (req, res) => {
     email: req.query.email || "john.doe@example.com",
     phone: req.query.phone || "+1234567890",
     enrollmentType: req.query.type || "individual",
+    organizationName: req.query.org || (req.query.type === "business" ? "Acme Corporation" : ""),
   };
 
   // Get base URL for assets
@@ -294,6 +298,9 @@ app.get("/api/preview-email", (req, res) => {
               ? "Individual"
               : "Business"
           }</p>
+          ${sampleData.enrollmentType === "business" && sampleData.organizationName ? `
+          <p style="margin: 10px 0; color: #333;"><strong>Organization:</strong> ${sampleData.organizationName}</p>
+          ` : ''}
         </div>
         
         <!-- Course information -->

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CheckCircle, X, Calendar, Clock, Video } from "lucide-react";
+import {  X, Calendar, Clock, Video } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { sendEnrollmentEmail } from "../utils/email";
 
@@ -8,7 +8,7 @@ type FormData = {
   email: string;
   phone: string;
   enrollmentType: string;
-  password: string;
+  organizationName: string;
 };
 
 const RegistrationSection = () => {
@@ -19,15 +19,17 @@ const RegistrationSection = () => {
     message: string;
   } | null>(null);
 
-  const { register, handleSubmit, reset } = useForm<FormData>({
+  const { register, handleSubmit, reset, watch } = useForm<FormData>({
     defaultValues: {
       fullName: "",
       email: "",
       phone: "",
       enrollmentType: "individual",
-      password: "",
+      organizationName: "",
     },
   });
+
+  const enrollmentType = watch("enrollmentType");
 
   const onSubmit = async (data: FormData) => {
     setLoading(true);
@@ -39,6 +41,7 @@ const RegistrationSection = () => {
         email: data.email,
         phone: data.phone,
         enrollmentType: data.enrollmentType,
+        organizationName: data.organizationName,
       });
 
       if (success) {
@@ -155,29 +158,33 @@ const RegistrationSection = () => {
               </div>
               <div>
                 <label htmlFor="enrollmentType" className="block text-sm font-medium text-darkGray mb-1">
-                  Enrollment Type*
+                  Register as*
                 </label>
                 <select
                   id="enrollmentType"
                   className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                   {...register("enrollmentType", { required: true })}
                 >
-                  <option value="individual">For Individual</option>
-                  <option value="business">For Business</option>
+                  <option value="individual">Individual</option>
+                  <option value="business">Organization</option>
                 </select>
               </div>
-              <div>
-                <label htmlFor="password" className="block text-sm font-medium text-darkGray mb-1">
-                  Password*
-                </label>
-                <input
-                  id="password"
-                  type="password"
-                  className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                  placeholder="Create a password"
-                  {...register("password", { required: true })}
-                />
-              </div>
+              {enrollmentType === "business" && (
+                <div>
+                  <label htmlFor="organizationName" className="block text-sm font-medium text-darkGray mb-1">
+                    Organization Name*
+                  </label>
+                  <input
+                    id="organizationName"
+                    type="text"
+                    className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                    placeholder="Enter your organization name"
+                    {...register("organizationName", { 
+                      required: enrollmentType === "business" 
+                    })}
+                  />
+                </div>
+              )}
               <button
                 type="submit"
                 disabled={loading}
@@ -201,7 +208,7 @@ const RegistrationSection = () => {
   );
 
   return (
-    <section className="py-16 bg-gray-50" id="register">
+    <section className="py-16 bg-white" id="register">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-8">
           <div className="inline-flex items-center bg-gray-100 px-4 py-2 rounded-full mb-4">
@@ -221,110 +228,107 @@ const RegistrationSection = () => {
           </p>
         </div>
 
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 mb-12">
-          {/* What You'll Gain Section */}
-          <div className="bg-white p-8 rounded-xl shadow-md">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 mb-12">
+          {/* What You'll Gain Section - 2/3 width */}
+          <div className="bg-white p-8 rounded-xl shadow-md md:col-span-2">
             <div className="flex items-center mb-6">
-              <CheckCircle className="h-6 w-6 text-primary mr-2" />
+              {/* <CheckCircle className="h-6 w-6 text-primary mr-2" /> */}
               <h3 className="text-2xl font-bold text-navy">What You'll Gain</h3>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-8">
               {/* Expert Access */}
-              <div className="space-y-3">
-                <div className="flex items-start">
-                  <span className="inline-flex items-center justify-center p-1 bg-green-100 rounded-full mr-3">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.51.88 4.93 1.78C15.57 19.36 13.86 20 12 20s-3.57-.64-4.93-1.72zm11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33A7.95 7.95 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.49-1.64 4.83zM12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6zm0 5c-.83 0-1.5-.67-1.5-1.5S11.17 8 12 8s1.5.67 1.5 1.5S12.83 11 12 11z" fill="#047857" />
-                    </svg>
-                  </span>
-                  <div>
-                    <h4 className="font-bold text-navy mb-1">Expert Access</h4>
-                    <p className="text-sm text-gray-600">Direct access to GRI Certified Trainers with global and regional ESG expertise</p>
-                  </div>
+              <div className="flex items-start">
+                <span className="inline-flex items-center justify-center p-1 bg-green-100 rounded-full mr-3 flex-shrink-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.51.88 4.93 1.78C15.57 19.36 13.86 20 12 20s-3.57-.64-4.93-1.72zm11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33A7.95 7.95 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.49-1.64 4.83zM12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6zm0 5c-.83 0-1.5-.67-1.5-1.5S11.17 8 12 8s1.5.67 1.5 1.5S12.83 11 12 11z" fill="#047857" />
+                  </svg>
+                </span>
+                <div>
+                  <h4 className="font-bold text-navy mb-1">Expert Access</h4>
+                  <p className="text-sm text-gray-600">Direct access to GRI Certified Trainers with global and regional ESG expertise</p>
                 </div>
               </div>
 
               {/* Official Certification */}
-              <div className="space-y-3">
-                <div className="flex items-start">
-                  <span className="inline-flex items-center justify-center p-1 bg-green-100 rounded-full mr-3">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12v4.7c0 4.67-3.13 8.94-7 10.27-3.87-1.33-7-5.6-7-10.27V6.3l7-3.12zm-1 8.32l-3-3-1.4 1.4 4.4 4.4 8-8-1.4-1.4-6.6 6.6z" fill="#047857" />
-                    </svg>
-                  </span>
-                  <div>
-                    <h4 className="font-bold text-navy mb-1">Official Certification</h4>
-                    <p className="text-sm text-gray-600">Official GRI training materials and eligibility for the GRI Certification Exam</p>
-                  </div>
+              <div className="flex items-start">
+                <span className="inline-flex items-center justify-center p-1 bg-green-100 rounded-full mr-3 flex-shrink-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12v4.7c0 4.67-3.13 8.94-7 10.27-3.87-1.33-7-5.6-7-10.27V6.3l7-3.12zm-1 8.32l-3-3-1.4 1.4 4.4 4.4 8-8-1.4-1.4-6.6 6.6z" fill="#047857" />
+                  </svg>
+                </span>
+                <div>
+                  <h4 className="font-bold text-navy mb-1">Official Certification</h4>
+                  <p className="text-sm text-gray-600">Official GRI training materials and eligibility for the GRI Certification Exam</p>
                 </div>
               </div>
 
               {/* Practical Learning */}
-              <div className="space-y-3">
-                <div className="flex items-start">
-                  <span className="inline-flex items-center justify-center p-1 bg-green-100 rounded-full mr-3">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M4 6h16v2H4zm0 6h16v6H4z" fill="#047857" />
-                      <path d="M2 4v16h20V4H2zm2 2h16v12H4V6z" fill="#047857" />
-                      <path d="M6 13h5v2H6z" fill="#047857" />
-                    </svg>
-                  </span>
-                  <div>
-                    <h4 className="font-bold text-navy mb-1">Practical Learning</h4>
-                    <p className="text-sm text-gray-600">Case studies, interactive sessions, and real-world examples</p>
-                  </div>
+              <div className="flex items-start">
+                <span className="inline-flex items-center justify-center p-1 bg-green-100 rounded-full mr-3 flex-shrink-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 6h16v2H4zm0 6h16v6H4z" fill="#047857" />
+                    <path d="M2 4v16h20V4H2zm2 2h16v12H4V6z" fill="#047857" />
+                    <path d="M6 13h5v2H6z" fill="#047857" />
+                  </svg>
+                </span>
+                <div>
+                  <h4 className="font-bold text-navy mb-1">Practical Learning</h4>
+                  <p className="text-sm text-gray-600">Case studies, interactive sessions, and real-world examples</p>
                 </div>
               </div>
 
               {/* Dual Accreditation */}
-              <div className="space-y-3">
-                <div className="flex items-start">
-                  <span className="inline-flex items-center justify-center p-1 bg-green-100 rounded-full mr-3">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M13 7h-2v2h2V7zm0 4h-2v6h2v-6zm4-9.99L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 21H7v-1h10v1zm0-3H7V6h10v12zm0-14H7V3h10v1z" fill="#047857" />
-                    </svg>
-                  </span>
-                  <div>
-                    <h4 className="font-bold text-navy mb-1">Dual Accreditation</h4>
-                    <p className="text-sm text-gray-600">Accredited certificate from both GRI and RSM Saudi Academy</p>
-                  </div>
+              <div className="flex items-start">
+                <span className="inline-flex items-center justify-center p-1 bg-green-100 rounded-full mr-3 flex-shrink-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 7h-2v2h2V7zm0 4h-2v6h2v-6zm4-9.99L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 21H7v-1h10v1zm0-3H7V6h10v12zm0-14H7V3h10v1z" fill="#047857" />
+                  </svg>
+                </span>
+                <div>
+                  <h4 className="font-bold text-navy mb-1">Dual Accreditation</h4>
+                  <p className="text-sm text-gray-600">Accredited certificate from both GRI and RSM Saudi Academy</p>
                 </div>
               </div>
 
               {/* Professional Network */}
-              <div className="space-y-3">
-                <div className="flex items-start">
-                  <span className="inline-flex items-center justify-center p-1 bg-green-100 rounded-full mr-3">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 12.75c1.63 0 3.07.39 4.24.9 1.08.48 1.76 1.56 1.76 2.73V18H6v-1.61c0-1.18.68-2.26 1.76-2.73 1.17-.52 2.61-.91 4.24-.91zM4 13c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm1.13 1.1c-.37-.06-.74-.1-1.13-.1-.99 0-1.93.21-2.78.58C.48 14.9 0 15.62 0 16.43V18h4.5v-1.61c0-.83.23-1.61.63-2.29zM20 13c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm4 3.43c0-.81-.48-1.53-1.22-1.85-.85-.37-1.79-.58-2.78-.58-.39 0-.76.04-1.13.1.4.68.63 1.46.63 2.29V18H24v-1.57zM12 6c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z" fill="#047857" />
-                    </svg>
-                  </span>
-                  <div>
-                    <h4 className="font-bold text-navy mb-1">Professional Network</h4>
-                    <p className="text-sm text-gray-600">Post-training support and opportunities to connect with ESG professionals</p>
-                  </div>
+              <div className="flex items-start">
+                <span className="inline-flex items-center justify-center p-1 bg-green-100 rounded-full mr-3 flex-shrink-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 12.75c1.63 0 3.07.39 4.24.9 1.08.48 1.76 1.56 1.76 2.73V18H6v-1.61c0-1.18.68-2.26 1.76-2.73 1.17-.52 2.61-.91 4.24-.91zM4 13c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm1.13 1.1c-.37-.06-.74-.1-1.13-.1-.99 0-1.93.21-2.78.58C.48 14.9 0 15.62 0 16.43V18h4.5v-1.61c0-.83.23-1.61.63-2.29zM20 13c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm4 3.43c0-.81-.48-1.53-1.22-1.85-.85-.37-1.79-.58-2.78-.58-.39 0-.76.04-1.13.1.4.68.63 1.46.63 2.29V18H24v-1.57zM12 6c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z" fill="#047857" />
+                  </svg>
+                </span>
+                <div>
+                  <h4 className="font-bold text-navy mb-1">Professional Network</h4>
+                  <p className="text-sm text-gray-600">Post-training support and opportunities to connect with ESG professionals</p>
                 </div>
               </div>
 
               {/* Career Advancement */}
-              <div className="space-y-3">
-                <div className="flex items-start">
-                  <span className="inline-flex items-center justify-center p-1 bg-green-100 rounded-full mr-3">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6h-6z" fill="#047857" />
-                    </svg>
-                  </span>
-                  <div>
-                    <h4 className="font-bold text-navy mb-1">Career Advancement</h4>
-                    <p className="text-sm text-gray-600">Enhance your profile with globally recognized sustainability credentials</p>
-                  </div>
+              <div className="flex items-start">
+                <span className="inline-flex items-center justify-center p-1 bg-green-100 rounded-full mr-3 flex-shrink-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6h-6z" fill="#047857" />
+                  </svg>
+                </span>
+                <div>
+                  <h4 className="font-bold text-navy mb-1">Career Advancement</h4>
+                  <p className="text-sm text-gray-600">Enhance your profile with globally recognized sustainability credentials</p>
                 </div>
               </div>
             </div>
+            
+            {/* Banner Image */}
+            <div className="mt-8 flex justify-center bg-primary/10 rounded-lg p-4">
+              <img 
+                src="/small-banner.png" 
+                alt="GRI Certified Training" 
+                className="h-16 w-auto object-contain rounded-md shadow-sm" 
+              />
+            </div>
           </div>
 
-          {/* Course Details */}
+          {/* Course Details - 1/3 width */}
           <div className="bg-navy text-white p-8 rounded-xl shadow-md">
             <div className="mb-6">
               <h3 className="text-2xl font-bold mb-6">Course Details</h3>
@@ -364,7 +368,7 @@ const RegistrationSection = () => {
               className="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg font-bold text-lg transition-all transform hover:-translate-y-0.5 flex items-center justify-center"
               type="button"
             >
-              Enroll Now
+              Register Now
               <svg className="ml-2 w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
               </svg>
@@ -378,50 +382,10 @@ const RegistrationSection = () => {
               Download Brochure
             </button>
 
-            {/* Money-back guarantee */}
-            <div className="flex items-center justify-center mt-8">
-              <svg className="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-              </svg>
-              <p className="text-sm text-gray-300">30-day money-back guarantee</p>
-            </div>
           </div>
         </div>
 
-        {/* Side-by-side layout matching the reference design */}
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-          {/* Stats Section - Left Side */}
-          <div className="bg-primary/5 rounded-xl shadow-md py-8 px-6">
-            <div className="grid grid-cols-3 gap-4">
-              <div className="text-center">
-                <p className="text-3xl font-bold text-primary">500+</p>
-                <p className="text-sm text-gray-600">Professionals Certified</p>
-              </div>
-              <div className="text-center border-x border-gray-200 px-4">
-                <div className="flex items-center justify-center">
-                  <p className="text-3xl font-bold text-primary">4.9/5</p>
-                  <svg className="w-5 h-5 text-yellow-400 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                </div>
-                <p className="text-sm text-gray-600">Average Rating</p>
-              </div>
-              <div className="text-center">
-                <p className="text-3xl font-bold text-primary">95%</p>
-                <p className="text-sm text-gray-600">Pass Rate</p>
-              </div>
-            </div>
-          </div>
 
-          {/* Limited Seats - Right Side */}
-          <div className="bg-orange-50 border border-orange-200 rounded-lg shadow-md p-8 flex flex-col justify-center">
-            <div className="flex items-center mb-2">
-              <span className="w-3 h-3 bg-orange-500 rounded-full mr-3 flex-shrink-0"></span>
-              <span className="text-orange-700 font-medium text-lg">Only 12 seats remaining</span>
-            </div>
-            <p className="text-sm text-orange-600 ml-6">Secure your spot before the course fills up</p>
-          </div>
-        </div>
       </div>
       {showSignup && <SignupModal />}
     </section>

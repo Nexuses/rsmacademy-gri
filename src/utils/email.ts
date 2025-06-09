@@ -5,6 +5,7 @@ interface EnrollmentData {
   email: string;
   phone: string;
   enrollmentType: string;
+  organizationName?: string;
 }
 
 // API URL
