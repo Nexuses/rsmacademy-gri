@@ -89,7 +89,8 @@ app.post("/api/send-email", async (req, res) => {
   res.header("Access-Control-Allow-Credentials", "true");
 
   try {
-    const { fullName, email, phone, enrollmentType, organizationName } = req.body;
+    const { fullName, email, phone, enrollmentType, organizationName } =
+      req.body;
 
     if (!fullName || !email || !phone || !enrollmentType) {
       console.log("Missing required fields");
@@ -115,7 +116,7 @@ app.post("/api/send-email", async (req, res) => {
           <div style="background: #00153D; color: white; padding: 30px 25px; text-align: center;">
             <!-- RSM Logo -->
             <div style="margin-bottom: 20px; display: inline-block;">
-              <img src="${baseUrl}/rsm-white.svg" alt="RSM Logo" style="width: 120px;">
+              <img src="https://cdn-nexlink.s3.us-east-2.amazonaws.com/rsm-white_f20265ab-200f-4e37-90ad-5828d99fa8c6.png" alt="RSM Logo" style="width: 120px;">
             </div>
               <h1 style="margin: 15px 0 0; font-size: 24px; font-weight: bold;">GRI Certified Sustainability<br>Professional Training</h1>
             <p style="margin: 10px 0 0; font-size: 16px;">Registration Confirmation</p>
@@ -146,9 +147,13 @@ app.post("/api/send-email", async (req, res) => {
               <p style="margin: 10px 0; color: #333;"><strong>Enrollment Type:</strong> ${
                 enrollmentType === "individual" ? "Individual" : "Business"
               }</p>
-              ${enrollmentType === "business" && organizationName ? `
+              ${
+                enrollmentType === "business" && organizationName
+                  ? `
               <p style="margin: 10px 0; color: #333;"><strong>Organization:</strong> ${organizationName}</p>
-              ` : ''}
+              `
+                  : ""
+              }
             </div>
             
             <!-- Course information -->
@@ -166,7 +171,7 @@ app.post("/api/send-email", async (req, res) => {
       <div style="background-color: #f7f9fc; padding: 20px; text-align: center; border-top: 1px solid #e0e0e0;">
         <!-- RSM Logo -->
         <div style="margin-bottom: 10px; display: inline-block;">
-          <img src="${baseUrl}/rsm-white.svg" alt="RSM Logo" style="width: 80px; filter: opacity(0.7);">
+          <img src="https://cdn-nexlink.s3.us-east-2.amazonaws.com/rsm-dark_632bce48-1455-440f-880f-55d4c0cf2562.png" alt="RSM Logo" style="width: 80px; filter: opacity(0.7);">
         </div>
             <p style="color: #666; font-size: 12px; margin: 5px 0 0;">© RSM Saudi Arabia Professional Academy. All rights reserved.</p>
           </div>
@@ -246,7 +251,9 @@ app.get("/api/preview-email", (req, res) => {
     email: req.query.email || "john.doe@example.com",
     phone: req.query.phone || "+1234567890",
     enrollmentType: req.query.type || "individual",
-    organizationName: req.query.org || (req.query.type === "business" ? "Acme Corporation" : ""),
+    organizationName:
+      req.query.org ||
+      (req.query.type === "business" ? "Acme Corporation" : ""),
   };
 
   // Get base URL for assets
@@ -259,7 +266,7 @@ app.get("/api/preview-email", (req, res) => {
       <div style="background: #00153D; color: white; padding: 30px 25px; text-align: center;">
           <!-- RSM Logo -->
           <div style="margin-bottom: 20px; display: inline-block;">
-            <img src="${baseUrl}/rsm-white.svg" alt="RSM Logo" style="width: 120px;">
+            <img src="https://cdn-nexlink.s3.us-east-2.amazonaws.com/rsm-white_f20265ab-200f-4e37-90ad-5828d99fa8c6.png" alt="RSM Logo" style="width: 120px;">
           </div>
           <h1 style="margin: 15px 0 0; font-size: 24px; font-weight: bold;">GRI Certified Sustainability<br>Professional Training</h1>
           <p style="margin: 10px 0 0; font-size: 16px;">Registration Confirmation</p>
@@ -267,7 +274,9 @@ app.get("/api/preview-email", (req, res) => {
       
       <!-- Main content -->
       <div style="background-color: white; padding: 30px 25px;">
-        <p style="color: #333; font-size: 16px; line-height: 1.6;">Dear ${sampleData.fullName},</p>
+        <p style="color: #333; font-size: 16px; line-height: 1.6;">Dear ${
+          sampleData.fullName
+        },</p>
         
         <p style="color: #333; font-size: 16px; line-height: 1.6;">Thank you for registering for the <strong>GRI Certified Sustainability Professional Training</strong>.</p>
         
@@ -298,9 +307,14 @@ app.get("/api/preview-email", (req, res) => {
               ? "Individual"
               : "Business"
           }</p>
-          ${sampleData.enrollmentType === "business" && sampleData.organizationName ? `
+          ${
+            sampleData.enrollmentType === "business" &&
+            sampleData.organizationName
+              ? `
           <p style="margin: 10px 0; color: #333;"><strong>Organization:</strong> ${sampleData.organizationName}</p>
-          ` : ''}
+          `
+              : ""
+          }
         </div>
         
         <!-- Course information -->
@@ -318,7 +332,7 @@ app.get("/api/preview-email", (req, res) => {
           <div style="background-color: #f7f9fc; padding: 20px; text-align: center; border-top: 1px solid #e0e0e0;">
             <!-- RSM Logo -->
             <div style="margin-bottom: 10px; display: inline-block;">
-              <img src="${baseUrl}/rsm-white.svg" alt="RSM Logo" style="width: 80px; filter: opacity(0.7);">
+              <img src="https://cdn-nexlink.s3.us-east-2.amazonaws.com/rsm-dark_632bce48-1455-440f-880f-55d4c0cf2562.png" alt="RSM Logo" style="width: 80px; filter: opacity(0.7);">
             </div>
             <p style="color: #666; font-size: 12px; margin: 5px 0 0;">© RSM Saudi Arabia Professional Academy. All rights reserved.</p>
           </div>
