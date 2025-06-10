@@ -6,11 +6,9 @@ import {
   BookText,
   ShieldCheck,
   Target,
-  Download,
   X,
 } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { downloadBrochure } from "../utils/download";
 import { sendEnrollmentEmail } from "../utils/email";
 
 type FormData = {
@@ -222,15 +220,6 @@ const CourseAgenda = () => {
                 } text-white rounded-lg font-bold shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all flex justify-center items-center`}
               >
                 {loading ? "Processing..." : "Register Now"}
-              </button>
-
-              <button
-                type="button"
-                onClick={downloadBrochure}
-                className="w-full py-3 bg-navy/10 hover:bg-navy/20 text-navy rounded-lg font-bold flex items-center justify-center gap-2"
-              >
-                <Download className="h-5 w-5" />
-                Download Brochure
               </button>
 
               <p className="text-xs md:text-sm text-mediumGray text-center">

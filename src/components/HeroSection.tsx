@@ -246,15 +246,6 @@ const HeroSection = () => {
                 {loading ? "Processing..." : "Register Now"}
               </button>
               
-              <button
-                type="button"
-                onClick={downloadBrochure}
-                className="w-full py-3 bg-navy/10 hover:bg-navy/20 text-navy rounded-lg font-bold flex items-center justify-center gap-2"
-              >
-                <Download className="h-5 w-5" />
-                Download Brochure
-              </button>
-              
               <p className="text-xs md:text-sm text-mediumGray text-center">
                 By signing up, you agree to our Terms of Service and Privacy
                 Policy
