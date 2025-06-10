@@ -21,12 +21,25 @@ type FormData = {
 
 const CourseAgenda = () => {
   const [hoveredDay, setHoveredDay] = useState<string | null>(null);
+  const [openDays, setOpenDays] = useState<string[]>([]);
   const [showSignup, setShowSignup] = useState(false);
   const [loading, setLoading] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     success: boolean;
     message: string;
   } | null>(null);
+
+  const toggleDay = (day: string) => {
+    setOpenDays((prevOpenDays) => 
+      prevOpenDays.includes(day) 
+        ? prevOpenDays.filter(d => d !== day) 
+        : [...prevOpenDays, day]
+    );
+  };
+
+  const isDayOpen = (day: string) => {
+    return hoveredDay === day || openDays.includes(day);
+  };
 
   const { register, handleSubmit, reset, watch } = useForm<FormData>({
     defaultValues: {
@@ -305,7 +318,10 @@ const CourseAgenda = () => {
               onMouseEnter={() => setHoveredDay(module.day)}
               onMouseLeave={() => setHoveredDay(null)}
             >
-              <div className="w-full flex justify-between items-center p-4 text-primary text-left">
+              <div 
+                className="w-full flex justify-between items-center p-4 text-primary text-left cursor-pointer"
+                onClick={() => toggleDay(module.day)}
+              >
                 <div className="flex items-center">
                   {React.createElement(module.icon, {
                     className: "h-5 w-5 mr-3",
@@ -316,14 +332,14 @@ const CourseAgenda = () => {
                 </div>
                 <ChevronDown
                   className={`h-5 w-5 transition-transform duration-500 ${
-                    hoveredDay === module.day ? "transform rotate-180" : ""
+                    isDayOpen(module.day) ? "transform rotate-180" : ""
                   }`}
                 />
               </div>
 
               <div
                 className={`transition-all duration-700 ease-in-out overflow-hidden ${
-                  hoveredDay === module.day
+                  isDayOpen(module.day)
                     ? "max-h-96 opacity-100"
                     : "max-h-0 opacity-0"
                 }`}
