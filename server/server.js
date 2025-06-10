@@ -106,7 +106,7 @@ app.post("/api/send-email", async (req, res) => {
 
     // Prepare email options
     const mailOptions = {
-      from: EMAIL_USER,
+      from: "Arya Mishra <" + EMAIL_USER + ">",
       to: email,
       cc: [EMAIL_USER, SLACK_EMAIL],
       subject: "GRI Certified Sustainability Professional Training",
