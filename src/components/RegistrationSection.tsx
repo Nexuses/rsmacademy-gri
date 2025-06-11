@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import {  X, Calendar, Clock, Video } from "lucide-react";
+import {  X, Calendar, Clock, Video, Download } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { sendEnrollmentEmail } from "../utils/email";
+import { downloadBrochure } from "../utils/download";
 
 type FormData = {
   fullName: string;
@@ -378,7 +379,9 @@ const RegistrationSection = () => {
             <button
               className="w-full mt-4 bg-transparent border border-white text-white py-3 px-6 rounded-lg font-medium text-lg transition-all hover:bg-white/10"
               type="button"
+              onClick={downloadBrochure}
             >
+              <Download className="mr-2 h-5 w-5 inline" />
               Download Brochure
             </button>
 
