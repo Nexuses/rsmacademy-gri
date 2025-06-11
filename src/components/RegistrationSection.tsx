@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {  X, Calendar, Clock, Video, Download } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { sendEnrollmentEmail } from "../utils/email";
