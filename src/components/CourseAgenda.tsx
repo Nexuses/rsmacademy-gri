@@ -260,7 +260,7 @@ const CourseAgenda = () => {
     },
     {
       day: "Day 2",
-      title: "Introduction to Sustainability Reporting and the GRI Standards",
+      title: "Reporting with GRI Standards",
       icon: BookText,
       topics: [
         "Dive deeper into the GRI Standards framework: Universal, Sector, and Topic Standards",
