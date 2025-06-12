@@ -308,11 +308,11 @@ const HeroSection = () => {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <button 
-                onClick={() => setShowSignup(true)}
-                className="px-8 py-4 bg-secondary hover:bg-secondary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-lg text-lg">
-                Register Now
-              </button>
+              <a 
+                href="https://rsmacademy-sa.com/courses/40"
+                className="px-8 py-4 bg-secondary hover:bg-secondary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-lg text-lg inline-block">
+                Enroll Now
+              </a>
               <button
                 onClick={downloadBrochure}
                 className="px-8 py-4 bg-transparent hover:bg-white/10 border-2 border-white text-white rounded-lg font-bold transition flex items-center gap-2 text-lg"
@@ -356,11 +356,11 @@ const HeroSection = () => {
                 <p className="text-white mb-4">
                   Secure your spot before registration closes
                 </p>
-                <button 
-                  onClick={() => setShowSignup(true)}
-                  className="w-full px-10 py-5 bg-primary hover:bg-primary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-lg text-xl">
+                <a 
+                  href="https://rsmacademy-sa.com/courses/40"
+                  className="w-full px-10 py-5 bg-primary hover:bg-primary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-lg text-xl inline-block text-center">
                   Reserve Your Seat
-                </button>
+                </a>
               </div>
             </div>
           </div>

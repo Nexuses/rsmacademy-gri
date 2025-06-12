@@ -368,12 +368,12 @@ const CourseAgenda = () => {
               </h3>
             </div>
             <div className="mt-6 md:mt-0">
-              <button
-                onClick={() => setShowSignup(true)}
-                className="px-6 py-3 bg-secondary hover:bg-secondary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-md"
+              <a
+                href="https://rsmacademy-sa.com/courses/40"
+                className="px-6 py-3 bg-secondary hover:bg-secondary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-md inline-block"
               >
-                Register Now
-              </button>
+                Enroll Now
+              </a>
             </div>
           </div>
         </div>
