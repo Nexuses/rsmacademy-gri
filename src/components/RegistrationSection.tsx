@@ -366,6 +366,8 @@ const RegistrationSection = () => {
             {/* Enroll Now Button */}
             <a
               href="https://rsmacademy-sa.com/courses/40"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg font-bold text-lg transition-all transform hover:-translate-y-0.5 flex items-center justify-center"
             >
               Enroll Now
