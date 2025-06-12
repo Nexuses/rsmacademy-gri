@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, ShoppingCart, Search, User, ChevronDown } from "lucide-react";
+import { Menu, X, Search, User, ChevronDown, ShoppingBag } from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isCoursesDropdownOpen, setIsCoursesDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,182 +22,188 @@ const Navbar = () => {
     };
   }, []);
 
+  // Only for mobile
   const toggleAboutDropdown = () => {
     setIsAboutDropdownOpen(!isAboutDropdownOpen);
     if (!isAboutDropdownOpen) {
-      setIsCartOpen(false);
+      setIsCoursesDropdownOpen(false);
     }
   };
 
-  const toggleCart = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsCartOpen(!isCartOpen);
-    if (!isCartOpen) {
+  // Only for mobile
+  const toggleCoursesDropdown = () => {
+    setIsCoursesDropdownOpen(!isCoursesDropdownOpen);
+    if (!isCoursesDropdownOpen) {
       setIsAboutDropdownOpen(false);
     }
   };
 
-  // Close dropdowns when clicking outside
+  // Close mobile dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = () => {
       setIsAboutDropdownOpen(false);
-      setIsCartOpen(false);
+      setIsCoursesDropdownOpen(false);
     };
 
-    if (isAboutDropdownOpen || isCartOpen) {
+    if (isAboutDropdownOpen || isCoursesDropdownOpen) {
       document.addEventListener("click", handleClickOutside);
     }
 
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, [isAboutDropdownOpen, isCartOpen]);
+  }, [isAboutDropdownOpen, isCoursesDropdownOpen]);
 
-  // Stop propagation to prevent dropdown from closing when clicking inside
-  const handleDropdownClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-  };
+
 
   return (
     <nav
       className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled ? "bg-white shadow-md" : "bg-white"
-      } py-6`}
+      } py-4`}
     >
-      <div className="container-padding">
+      <div className="container-padding px-0">
         <div className="flex justify-between items-center">
-          {/* Logo */}
-          <div className="flex items-center">
-            <img
-              src="https://res.cloudinary.com/rsmglobal/image/fetch/t_default/f_auto/q_auto/https://www.rsm.global/profiles/rsm_global_platform/themes/rsm_global_platform_2022/images/logo@2x.png"
-              alt="RSM Logo"
-              className="h-8"
-            />
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            <div className="relative group">
-              <button
-                className="flex items-center text-darkGray hover:text-primary focus:outline-none"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleAboutDropdown();
-                }}
-              >
-                About Us
-                <ChevronDown className="ml-1 h-4 w-4" />
-              </button>
-              {isAboutDropdownOpen && (
-                <div
-                  className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-lg py-2 z-20"
-                  onClick={handleDropdownClick}
-                >
-                  <a
-                    href="https://rsmacademy-sa.com/foreword"
-                    target="_blank"
-                    className="block px-4 py-2 text-darkGray hover:bg-gray-100"
-                  >
-                    Foreword
-                  </a>
-                  <a
-                    href="https://rsmacademy-sa.com/vision"
-                    target="_blank"
-                    className="block px-4 py-2 text-darkGray hover:bg-gray-100"
-                  >
-                    Vision
-                  </a>
-                  <a
-                    href="https://rsmacademy-sa.com/mission"
-                    target="_blank"
-                    className="block px-4 py-2 text-darkGray hover:bg-gray-100"
-                  >
-                    Mission
-                  </a>
-                  <a
-                    href="https://rsmacademy-sa.com/objectives"
-                    target="_blank"
-                    className="block px-4 py-2 text-darkGray hover:bg-gray-100"
-                  >
-                    Objectives
-                  </a>
-                  <a
-                    href="https://rsmacademy-sa.com/core_values"
-                    target="_blank"
-                    className="block px-4 py-2 text-darkGray hover:bg-gray-100"
-                  >
-                    Core Values
-                  </a>
-                </div>
-              )}
+          {/* Left side with logo and navigation */}
+          <div className="flex items-center gap-16">
+            {/* Logo */}
+            <div className="flex items-center">
+              <a href="https://rsmacademy-sa.com/" target="_blank">
+                <img
+                  src="https://res.cloudinary.com/rsmglobal/image/fetch/t_default/f_auto/q_auto/https://www.rsm.global/profiles/rsm_global_platform/themes/rsm_global_platform_2022/images/logo@2x.png"
+                  alt="RSM Logo"
+                  className="h-16"
+                />
+              </a>
             </div>
-            <a
-              href="https://rsmacademy-sa.com/courses"
-              target="_blank"
-              className="text-darkGray hover:text-primary"
-            >
-              Courses
-            </a>
-            <a
-              href="https://rsmacademy-sa.com/courses/online"
-              target="_blank"
-              className="text-darkGray hover:text-primary"
-            >
-              Live Courses
-            </a>
-            <a
-              href="https://rsmacademy-sa.com/courses/recorded"
-              target="_blank"
-              className="text-darkGray hover:text-primary"
-            >
-              Recorded Courses
-            </a>
-            <a
-              href="https://rsmacademy-sa.com/corporate-training"
-              target="_blank"
-              className="text-darkGray hover:text-primary"
-            >
-              Corporate Training
-            </a>
-            <a
-              href="https://rsmacademy-sa.com/contact_us"
-              target="_blank"
-              className="text-darkGray hover:text-primary"
-            >
-              Contact Us
-            </a>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-10">
+              <div className="relative group">
+                <button
+                  className="flex items-center text-darkGray hover:text-primary focus:outline-none peer text-lg font-medium"
+                >
+                  About Us
+                  <ChevronDown className="ml-1 h-4 w-4" />
+                </button>
+                <div
+                  className="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-lg z-20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out"
+                  style={{ transform: "translateY(20px)", top: "100%", paddingTop: '10px'}}
+                >
+                  <div className="py-6 px-6 space-y-6">
+                    <a
+                      href="https://rsmacademy-sa.com/foreword"
+                      target="_blank"
+                      className="block text-lg font-medium text-darkGray hover:text-primary border-b border-gray-200 pb-3"
+                    >
+                      Foreword
+                    </a>
+                    <a
+                      href="https://rsmacademy-sa.com/vision"
+                      target="_blank"
+                      className="block text-lg font-medium text-darkGray hover:text-primary border-b border-gray-200 pb-3"
+                    >
+                      Vision
+                    </a>
+                    <a
+                      href="https://rsmacademy-sa.com/mission"
+                      target="_blank"
+                      className="block text-lg font-medium text-darkGray hover:text-primary border-b border-gray-200 pb-3"
+                    >
+                      Mission
+                    </a>
+                    <a
+                      href="https://rsmacademy-sa.com/objectives"
+                      target="_blank"
+                      className="block text-lg font-medium text-darkGray hover:text-primary border-b border-gray-200 pb-3"
+                    >
+                      Objectives
+                    </a>
+                    <a
+                      href="https://rsmacademy-sa.com/core_values"
+                      target="_blank"
+                      className="block text-lg font-medium text-darkGray hover:text-primary"
+                    >
+                      Core Values
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div className="relative group">
+                <button
+                  className="flex items-center text-darkGray hover:text-primary focus:outline-none peer text-lg font-medium"
+                >
+                  Courses
+                  <ChevronDown className="ml-1 h-4 w-4" />
+                </button>
+                <div
+                  className="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-lg z-20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out"
+                  style={{ transform: "translateY(20px)", top: "100%", paddingTop: '10px'}}
+                >
+                  <div className="py-6 px-6 space-y-6">
+                    <a
+                      href="https://rsmacademy-sa.com/courses/online"
+                      target="_blank"
+                      className="block text-lg font-medium text-darkGray hover:text-primary border-b border-gray-200 pb-3"
+                    >
+                      Live Courses
+                    </a>
+                    <a
+                      href="https://rsmacademy-sa.com/courses/recorded"
+                      target="_blank"
+                      className="block text-lg font-medium text-darkGray hover:text-primary"
+                    >
+                      Recorded Courses
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <a
+                href="https://gri-training.rsmacademy-sa.co"
+                target="_blank"
+                className="text-darkGray hover:text-primary text-lg font-medium"
+              >
+                GRI™ Training
+              </a>
+              <a
+                href="https://rsmacademy-sa.com/corporate-training"
+                target="_blank"
+                className="text-darkGray hover:text-primary text-lg font-medium"
+              >
+                Corporate Training
+              </a>
+              <a
+                href="https://rsmacademy-sa.com/contact_us"
+                target="_blank"
+                className="text-darkGray hover:text-primary text-lg font-medium"
+              >
+                Contact Us
+              </a>
+            </div>
           </div>
 
           {/* Right side icons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <a href="https://rsmacademy-sa.com/courses/search/view" target="_blank">
-              <button className="text-darkGray hover:text-primary">
-                <Search className="h-5 w-5" />
-              </button>
+          <div className="hidden md:flex items-center space-x-6">
+            <a href="https://rsmacademy-sa.com/login" target="_blank" className="flex items-center text-darkGray hover:text-primary text-lg font-medium">
+              <User className="h-5 w-5 mr-2" />
+              <span>Sign in</span>
             </a>
-            <div className="relative">
+            <div className="relative group flex items-center">
               <button 
-                className="text-darkGray hover:text-primary"
-                onClick={toggleCart}
+                className="text-darkGray hover:text-primary flex items-center"
               >
-                <ShoppingCart className="h-5 w-5" />
+                <ShoppingBag className="h-5 w-5" />
               </button>
-              {isCartOpen && (
-                <div 
-                  className={`${
-                    isMenuOpen ? "relative left-0 mt-2" : "absolute right-0 mt-2"
-                  } w-64 bg-white shadow-lg rounded-lg py-4 z-20`}
-                  onClick={handleDropdownClick}
-                >
-                  <div className="px-4 py-2 text-center">
-                    <p className="text-darkGray">Your shopping bag is empty</p>
-                  </div>
-                </div>
-              )}
+              <div 
+                className="absolute right-0 mt-2 w-64 bg-white shadow-lg rounded-lg py-6 px-6 z-20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out"
+                style={{ transform: "translateY(20px)", top: '100%', paddingTop: '10px' }}
+              >
+                <p className="text-darkGray text-base">Your shopping bag is empty</p>
+              </div>
             </div>
-            <a href="https://rsmacademy-sa.com/login" target="_blank">
-              <button className="text-darkGray hover:text-primary">
-                <User className="h-5 w-5" />
+            <a href="https://rsmacademy-sa.com/courses/search/view" target="_blank" className="flex items-center">
+              <button className="text-darkGray hover:text-primary flex items-center">
+                <Search className="h-5 w-5" />
               </button>
             </a>
           </div>
@@ -272,26 +278,42 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
+              <div>
+                <button
+                  className="flex items-center text-darkGray hover:text-primary focus:outline-none"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleCoursesDropdown();
+                  }}
+                >
+                  Courses
+                  <ChevronDown className="ml-1 h-4 w-4" />
+                </button>
+                {isCoursesDropdownOpen && (
+                  <div className="pl-4 mt-2 space-y-2" onClick={(e) => e.stopPropagation()}>
+                    <a
+                      href="https://rsmacademy-sa.com/courses/online"
+                      target="_blank"
+                      className="block text-darkGray hover:text-primary"
+                    >
+                      Live Courses
+                    </a>
+                    <a
+                      href="https://rsmacademy-sa.com/courses/recorded"
+                      target="_blank"
+                      className="block text-darkGray hover:text-primary"
+                    >
+                      Recorded Courses
+                    </a>
+                  </div>
+                )}
+              </div>
               <a 
-                href="https://rsmacademy-sa.com/courses" 
+                href="https://rsmacademy-sa.com/gri-training" 
                 target="_blank" 
                 className="text-darkGray hover:text-primary"
               >
-                Courses
-              </a>
-              <a 
-                href="https://rsmacademy-sa.com/courses/online" 
-                target="_blank" 
-                className="text-darkGray hover:text-primary"
-              >
-                Live Courses
-              </a>
-              <a 
-                href="https://rsmacademy-sa.com/courses/recorded" 
-                target="_blank" 
-                className="text-darkGray hover:text-primary"
-              >
-                Recorded Courses
+                GRI™ Training
               </a>
               <a 
                 href="https://rsmacademy-sa.com/corporate-training" 
@@ -311,30 +333,28 @@ const Navbar = () => {
               {/* Mobile action buttons */}
               <div className="flex items-center space-x-4 pt-2 border-t border-gray-100 mt-2">
                 <a 
+                  href="https://rsmacademy-sa.com/login" 
+                  target="_blank"
+                  className="flex items-center text-darkGray hover:text-primary"
+                >
+                  <User className="h-5 w-5 mr-2" />
+                  <span>Sign in</span>
+                </a>
+                <div className="relative flex items-center">
+                  <button 
+                    className="flex items-center text-darkGray hover:text-primary"
+                  >
+                    <ShoppingBag className="h-5 w-5 mr-2" />
+                    <span>Cart</span>
+                  </button>
+                </div>
+                <a 
                   href="https://rsmacademy-sa.com/courses/search/view" 
                   target="_blank"
                   className="flex items-center text-darkGray hover:text-primary"
                 >
                   <Search className="h-5 w-5 mr-2" />
                   <span>Search</span>
-                </a>
-                <button 
-                  className="flex items-center text-darkGray hover:text-primary"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleCart(e);
-                  }}
-                >
-                  <ShoppingCart className="h-5 w-5 mr-2" />
-                  <span>Cart</span>
-                </button>
-                <a 
-                  href="https://rsmacademy-sa.com/login" 
-                  target="_blank"
-                  className="flex items-center text-darkGray hover:text-primary"
-                >
-                  <User className="h-5 w-5 mr-2" />
-                  <span>Login</span>
                 </a>
               </div>
             </div>
