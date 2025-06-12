@@ -291,7 +291,7 @@ const HeroSection = () => {
               </div>
               <div className="flex items-center mr-6 mb-2">
                 <Clock className="h-6 w-6 mr-2" />
-                <span>9:00 AM - 5:00 PM (GMT+3)</span>
+                <span>05:00 PM - 10:00 PM KSA</span>
               </div>
               <div className="flex items-center mb-2">
                 <Video className="h-6 w-6 mr-2" />
