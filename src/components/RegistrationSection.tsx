@@ -348,7 +348,7 @@ const RegistrationSection = () => {
                 <Clock className="h-6 w-6 text-primary mr-4" />
                 <div>
                   <h4 className="text-sm font-medium text-gray-300">Course Duration</h4>
-                  <p className="text-lg font-semibold">4-day intensive (32 hours)</p>
+                  <p className="text-lg font-semibold">4-day intensive (20 hours)</p>
                 </div>
               </div>
 
