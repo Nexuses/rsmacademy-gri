@@ -6,7 +6,7 @@ import LearningApproach from './components/LearningApproach';
 import CourseOverview from './components/CourseOverview';
 import TrainerProfile from './components/TrainerProfile';
 import ChiefGuest from './components/ChiefGuest';
-import CourseAgenda from './components/CourseAgenda';
+// import CourseAgenda from './components/CourseAgenda';
 // import Testimonials from './components/Testimonials';
 import RegistrationSection from './components/RegistrationSection';
 // import FAQ from './components/FAQ';
@@ -35,7 +35,7 @@ function App() {
         <CourseOverview />
         <TrainerProfile />
         <ChiefGuest />
-        <CourseAgenda />
+        {/* <CourseAgenda /> */}
         {/* <Testimonials /> */}
         <RegistrationSection />
         {/* <FAQ /> */}
