@@ -339,7 +339,7 @@ const RegistrationSection = () => {
                 <Calendar className="h-6 w-6 text-primary mr-4" />
                 <div>
                   <h4 className="text-sm font-medium text-gray-300">Course Start Date</h4>
-                  <p className="text-xl font-bold">29th June 2025</p>
+                  <p className="text-xl font-bold">13th August 2025</p>
                 </div>
               </div>
 

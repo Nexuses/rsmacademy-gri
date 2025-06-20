@@ -287,7 +287,7 @@ const HeroSection = () => {
             <div className="flex flex-wrap items-center text-xl mb-8">
               <div className="flex items-center mr-6 mb-2">
                 <Calendar className="h-6 w-6 mr-2" />
-                <span>29 Jun - 2 Jul 2025</span>
+                <span>13 Aug - 16 Aug 2025</span>
               </div>
               <div className="flex items-center mr-6 mb-2">
                 <Clock className="h-6 w-6 mr-2" />
@@ -353,7 +353,7 @@ const HeroSection = () => {
             </div>
 
             <div className="bg-navy/30 backdrop-blur-sm p-8 rounded-xl shadow-2xl">
-              <CountdownTimer targetDate="2025-06-29T09:00:00" />
+              <CountdownTimer targetDate="2025-08-13T09:00:00" />
               <div className="text-center mt-6">
                 <p className="text-white mb-4">
                   Secure your spot before registration closes
