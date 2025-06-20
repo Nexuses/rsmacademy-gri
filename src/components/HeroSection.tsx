@@ -1,7 +1,7 @@
 import {
   Calendar,
   Clock,
-  Download,
+  // Download,
   Share2,
   Facebook,
   Twitter,
@@ -13,7 +13,7 @@ import {
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import CountdownTimer from "./CountdownTimer";
-import { downloadBrochure } from "../utils/download";
+// import { downloadBrochure } from "../utils/download";
 import { sendEnrollmentEmail } from "../utils/email";
 
 type FormData = {
@@ -315,13 +315,13 @@ const HeroSection = () => {
                 className="px-8 py-4 bg-secondary hover:bg-secondary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-lg text-lg inline-block">
                 Enroll Now
               </a>
-              <button
+              {/* <button
                 onClick={downloadBrochure}
                 className="px-8 py-4 bg-transparent hover:bg-white/10 border-2 border-white text-white rounded-lg font-bold transition flex items-center gap-2 text-lg"
               >
                 <Download className="h-5 w-5" />
                 Download Brochure
-              </button>
+              </button> */}
             </div>
           </div>
 
