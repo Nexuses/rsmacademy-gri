@@ -1,7 +1,7 @@
 import {
   Calendar,
   Clock,
-  // Download,
+  Download,
   Share2,
   Facebook,
   Twitter,
@@ -13,7 +13,7 @@ import {
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import CountdownTimer from "./CountdownTimer";
-// import { downloadBrochure } from "../utils/download";
+import { downloadBrochure } from "../utils/download";
 import { sendEnrollmentEmail } from "../utils/email";
 
 type FormData = {
@@ -31,7 +31,7 @@ const HeroSection = () => {
     success: boolean;
     message: string;
   } | null>(null);
-  
+
   const shareUrl = typeof window !== "undefined" ? window.location.href : "";
   const shareTitle = "GRI Certified Sustainability Professional Training";
 
@@ -133,7 +133,10 @@ const HeroSection = () => {
               Join a GRI-Certified Learning Experience
             </h3>
             <p className="text-white">
-              Advance your sustainability career or empower your organization through globally recognized GRI Certification. Connect with GRI Certified Trainers and industry experts, build ESG capabilities, and take the lead in responsible reporting.
+              Advance your sustainability career or empower your organization
+              through globally recognized GRI Certification. Connect with GRI
+              Certified Trainers and industry experts, build ESG capabilities,
+              and take the lead in responsible reporting.
             </p>
           </div>
         </div>
@@ -170,7 +173,10 @@ const HeroSection = () => {
 
             <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
               <div>
-                <label htmlFor="fullName" className="block text-sm font-medium text-darkGray mb-1">
+                <label
+                  htmlFor="fullName"
+                  className="block text-sm font-medium text-darkGray mb-1"
+                >
                   Full Name*
                 </label>
                 <input
@@ -182,7 +188,10 @@ const HeroSection = () => {
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-darkGray mb-1">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-darkGray mb-1"
+                >
                   Email Address*
                 </label>
                 <input
@@ -194,7 +203,10 @@ const HeroSection = () => {
                 />
               </div>
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-darkGray mb-1">
+                <label
+                  htmlFor="phone"
+                  className="block text-sm font-medium text-darkGray mb-1"
+                >
                   Phone Number*
                 </label>
                 <input
@@ -206,7 +218,10 @@ const HeroSection = () => {
                 />
               </div>
               <div>
-                <label htmlFor="enrollmentType" className="block text-sm font-medium text-darkGray mb-1">
+                <label
+                  htmlFor="enrollmentType"
+                  className="block text-sm font-medium text-darkGray mb-1"
+                >
                   Register as*
                 </label>
                 <select
@@ -220,7 +235,10 @@ const HeroSection = () => {
               </div>
               {enrollmentType === "business" && (
                 <div>
-                  <label htmlFor="organizationName" className="block text-sm font-medium text-darkGray mb-1">
+                  <label
+                    htmlFor="organizationName"
+                    className="block text-sm font-medium text-darkGray mb-1"
+                  >
                     Organization Name*
                   </label>
                   <input
@@ -228,8 +246,8 @@ const HeroSection = () => {
                     type="text"
                     className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                     placeholder="Enter your organization name"
-                    {...register("organizationName", { 
-                      required: enrollmentType === "business" 
+                    {...register("organizationName", {
+                      required: enrollmentType === "business",
                     })}
                   />
                 </div>
@@ -238,14 +256,12 @@ const HeroSection = () => {
                 type="submit"
                 disabled={loading}
                 className={`w-full py-3 ${
-                  loading
-                    ? "bg-gray-400"
-                    : "bg-green-600 hover:bg-green-700"
+                  loading ? "bg-gray-400" : "bg-green-600 hover:bg-green-700"
                 } text-white rounded-lg font-bold shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all flex justify-center items-center`}
               >
                 {loading ? "Processing..." : "Register Now"}
               </button>
-              
+
               <p className="text-xs md:text-sm text-mediumGray text-center">
                 By signing up, you agree to our Terms of Service and Privacy
                 Policy
@@ -279,16 +295,16 @@ const HeroSection = () => {
         <div className="container-padding pt-32 pb-16 md:pt-40 md:pb-20 relative z-10">
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-3/5 md:pr-12 mb-10 md:mb-0">
-              {/* <div className="inline-block px-3 py-1 bg-primary text-white rounded-full text-sm font-semibold mb-4 animate-pulse">
+              <div className="inline-block px-3 py-1 bg-primary text-white rounded-full text-sm font-semibold mb-4 animate-pulse">
                 Limited Seats Available
-              </div> */}
+              </div>
               <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
                 GRI Certified Sustainability Professional Training
               </h1>
               <div className="flex flex-wrap items-center text-xl mb-8">
                 <div className="flex items-center mr-6 mb-2">
                   <Calendar className="h-6 w-6 mr-2" />
-                  <span>10 Aug - 13 Aug 2025</span>
+                  <span>7 Sept - 10 Sept 2025</span>
                 </div>
                 <div className="flex items-center mr-6 mb-2">
                   <Clock className="h-6 w-6 mr-2" />
@@ -302,27 +318,28 @@ const HeroSection = () => {
 
               <p className="text-lg mb-8 text-white">
                 Become a GRI Certified Sustainability Professional and lead the
-                way in transparent, impactful, and globally aligned sustainability
-                reporting. This hands-on training is designed to equip
-                professionals with in-demand ESG skills and prepare them for
-                official GRI certification.
+                way in transparent, impactful, and globally aligned
+                sustainability reporting. This hands-on training is designed to
+                equip professionals with in-demand ESG skills and prepare them
+                for official GRI certification.
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <a 
+                <a
                   href="https://rsmacademy-sa.com/courses/40"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-8 py-4 bg-secondary hover:bg-secondary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-lg text-lg inline-block">
+                  className="px-8 py-4 bg-secondary hover:bg-secondary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-lg text-lg inline-block"
+                >
                   Enroll Now
                 </a>
-                {/* <button
+                <button
                   onClick={downloadBrochure}
                   className="px-8 py-4 bg-transparent hover:bg-white/10 border-2 border-white text-white rounded-lg font-bold transition flex items-center gap-2 text-lg"
                 >
                   <Download className="h-5 w-5" />
                   Download Brochure
-                </button> */}
+                </button>
               </div>
             </div>
 
@@ -354,16 +371,17 @@ const HeroSection = () => {
               </div>
 
               <div className="bg-navy/30 backdrop-blur-sm p-8 rounded-xl shadow-2xl">
-                <CountdownTimer targetDate="2025-08-10T09:00:00" />
+                <CountdownTimer targetDate="2025-09-07T09:00:00" />
                 <div className="text-center mt-6">
                   <p className="text-white mb-4">
                     Secure your spot before registration closes
                   </p>
-                  <a 
+                  <a
                     href="https://rsmacademy-sa.com/courses/40"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full px-10 py-5 bg-primary hover:bg-primary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-lg text-xl inline-block text-center">
+                    className="w-full px-10 py-5 bg-primary hover:bg-primary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-lg text-xl inline-block text-center"
+                  >
                     Reserve Your Seat
                   </a>
                 </div>
@@ -371,7 +389,7 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-        
+
         {showSignup && <SignupModal />}
       </div>
     </>

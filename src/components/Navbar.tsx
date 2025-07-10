@@ -60,7 +60,7 @@ const Navbar = () => {
     <nav
       className={`fixed w-full z-[60] transition-all duration-300 ${
         isScrolled ? "bg-white shadow-md" : "bg-white"
-      } py-4 mt-7`}
+      } py-4`}
     >
       <div className="container-padding px-0">
         <div className="flex justify-between items-center">

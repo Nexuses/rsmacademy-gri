@@ -133,7 +133,7 @@ const LearningApproach = () => {
                   className="absolute top-0 left-0 w-full h-full"
                   controls
                   autoPlay
-                  src="/banner-video-new.mp4"
+                  src="/banner-vid-sept-1.mp4"
                 >
                   Your browser does not support the video tag.
                 </video>

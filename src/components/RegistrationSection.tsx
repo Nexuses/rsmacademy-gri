@@ -1,8 +1,8 @@
 import { useState } from "react";
-import {  X, Calendar, Clock, Video } from "lucide-react";
+import {  X, Calendar, Clock, Video, Download } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { sendEnrollmentEmail } from "../utils/email";
-// import { downloadBrochure } from "../utils/download";
+import { downloadBrochure } from "../utils/download";
 
 type FormData = {
   fullName: string;
@@ -331,7 +331,7 @@ const RegistrationSection = () => {
 
           {/* Course Details - 1/3 width */}
           <div className="bg-navy text-white p-8 rounded-xl shadow-md">
-            <div className="mb-16">
+            <div className="">
               <h3 className="text-2xl font-bold mb-6">Course Details</h3>
 
               {/* Course Start Date */}
@@ -339,7 +339,7 @@ const RegistrationSection = () => {
                 <Calendar className="h-6 w-6 text-primary mr-4" />
                 <div>
                   <h4 className="text-sm font-medium text-gray-300">Course Start Date</h4>
-                  <p className="text-xl font-bold">10th August 2025</p>
+                  <p className="text-xl font-bold">7th September 2025</p>
                 </div>
               </div>
 
@@ -377,14 +377,14 @@ const RegistrationSection = () => {
             </a>
 
             {/* Download Brochure Button */}
-            {/* <button
+            <button
               className="w-full mt-4 bg-transparent border border-white text-white py-3 px-6 rounded-lg font-medium text-lg transition-all hover:bg-white/10"
               type="button"
               onClick={downloadBrochure}
             >
               <Download className="mr-2 h-5 w-5 inline" />
               Download Brochure
-            </button> */}
+            </button>
 
           </div>
         </div>

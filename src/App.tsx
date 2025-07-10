@@ -11,7 +11,7 @@ import ChiefGuest from './components/ChiefGuest';
 import RegistrationSection from './components/RegistrationSection';
 // import FAQ from './components/FAQ';
 import Footer from './components/Footer';
-import Banner from './components/Banner';
+// import Banner from './components/Banner';
 
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div className="font-sans">
-      <Banner />
+      {/* <Banner /> */}
       <Navbar />
       <div className="flex flex-col">
         <HeroSection />
