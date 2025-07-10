@@ -1,5 +1,5 @@
 export const downloadBrochure = () => {
-  const pdfPath = '/brochure.pdf';
+  const pdfPath = '/brochure-sept-1.pdf';
   
   // Create a link element
   const link = document.createElement('a');
