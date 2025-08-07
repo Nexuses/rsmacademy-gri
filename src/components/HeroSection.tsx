@@ -304,11 +304,11 @@ const HeroSection = () => {
               <div className="flex flex-wrap items-center text-xl mb-8">
                 <div className="flex items-center mr-6 mb-2">
                   <Calendar className="h-6 w-6 mr-2" />
-                  <span>7 Sept - 10 Sept 2025</span>
+                  <span>7 Sept - 9 Sept 2025</span>
                 </div>
                 <div className="flex items-center mr-6 mb-2">
                   <Clock className="h-6 w-6 mr-2" />
-                  <span>05:00 PM - 10:00 PM KSA</span>
+                  <span>05:00 PM - 08:00 PM KSA</span>
                 </div>
                 <div className="flex items-center mb-2">
                   <Video className="h-6 w-6 mr-2" />
@@ -371,7 +371,7 @@ const HeroSection = () => {
               </div>
 
               <div className="bg-navy/30 backdrop-blur-sm p-8 rounded-xl shadow-2xl">
-                <CountdownTimer targetDate="2025-09-07T09:00:00" />
+                <CountdownTimer targetDate="2025-09-07T17:00:00" />
                 <div className="text-center mt-6">
                   <p className="text-white mb-4">
                     Secure your spot before registration closes
