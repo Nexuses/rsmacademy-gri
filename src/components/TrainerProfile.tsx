@@ -3,30 +3,30 @@ import { motion } from 'framer-motion';
 
 const TrainerProfile = () => {
   const trainers = [
-    // {
-    //   name: "Merin Abraham",
-    //   title: "GRI Certified Trainer",
-    //   linkedin: "https://www.linkedin.com/in/merin-abraham-895960251/",
-    //   image: "/Merin.png",
-    //   description: "An architect-turned-sustainability specialist, Merin couples a Master's in Sustainable Built Environment (UNSW) with LEED Green Associate credentials. Her work spans consultancy, teaching and innovative urban-design projects, weaving ESG principles into hospitality, healthcare and mixed-use developments across the GCC, Australia and Asia.",
-    //   achievements: [
-    //     { icon: <Leaf className="h-5 w-5" />, title: "Integrates ESG and green-building standards into large-scale master-plans" },
-    //     { icon: <Users className="h-5 w-5" />, title: "Guides client teams through GRI-aligned sustainability reports and retrofit programmes" },
-    //     { icon: <Briefcase className="h-5 w-5" />, title: "Blends academic insight with on-the-ground project delivery for practical outcomes" }
-    //   ]
-    // },
-    // {
-    //   name: "Yousef Abdulhadi",
-    //   title: "GRI Certified Trainer",
-    //   linkedin: "https://www.linkedin.com/in/yousef-abdulhadi-beng-60925713b/",
-    //   image: "/Yousef.png",
-    //   description: "With an engineering foundation and deep expertise in GHG accounting, climate-risk management and ESG strategy, Yousef helps organisations translate sustainability ambitions into measurable action. He has steered manufacturing, retail and energy clients across the MENA region through complex emissions inventories and transformation roadmaps, leveraging fluency in both Arabic and English to bridge global standards with local realities.",
-    //   achievements: [
-    //     { icon: <Briefcase className="h-5 w-5" />, title: "Builds and verifies GHG inventories in line with leading protocols" },
-    //     { icon: <Leaf className="h-5 w-5" />, title: "Develops climate-risk assessments and forward-looking ESG strategies" },
-    //     { icon: <Users className="h-5 w-5" />, title: "Advises cross-sector clients on embedding sustainability within core operations" }
-    //   ]
-    // }
+    {
+      name: "Merin Abraham",
+      title: "GRI Certified Trainer",
+      linkedin: "https://www.linkedin.com/in/merin-abraham-895960251/",
+      image: "/Merin.png",
+      description: "An architect-turned-sustainability specialist, Merin couples a Master's in Sustainable Built Environment (UNSW) with LEED Green Associate credentials. Her work spans consultancy, teaching and innovative urban-design projects, weaving ESG principles into hospitality, healthcare and mixed-use developments across the GCC, Australia and Asia.",
+      achievements: [
+        { icon: <Leaf className="h-5 w-5" />, title: "Integrates ESG and green-building standards into large-scale master-plans" },
+        { icon: <Users className="h-5 w-5" />, title: "Guides client teams through GRI-aligned sustainability reports and retrofit programmes" },
+        { icon: <Briefcase className="h-5 w-5" />, title: "Blends academic insight with on-the-ground project delivery for practical outcomes" }
+      ]
+    },
+    {
+      name: "Yousef Abdulhadi",
+      title: "GRI Certified Trainer",
+      linkedin: "https://www.linkedin.com/in/yousef-abdulhadi-beng-60925713b/",
+      image: "/Yousef.png",
+      description: "With an engineering foundation and deep expertise in GHG accounting, climate-risk management and ESG strategy, Yousef helps organisations translate sustainability ambitions into measurable action. He has steered manufacturing, retail and energy clients across the MENA region through complex emissions inventories and transformation roadmaps, leveraging fluency in both Arabic and English to bridge global standards with local realities.",
+      achievements: [
+        { icon: <Briefcase className="h-5 w-5" />, title: "Builds and verifies GHG inventories in line with leading protocols" },
+        { icon: <Leaf className="h-5 w-5" />, title: "Develops climate-risk assessments and forward-looking ESG strategies" },
+        { icon: <Users className="h-5 w-5" />, title: "Advises cross-sector clients on embedding sustainability within core operations" }
+      ]
+    }
   ];
 
   // Animation variants
