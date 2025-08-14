@@ -34,7 +34,7 @@ const ChiefGuest = () => {
             </div>
 
             {/* Right section with image and name/designation */}
-            <div className="md:w-1/2 flex flex-col md:flex-row">
+{/*             <div className="md:w-1/2 flex flex-col md:flex-row">
               <div className="md:w-1/2 h-[250px] md:h-auto overflow-hidden">
                 <img
                   src="/Kareem.png"
@@ -62,7 +62,7 @@ const ChiefGuest = () => {
                 <p className="text-base text-white/90 mb-2">
                   MENA Region Lead – ESG & Sustainability Services
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
