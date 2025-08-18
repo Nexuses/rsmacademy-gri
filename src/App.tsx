@@ -36,7 +36,7 @@ function App() {
         <LearningApproach />
         <CourseOverview />
         <TrainerProfile />
-        <ChiefGuest />
+        {/* <ChiefGuest /> */}
         {/* <CourseAgenda /> */}
         {/* <Testimonials /> */}
         <RegistrationSection />
