@@ -1,74 +1,76 @@
-import { Briefcase, Leaf, Users } from 'lucide-react';
-import { motion } from 'framer-motion';
+// import { Briefcase, Leaf, Users } from 'lucide-react';
+// import { motion } from 'framer-motion';
 
 const TrainerProfile = () => {
-  const trainers = [
-    {
-      name: "Merin Abraham",
-      title: "GRI Certified Trainer",
-      linkedin: "https://www.linkedin.com/in/merin-abraham-895960251/",
-      image: "/Merin.png",
-      description: "An architect-turned-sustainability specialist, Merin couples a Master's in Sustainable Built Environment (UNSW) with LEED Green Associate credentials. Her work spans consultancy, teaching and innovative urban-design projects, weaving ESG principles into hospitality, healthcare and mixed-use developments across the GCC, Australia and Asia.",
-      achievements: [
-        { icon: <Leaf className="h-5 w-5" />, title: "Integrates ESG and green-building standards into large-scale master-plans" },
-        { icon: <Users className="h-5 w-5" />, title: "Guides client teams through GRI-aligned sustainability reports and retrofit programmes" },
-        { icon: <Briefcase className="h-5 w-5" />, title: "Blends academic insight with on-the-ground project delivery for practical outcomes" }
-      ]
-    },
-    {
-      name: "Yousef Abdulhadi",
-      title: "GRI Certified Trainer",
-      linkedin: "https://www.linkedin.com/in/yousef-abdulhadi-beng-60925713b/",
-      image: "/Yousef.png",
-      description: "With an engineering foundation and deep expertise in GHG accounting, climate-risk management and ESG strategy, Yousef helps organisations translate sustainability ambitions into measurable action. He has steered manufacturing, retail and energy clients across the MENA region through complex emissions inventories and transformation roadmaps, leveraging fluency in both Arabic and English to bridge global standards with local realities.",
-      achievements: [
-        { icon: <Briefcase className="h-5 w-5" />, title: "Builds and verifies GHG inventories in line with leading protocols" },
-        { icon: <Leaf className="h-5 w-5" />, title: "Develops climate-risk assessments and forward-looking ESG strategies" },
-        { icon: <Users className="h-5 w-5" />, title: "Advises cross-sector clients on embedding sustainability within core operations" }
-      ]
-    }
-  ];
+  // const trainers = [
+  //   {
+  //     name: "Merin Abraham",
+  //     title: "GRI Certified Trainer",
+  //     linkedin: "https://www.linkedin.com/in/merin-abraham-895960251/",
+  //     image: "/Merin.png",
+  //     description: "An architect-turned-sustainability specialist, Merin couples a Master's in Sustainable Built Environment (UNSW) with LEED Green Associate credentials. Her work spans consultancy, teaching and innovative urban-design projects, weaving ESG principles into hospitality, healthcare and mixed-use developments across the GCC, Australia and Asia.",
+  //     achievements: [
+  //       { icon: <Leaf className="h-5 w-5" />, title: "Integrates ESG and green-building standards into large-scale master-plans" },
+  //       { icon: <Users className="h-5 w-5" />, title: "Guides client teams through GRI-aligned sustainability reports and retrofit programmes" },
+  //       { icon: <Briefcase className="h-5 w-5" />, title: "Blends academic insight with on-the-ground project delivery for practical outcomes" }
+  //     ]
+  //   },
+  //   {
+  //     name: "Yousef Abdulhadi",
+  //     title: "GRI Certified Trainer",
+  //     linkedin: "https://www.linkedin.com/in/yousef-abdulhadi-beng-60925713b/",
+  //     image: "/Yousef.png",
+  //     description: "With an engineering foundation and deep expertise in GHG accounting, climate-risk management and ESG strategy, Yousef helps organisations translate sustainability ambitions into measurable action. He has steered manufacturing, retail and energy clients across the MENA region through complex emissions inventories and transformation roadmaps, leveraging fluency in both Arabic and English to bridge global standards with local realities.",
+  //     achievements: [
+  //       { icon: <Briefcase className="h-5 w-5" />, title: "Builds and verifies GHG inventories in line with leading protocols" },
+  //       { icon: <Leaf className="h-5 w-5" />, title: "Develops climate-risk assessments and forward-looking ESG strategies" },
+  //       { icon: <Users className="h-5 w-5" />, title: "Advises cross-sector clients on embedding sustainability within core operations" }
+  //     ]
+  //   }
+  // ];
 
   // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
+  // const containerVariants = {
+  //   hidden: { opacity: 0 },
+  //   visible: {
+  //     opacity: 1,
+  //     transition: {
+  //       staggerChildren: 0.2
+  //     }
+  //   }
+  // };
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: { 
-      y: 0, 
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 12
-      }
-    }
-  };
+  // const itemVariants = {
+  //   hidden: { y: 20, opacity: 0 },
+  //   visible: { 
+  //     y: 0, 
+  //     opacity: 1,
+  //     transition: {
+  //       type: "spring",
+  //       stiffness: 100,
+  //       damping: 12
+  //     }
+  //   }
+  // };
 
-  const iconVariants = {
-    hidden: { scale: 0 },
-    visible: { 
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 200,
-        delay: 0.2
-      }
-    }
-  };
+  // const iconVariants = {
+  //   hidden: { scale: 0 },
+  //   visible: { 
+  //     scale: 1,
+  //     transition: {
+  //       type: "spring",
+  //       stiffness: 200,
+  //       delay: 0.2
+  //     }
+  //   }
+  // };
 
   return (
-    <div className="pb-16 bg-white">
+    // <div className="pb-16 bg-white">
+    <div className="bg-white">
       <div className="container-padding">
-        <div className="text-center mb-8">
+        {/* <div className="text-center mb-8"> */}
+        <div className="text-center">
           <h2 className="text-3xl font-bold text-navy mb-3">Learn from GRI-Certified Trainers</h2>
           <p className="text-lg text-darkGray mx-auto" style={{ maxWidth: "90%", lineHeight: "1.5" }}>
             Advance your sustainability journey with guidance from GRI Certified Trainers who blend 
@@ -78,7 +80,7 @@ const TrainerProfile = () => {
           </p>
         </div>
 
-        <div className="space-y-8">
+        {/* <div className="space-y-8">
           {trainers.map((trainer, index) => (
             <motion.div 
               key={index} 
@@ -90,7 +92,6 @@ const TrainerProfile = () => {
             >
               <div className="p-6 md:p-8">
                 <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-                  {/* Image with cropped circular display */}
                   <motion.div 
                     className="flex-shrink-0"
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -107,7 +108,6 @@ const TrainerProfile = () => {
                     </div>
                   </motion.div>
                   
-                  {/* Content section */}
                   <div className="flex-1 text-center md:text-left">
                     <motion.div 
                       className="mb-4"
@@ -178,7 +178,7 @@ const TrainerProfile = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );
