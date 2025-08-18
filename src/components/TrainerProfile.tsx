@@ -1,4 +1,4 @@
-// import { Briefcase, Leaf, Users } from 'lucide-react';
+import { Award, Lightbulb, BookOpen, Users, MessageCircle } from 'lucide-react';
 // import { motion } from 'framer-motion';
 
 const TrainerProfile = () => {
@@ -71,13 +71,58 @@ const TrainerProfile = () => {
       <div className="container-padding">
         {/* <div className="text-center mb-8"> */}
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-navy mb-3">Learn from GRI-Certified Trainers</h2>
+          <div className="mx-auto mb-3">
+            <div className="bg-blue-100 p-2 rounded-full inline-block shadow-md">
+              <Award className="w-6 h-6 text-blue-600" strokeWidth={1.75} />
+            </div>
+          </div>
+          <h2 className="text-3xl font-bold text-navy mb-3">Learn from GRI Certified Trainers</h2>
           <p className="text-lg text-darkGray mx-auto" style={{ maxWidth: "90%", lineHeight: "1.5" }}>
-            Advance your sustainability journey with guidance from GRI Certified Trainers who blend 
-            technical expertise with hands-on experience. Our instructors bring deep knowledge in ESG 
-            reporting, stakeholder engagement, and materiality—empowering you to apply the GRI 
-            Standards with clarity and confidence across diverse industries.
+            Our training is delivered by GRI Certified Trainers with extensive experience in sustainability,
+            ESG strategy, and reporting. With backgrounds spanning architecture, engineering, consultancy,
+            and climate-risk management, they bring a wealth of knowledge and real-world expertise to the sessions.
           </p>
+
+          {/* Key gains */}
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 mx-auto" style={{ maxWidth: "90%" }}>
+            <div className="flex flex-col items-center text-center bg-white border border-primary rounded-xl p-5 shadow-sm">
+              <div className="mb-2 bg-blue-50 p-2 rounded-full shadow-sm">
+                <Lightbulb className="w-5 h-5 text-primary" />
+              </div>
+              <p className="text-navy font-semibold">Practical insights</p>
+              <p className="text-sm text-darkGray mt-1">Guidance from professionals who’ve led ESG transformations across industries.</p>
+            </div>
+
+            <div className="flex flex-col items-center text-center bg-white border border-primary rounded-xl p-5 shadow-sm">
+              <div className="mb-2 bg-blue-50 p-2 rounded-full shadow-sm">
+                <BookOpen className="w-5 h-5 text-primary" />
+              </div>
+              <p className="text-navy font-semibold">Hands-on learning</p>
+              <p className="text-sm text-darkGray mt-1">Real projects, case studies, and global best practices.</p>
+            </div>
+
+            <div className="flex flex-col items-center text-center bg-white border border-primary rounded-xl p-5 shadow-sm">
+              <div className="mb-2 bg-blue-50 p-2 rounded-full shadow-sm">
+                <Users className="w-5 h-5 text-primary" />
+              </div>
+              <p className="text-navy font-semibold">Expert-led guidance</p>
+              <p className="text-sm text-darkGray mt-1">On GRI Standards, stakeholder engagement, and materiality assessments.</p>
+            </div>
+          </div>
+
+          {/* Highlight */}
+          <div className="mt-6 mx-auto" style={{ maxWidth: "90%" }}>
+            <div className="flex flex-col items-center text-center gap-2 p-5 rounded-xl border border-primary bg-white shadow-sm">
+              <div className="bg-blue-50 p-2 rounded-full shadow-sm">
+                <MessageCircle className="w-5 h-5 text-primary" />
+              </div>
+              <p className="text-navy font-semibold">Special Highlight</p>
+              <p className="text-darkGray text-sm max-w-3xl">
+                An <span className="font-medium">exclusive Q&A with a senior ESG leader</span> sharing perspectives on
+                sustainability challenges and best practices in the MENA region.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* <div className="space-y-8">
