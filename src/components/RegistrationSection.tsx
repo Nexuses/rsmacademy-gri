@@ -339,7 +339,7 @@ const RegistrationSection = () => {
                 <Calendar className="h-6 w-6 text-primary mr-4" />
                 <div>
                   <h4 className="text-sm font-medium text-gray-300">Course Start Date</h4>
-                  <p className="text-xl font-bold">7th - 9th September 2025</p>
+                  <p className="text-xl font-bold">7th - 10th September 2025</p>
                 </div>
               </div>
 
@@ -348,7 +348,7 @@ const RegistrationSection = () => {
                 <Clock className="h-6 w-6 text-primary mr-4" />
                 <div>
                   <h4 className="text-sm font-medium text-gray-300">Course Duration</h4>
-                  <p className="text-lg font-semibold">3-day intensive (9 hours)</p>
+                  <p className="text-lg font-semibold">4-day intensive (20 hours)</p>
                 </div>
               </div>
 
