@@ -304,11 +304,11 @@ const HeroSection = () => {
               <div className="flex flex-wrap items-center text-xl mb-8">
                 <div className="flex items-center mr-6 mb-2">
                   <Calendar className="h-6 w-6 mr-2" />
-                  <span>7 Sept - 9 Sept 2025</span>
+                  <span>7th Sept - 10th Sept 2025</span>
                 </div>
                 <div className="flex items-center mr-6 mb-2">
                   <Clock className="h-6 w-6 mr-2" />
-                  <span>05:00 PM - 08:00 PM KSA</span>
+                  <span>5:00 PM - 10:00 PM KSA</span>
                 </div>
                 <div className="flex items-center mb-2">
                   <Video className="h-6 w-6 mr-2" />
