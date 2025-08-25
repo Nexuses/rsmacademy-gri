@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import CountdownTimer from "./CountdownTimer";
 import { downloadBrochure } from "../utils/download";
 import { sendEnrollmentEmail } from "../utils/email";
+import { useI18n } from "../utils/i18n";
 
 type FormData = {
   fullName: string;
@@ -33,7 +34,8 @@ const HeroSection = () => {
   } | null>(null);
 
   const shareUrl = typeof window !== "undefined" ? window.location.href : "";
-  const shareTitle = "GRI Certified Sustainability Professional Training";
+  const { t, language } = useI18n();
+  const shareTitle = t('hero_title');
 
   const videoPath = "/cover-video-2.mp4";
 
@@ -96,21 +98,21 @@ const HeroSection = () => {
       if (success) {
         setSubmitStatus({
           success: true,
-          message: "Enrollment successful! Check your email for confirmation.",
+          message: t('form_success'),
         });
         // Reset form after successful submission
         reset();
       } else {
         setSubmitStatus({
           success: false,
-          message: "Failed to process enrollment. Please try again.",
+          message: t('form_failed'),
         });
       }
     } catch (error: unknown) {
       console.error("Form submission error:", error);
       setSubmitStatus({
         success: false,
-        message: "An unexpected error occurred. Please try again later.",
+        message: t('form_unexpected'),
       });
     } finally {
       setLoading(false);
@@ -130,7 +132,7 @@ const HeroSection = () => {
           />
           <div className="absolute inset-0 z-20 p-8 flex flex-col justify-end text-white">
             <h3 className="text-2xl font-bold mb-4">
-              Join a GRI-Certified Learning Experience
+              {t('hero_title')}
             </h3>
             <p className="text-white">
               Advance your sustainability career or empower your organization
@@ -153,10 +155,10 @@ const HeroSection = () => {
 
           <div>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-navy">
-              Ready to Enroll?
+              {t('form_ready_to_enroll')}
             </h2>
             <p className="text-darkGray mb-6">
-              Enroll now and take the first step toward GRI Certification.
+              {t('form_enroll_cta')}
             </p>
 
             {submitStatus && (
@@ -177,13 +179,13 @@ const HeroSection = () => {
                   htmlFor="fullName"
                   className="block text-sm font-medium text-darkGray mb-1"
                 >
-                  Full Name*
+                  {t('form_full_name')}
                 </label>
                 <input
                   id="fullName"
                   type="text"
                   className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                  placeholder="Enter your full name"
+                  placeholder={language === 'ar' ? "اكتب اسمك الكامل" : "Enter your full name"}
                   {...register("fullName", { required: true })}
                 />
               </div>
@@ -192,13 +194,13 @@ const HeroSection = () => {
                   htmlFor="email"
                   className="block text-sm font-medium text-darkGray mb-1"
                 >
-                  Email Address*
+                  {t('form_email')}
                 </label>
                 <input
                   id="email"
                   type="email"
                   className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                  placeholder="Enter your email"
+                  placeholder={language === 'ar' ? "اكتب بريدك الإلكتروني" : "Enter your email"}
                   {...register("email", { required: true })}
                 />
               </div>
@@ -207,13 +209,13 @@ const HeroSection = () => {
                   htmlFor="phone"
                   className="block text-sm font-medium text-darkGray mb-1"
                 >
-                  Phone Number*
+                  {t('form_phone')}
                 </label>
                 <input
                   id="phone"
                   type="tel"
                   className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                  placeholder="Enter your phone number"
+                  placeholder={language === 'ar' ? "اكتب رقم هاتفك" : "Enter your phone number"}
                   {...register("phone", { required: true })}
                 />
               </div>
@@ -222,15 +224,15 @@ const HeroSection = () => {
                   htmlFor="enrollmentType"
                   className="block text-sm font-medium text-darkGray mb-1"
                 >
-                  Register as*
+                  {t('form_register_as')}
                 </label>
                 <select
                   id="enrollmentType"
                   className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-gray-800"
                   {...register("enrollmentType", { required: true })}
                 >
-                  <option value="individual">Individual</option>
-                  <option value="business">Organization</option>
+                  <option value="individual">{t('form_individual')}</option>
+                  <option value="business">{t('form_org')}</option>
                 </select>
               </div>
               {enrollmentType === "business" && (
@@ -239,13 +241,13 @@ const HeroSection = () => {
                     htmlFor="organizationName"
                     className="block text-sm font-medium text-darkGray mb-1"
                   >
-                    Organization Name*
+                    {t('form_org_name')}
                   </label>
                   <input
                     id="organizationName"
                     type="text"
                     className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                    placeholder="Enter your organization name"
+                    placeholder={language === 'ar' ? "اكتب اسم المنشأة" : "Enter your organization name"}
                     {...register("organizationName", {
                       required: enrollmentType === "business",
                     })}
@@ -259,12 +261,11 @@ const HeroSection = () => {
                   loading ? "bg-gray-400" : "bg-green-600 hover:bg-green-700"
                 } text-white rounded-lg font-bold shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all flex justify-center items-center`}
               >
-                {loading ? "Processing..." : "Register Now"}
+                {loading ? t('form_processing') : t('form_register_now')}
               </button>
 
               <p className="text-xs md:text-sm text-mediumGray text-center">
-                By signing up, you agree to our Terms of Service and Privacy
-                Policy
+                {t('form_terms')}
               </p>
             </form>
           </div>
@@ -296,32 +297,28 @@ const HeroSection = () => {
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-3/5 md:pr-12 mb-10 md:mb-0">
               <div className="inline-block px-3 py-1 bg-primary text-white rounded-full text-sm font-semibold mb-4 animate-pulse">
-                Limited Seats Available
+                {t('hero_limited_seats')}
               </div>
               <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
-                GRI Certified Sustainability Professional Training
+                {t('hero_title')}
               </h1>
               <div className="flex flex-wrap items-center text-xl mb-8">
                 <div className="flex items-center mr-6 mb-2">
                   <Calendar className="h-6 w-6 mr-2" />
-                  <span>7th Sept - 10th Sept 2025</span>
+                  <span>{t('hero_date')}</span>
                 </div>
                 <div className="flex items-center mr-6 mb-2">
                   <Clock className="h-6 w-6 mr-2" />
-                  <span>5:00 PM - 10:00 PM KSA</span>
+                  <span>{t('hero_time')}</span>
                 </div>
                 <div className="flex items-center mb-2">
                   <Video className="h-6 w-6 mr-2" />
-                  <span>Mode: Virtual</span>
+                  <span>{t('hero_mode')}</span>
                 </div>
               </div>
 
               <p className="text-lg mb-8 text-white">
-                Become a GRI Certified Sustainability Professional and lead the
-                way in transparent, impactful, and globally aligned
-                sustainability reporting. This hands-on training is designed to
-                equip professionals with in-demand ESG skills and prepare them
-                for official GRI certification.
+                {t('hero_desc')}
               </p>
 
               <div className="flex flex-wrap gap-4">
@@ -331,14 +328,14 @@ const HeroSection = () => {
                   rel="noopener noreferrer"
                   className="px-8 py-4 bg-secondary hover:bg-secondary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-lg text-lg inline-block"
                 >
-                  Enroll Now
+                  {t('hero_enroll_now')}
                 </a>
                 <button
                   onClick={downloadBrochure}
                   className="px-8 py-4 bg-transparent hover:bg-white/10 border-2 border-white text-white rounded-lg font-bold transition flex items-center gap-2 text-lg"
                 >
                   <Download className="h-5 w-5" />
-                  Download Brochure
+                  {t('hero_download_brochure')}
                 </button>
               </div>
             </div>
@@ -349,7 +346,7 @@ const HeroSection = () => {
                 <div className="flex items-center space-x-3 bg-navy/40 backdrop-blur-sm rounded-full px-5 py-3 shadow-md">
                   <div className="flex items-center mr-2">
                     <Share2 className="h-6 w-6 mr-2" />
-                    <span className="text-base font-medium">Share</span>
+                    <span className="text-base font-medium">{t('nav_share')}</span>
                   </div>
                   {shareLinks.map((link) => (
                     <a
@@ -374,7 +371,7 @@ const HeroSection = () => {
                 <CountdownTimer targetDate="2025-09-07T17:00:00" />
                 <div className="text-center mt-6">
                   <p className="text-white mb-4">
-                    Secure your spot before registration closes
+                    {language === 'ar' ? 'سارع بالحجز قبل إغلاق التسجيل' : 'Secure your spot before registration closes'}
                   </p>
                   <a
                     href="https://rsmacademy-sa.com/courses/40"
@@ -382,7 +379,7 @@ const HeroSection = () => {
                     rel="noopener noreferrer"
                     className="w-full px-10 py-5 bg-primary hover:bg-primary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-lg text-xl inline-block text-center"
                   >
-                    Reserve Your Seat
+                    {t('hero_reserve_seat')}
                   </a>
                 </div>
               </div>

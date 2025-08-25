@@ -3,6 +3,7 @@ import {  X, Calendar, Clock, Video, Download } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { sendEnrollmentEmail } from "../utils/email";
 import { downloadBrochure } from "../utils/download";
+import { useI18n } from "../utils/i18n";
 
 type FormData = {
   fullName: string;
@@ -19,6 +20,7 @@ const RegistrationSection = () => {
     success: boolean;
     message: string;
   } | null>(null);
+  const { t, language } = useI18n();
 
   const { register, handleSubmit, reset, watch } = useForm<FormData>({
     defaultValues: {
@@ -48,21 +50,21 @@ const RegistrationSection = () => {
       if (success) {
         setSubmitStatus({
           success: true,
-          message: "Enrollment successful! Check your email for confirmation.",
+          message: t('form_success'),
         });
         // Reset form after successful submission
         reset();
       } else {
         setSubmitStatus({
           success: false,
-          message: "Failed to process enrollment. Please try again.",
+          message: t('form_failed'),
         });
       }
     } catch (error: unknown) {
       console.error("Form submission error:", error);
       setSubmitStatus({
         success: false,
-        message: "An unexpected error occurred. Please try again later.",
+        message: t('form_unexpected'),
       });
     } finally {
       setLoading(false);
@@ -82,7 +84,7 @@ const RegistrationSection = () => {
           />
           <div className="absolute inset-0 z-20 p-8 flex flex-col justify-end text-white">
             <h3 className="text-2xl font-bold mb-4">
-              Join a GRI-Certified Learning Experience
+              {t('hero_title')}
             </h3>
             <p className="text-white">
               Advance your sustainability career or empower your organization through globally recognized GRI Certification. Connect with GRI Certified Trainers and industry experts, build ESG capabilities, and take the lead in responsible reporting.
@@ -102,10 +104,10 @@ const RegistrationSection = () => {
 
           <div>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-navy">
-              Ready to Enroll?
+              {t('form_ready_to_enroll')}
             </h2>
             <p className="text-darkGray mb-6">
-              Enroll now and take the first step toward GRI Certification.
+              {t('form_enroll_cta')}
             </p>
 
             {submitStatus && (
@@ -123,63 +125,63 @@ const RegistrationSection = () => {
             <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
               <div>
                 <label htmlFor="fullName" className="block text-sm font-medium text-darkGray mb-1">
-                  Full Name*
+                  {t('form_full_name')}
                 </label>
                 <input
                   id="fullName"
                   type="text"
                   className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                  placeholder="Enter your full name"
+                  placeholder={language === 'ar' ? "اكتب اسمك الكامل" : "Enter your full name"}
                   {...register("fullName", { required: true })}
                 />
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-darkGray mb-1">
-                  Email Address*
+                  {t('form_email')}
                 </label>
                 <input
                   id="email"
                   type="email"
                   className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                  placeholder="Enter your email"
+                  placeholder={language === 'ar' ? "اكتب بريدك الإلكتروني" : "Enter your email"}
                   {...register("email", { required: true })}
                 />
               </div>
               <div>
                 <label htmlFor="phone" className="block text-sm font-medium text-darkGray mb-1">
-                  Phone Number*
+                  {t('form_phone')}
                 </label>
                 <input
                   id="phone"
                   type="tel"
                   className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                  placeholder="Enter your phone number"
+                  placeholder={language === 'ar' ? "اكتب رقم هاتفك" : "Enter your phone number"}
                   {...register("phone", { required: true })}
                 />
               </div>
               <div>
                 <label htmlFor="enrollmentType" className="block text-sm font-medium text-darkGray mb-1">
-                  Register as*
+                  {t('form_register_as')}
                 </label>
                 <select
                   id="enrollmentType"
                   className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                   {...register("enrollmentType", { required: true })}
                 >
-                  <option value="individual">Individual</option>
-                  <option value="business">Organization</option>
+                  <option value="individual">{t('form_individual')}</option>
+                  <option value="business">{t('form_org')}</option>
                 </select>
               </div>
               {enrollmentType === "business" && (
                 <div>
                   <label htmlFor="organizationName" className="block text-sm font-medium text-darkGray mb-1">
-                    Organization Name*
+                    {t('form_org_name')}
                   </label>
                   <input
                     id="organizationName"
                     type="text"
                     className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                    placeholder="Enter your organization name"
+                    placeholder={language === 'ar' ? "اكتب اسم المنشأة" : "Enter your organization name"}
                     {...register("organizationName", { 
                       required: enrollmentType === "business" 
                     })}
@@ -195,11 +197,10 @@ const RegistrationSection = () => {
                     : "bg-green-600 hover:bg-green-700"
                 } text-white rounded-lg font-bold shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all flex justify-center items-center`}
               >
-                {loading ? "Processing..." : "Register Now"}
+                {loading ? t('form_processing') : t('form_register_now')}
               </button>
               <p className="text-xs md:text-sm text-mediumGray text-center">
-                By signing up, you agree to our Terms of Service and Privacy
-                Policy
+                {t('form_terms')}
               </p>
             </form>
           </div>
@@ -218,14 +219,12 @@ const RegistrationSection = () => {
                 <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="white" />
               </svg>
             </span>
-            <span className="text-sm text-gray-800 font-medium">Professional Certification Program</span>
+            <span className="text-sm text-gray-800 font-medium">{t('reg_program_badge')}</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-navy mb-2">GRI Certified Sustainability</h2>
-          <h3 className="text-3xl md:text-4xl font-bold text-primary mb-6">Professional Training</h3>
+          <h2 className="text-4xl md:text-5xl font-bold text-navy mb-2">{t('reg_title_line1')}</h2>
+          <h3 className="text-3xl md:text-4xl font-bold text-primary mb-6">{t('reg_title_line2')}</h3>
           <p className="max-w-3xl mx-auto text-base md:text-lg text-gray-700">
-            Master essential sustainability reporting skills to drive measurable impact and stay
-            ahead in today's ESG-driven world. Learn from certified experts with hands-on
-            experience using GRI Standards.
+            {t('reg_intro')}
           </p>
         </div>
 
@@ -234,7 +233,7 @@ const RegistrationSection = () => {
           <div className="bg-white p-8 rounded-xl shadow-md md:col-span-2">
             <div className="flex items-center mb-6">
               {/* <CheckCircle className="h-6 w-6 text-primary mr-2" /> */}
-              <h3 className="text-2xl font-bold text-navy">What You'll Gain</h3>
+              <h3 className="text-2xl font-bold text-navy">{t('reg_what_gain')}</h3>
             </div>
 
             <div className="grid grid-cols-2 gap-8">
@@ -246,8 +245,8 @@ const RegistrationSection = () => {
                   </svg>
                 </span>
                 <div>
-                  <h4 className="font-bold text-navy mb-1">Expert Access</h4>
-                  <p className="text-sm text-gray-600">Direct access to GRI Certified Trainers with global and regional ESG expertise</p>
+                  <h4 className="font-bold text-navy mb-1">{t('reg_gain_expert_title')}</h4>
+                  <p className="text-sm text-gray-600">{t('reg_gain_expert_desc')}</p>
                 </div>
               </div>
 
@@ -259,8 +258,8 @@ const RegistrationSection = () => {
                   </svg>
                 </span>
                 <div>
-                  <h4 className="font-bold text-navy mb-1">Official Certification</h4>
-                  <p className="text-sm text-gray-600">Official GRI training materials and eligibility for the GRI Certification Exam</p>
+                  <h4 className="font-bold text-navy mb-1">{t('reg_gain_official_title')}</h4>
+                  <p className="text-sm text-gray-600">{t('reg_gain_official_desc')}</p>
                 </div>
               </div>
 
@@ -274,8 +273,8 @@ const RegistrationSection = () => {
                   </svg>
                 </span>
                 <div>
-                  <h4 className="font-bold text-navy mb-1">Practical Learning</h4>
-                  <p className="text-sm text-gray-600">Case studies, interactive sessions, and real-world examples</p>
+                  <h4 className="font-bold text-navy mb-1">{t('reg_gain_practical_title')}</h4>
+                  <p className="text-sm text-gray-600">{t('reg_gain_practical_desc')}</p>
                 </div>
               </div>
 
@@ -287,8 +286,8 @@ const RegistrationSection = () => {
                   </svg>
                 </span>
                 <div>
-                  <h4 className="font-bold text-navy mb-1">Dual Accreditation</h4>
-                  <p className="text-sm text-gray-600">Accredited certificate from both GRI and RSM Saudi Academy</p>
+                  <h4 className="font-bold text-navy mb-1">{t('reg_gain_dual_title')}</h4>
+                  <p className="text-sm text-gray-600">{t('reg_gain_dual_desc')}</p>
                 </div>
               </div>
 
@@ -300,8 +299,8 @@ const RegistrationSection = () => {
                   </svg>
                 </span>
                 <div>
-                  <h4 className="font-bold text-navy mb-1">Professional Network</h4>
-                  <p className="text-sm text-gray-600">Post-training support and opportunities to connect with ESG professionals</p>
+                  <h4 className="font-bold text-navy mb-1">{t('reg_gain_network_title')}</h4>
+                  <p className="text-sm text-gray-600">{t('reg_gain_network_desc')}</p>
                 </div>
               </div>
 
@@ -313,8 +312,8 @@ const RegistrationSection = () => {
                   </svg>
                 </span>
                 <div>
-                  <h4 className="font-bold text-navy mb-1">Career Advancement</h4>
-                  <p className="text-sm text-gray-600">Enhance your profile with globally recognized sustainability credentials</p>
+                  <h4 className="font-bold text-navy mb-1">{t('reg_gain_career_title')}</h4>
+                  <p className="text-sm text-gray-600">{t('reg_gain_career_desc')}</p>
                 </div>
               </div>
             </div>
@@ -332,13 +331,13 @@ const RegistrationSection = () => {
           {/* Course Details - 1/3 width */}
           <div className="bg-navy text-white p-8 rounded-xl shadow-md">
             <div className="">
-              <h3 className="text-2xl font-bold mb-6">Course Details</h3>
+              <h3 className="text-2xl font-bold mb-6">{t('reg_course_details')}</h3>
 
               {/* Course Start Date */}
               <div className="flex items-center mb-10">
                 <Calendar className="h-6 w-6 text-primary mr-4" />
                 <div>
-                  <h4 className="text-sm font-medium text-gray-300">Course Start Date</h4>
+                  <h4 className="text-sm font-medium text-gray-300">{t('reg_course_start')}</h4>
                   <p className="text-xl font-bold">7th - 10th September 2025</p>
                 </div>
               </div>
@@ -347,7 +346,7 @@ const RegistrationSection = () => {
               <div className="flex items-center mb-10">
                 <Clock className="h-6 w-6 text-primary mr-4" />
                 <div>
-                  <h4 className="text-sm font-medium text-gray-300">Course Duration</h4>
+                  <h4 className="text-sm font-medium text-gray-300">{t('reg_course_duration')}</h4>
                   <p className="text-lg font-semibold">4-day intensive (20 hours)</p>
                 </div>
               </div>
@@ -356,9 +355,9 @@ const RegistrationSection = () => {
               <div className="flex items-center mb-10">
                 <Video className="h-6 w-6 text-primary mr-4" />
                 <div>
-                  <h4 className="text-sm font-medium text-gray-300">Learning Format</h4>
-                  <p className="text-lg font-semibold">Live Virtual Training</p>
-                  <p className="text-sm text-gray-300">Delivered via Zoom</p>
+                  <h4 className="text-sm font-medium text-gray-300">{t('reg_learning_format')}</h4>
+                  <p className="text-lg font-semibold">{t('reg_live_virtual')}</p>
+                  <p className="text-sm text-gray-300">{t('reg_via_zoom')}</p>
                 </div>
               </div>
             </div>
@@ -370,7 +369,7 @@ const RegistrationSection = () => {
               rel="noopener noreferrer"
               className="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg font-bold text-lg transition-all transform hover:-translate-y-0.5 flex items-center justify-center"
             >
-              Enroll Now
+              {t('hero_enroll_now')}
               <svg className="ml-2 w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
               </svg>
@@ -383,7 +382,7 @@ const RegistrationSection = () => {
               onClick={downloadBrochure}
             >
               <Download className="mr-2 h-5 w-5 inline" />
-              Download Brochure
+              {t('hero_download_brochure')}
             </button>
 
           </div>

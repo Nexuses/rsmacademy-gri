@@ -12,6 +12,7 @@ import RegistrationSection from './components/RegistrationSection';
 // import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 // import Banner from './components/Banner';
+import LanguageToggle from './components/LanguageToggle';
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
         {/* <FAQ /> */}
       </div>
       <Footer />
+      <LanguageToggle />
     </div>
   );
 }

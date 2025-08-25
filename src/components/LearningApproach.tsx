@@ -1,6 +1,7 @@
 import { useInView, animate, useMotionValue, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { BarChart, Leaf, FileText, GraduationCap, X } from "lucide-react";
+import { useI18n } from "../utils/i18n";
 
 // Counter animation component
 const Counter = ({
@@ -43,33 +44,30 @@ const Counter = ({
 
 const LearningApproach = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const { t } = useI18n();
 
   const openVideoModal = () => setIsVideoModalOpen(true);
   const closeVideoModal = () => setIsVideoModalOpen(false);
 
   const approaches = [
     {
-      title: "Understand the GRI Standards",
-      description:
-        "Learn how the GRI Standards are structured and how to use them in your reports — including Universal, Sector, and Topic Standards.",
+      title: t('overview_learn_title'),
+      description: t('overview_learn_desc'),
       icon: <BarChart className="w-8 h-8 text-primary" />,
     },
     {
-      title: "Report on Key Sustainability Issues",
-      description:
-        "Gain the ability to report on human rights, environmental impact, and governance, while meeting global due diligence and disclosure expectations.",
+      title: t('reg_what_gain'),
+      description: t('overview_adv_desc'),
       icon: <Leaf className="w-8 h-8 text-primary" />,
     },
     {
-      title: "Create Clear and Trusted Reports",
-      description:
-        "Learn how to improve the quality, accuracy, and transparency of your reports to meet the needs of stakeholders and regulators.",
+      title: t('la_heading'),
+      description: t('la_subheading'),
       icon: <FileText className="w-8 h-8 text-primary" />,
     },
     {
-      title: "Align with the UN SDGs and Get Certified",
-      description:
-        "See how your work connects to the UN Sustainable Development Goals, and get ready to pass the GRI Certification Exam with confidence.",
+      title: t('hero_reserve_seat'),
+      description: t('reg_intro'),
       icon: <GraduationCap className="w-8 h-8 text-primary" />,
     },
   ];
@@ -79,12 +77,10 @@ const LearningApproach = () => {
       <div className="container-padding">
         <div className="mb-12">
           <h2 className="text-4xl font-bold mb-4 text-navy">
-            Empower Your ESG Journey with Practical Learning
+            {t('la_heading')}
           </h2>
           <p className="text-xl text-darkGray">
-            Build the skills you need to lead sustainability reporting in your
-            organization. This training offers practical, easy-to-apply
-            knowledge designed for real-world impact.
+            {t('la_subheading')}
           </p>
         </div>
 
@@ -102,12 +98,12 @@ const LearningApproach = () => {
               <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
                 <div className="text-white text-center flex flex-col items-center justify-center">
                   <h3 className="text-2xl md:text-3xl font-semibold mb-6">
-                    Discover the GRI Standards: Watch the Training Overview
+                    {t('la_video_heading')}
                   </h3>
                   <button 
                     className="w-16 h-16 bg-[#009CDE] rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-all duration-300 shadow-lg"
                     onClick={openVideoModal}
-                    aria-label="Play video"
+                    aria-label={t('la_play_aria')}
                   >
                     <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[18px] border-l-white border-b-[10px] border-b-transparent ml-1"></div>
                   </button>
@@ -164,14 +160,10 @@ const LearningApproach = () => {
         <div className="bg-primary text-white rounded-xl overflow-hidden shadow-xl">
           <div className="p-8">
             <h3 className="text-2xl font-bold mb-4">
-              Why This Training Matters
+              {t('la_why_heading')}
             </h3>
             <p className="mb-6">
-              As global demand for transparency and accountability rises,
-              sustainability reporting has become a critical skill across all
-              industries. The GRI Standards are the world's most widely used
-              framework, helping professionals deliver trusted, impactful ESG
-              reports that meet stakeholder expectations and regulatory demands.
+              {t('la_why_paragraph')}
             </p>
             <div className="grid grid-cols-3 gap-6 text-center">
               <motion.div
@@ -184,7 +176,7 @@ const LearningApproach = () => {
                 <p className="text-3xl font-bold">
                   <Counter from={0} to={100} />+
                 </p>
-                <p className="text-sm">Countries Using GRI</p>
+                <p className="text-sm">{t('la_metric_countries')}</p>
               </motion.div>
               <motion.div
                 className="p-4 bg-white/20 rounded-lg"
@@ -196,7 +188,7 @@ const LearningApproach = () => {
                 <p className="text-3xl font-bold">
                   <Counter from={0} to={77} />%
                 </p>
-                <p className="text-sm">Of the World's Largest 250 Companies</p>
+                <p className="text-sm">{t('la_metric_l250')}</p>
               </motion.div>
               <motion.div
                 className="p-4 bg-white/20 rounded-lg"
@@ -208,7 +200,7 @@ const LearningApproach = () => {
                 <p className="text-3xl font-bold">
                   <Counter from={0} to={14000} />+
                 </p>
-                <p className="text-sm">Organizations Reporting with GRI</p>
+                <p className="text-sm">{t('la_metric_orgs')}</p>
               </motion.div>
             </div>
           </div>
