@@ -1,6 +1,7 @@
 import React from 'react';
 import { Award, Users, BookOpen, Bookmark, MessageCircle } from 'lucide-react';
 import SmallBanner from '../../public/small-banner.png';
+import { useI18n } from '../utils/i18n';
 
 const IconWrapper = ({ children }: { children: React.ReactNode }) => (
   <div className="mr-4 flex-shrink-0">
@@ -11,6 +12,7 @@ const IconWrapper = ({ children }: { children: React.ReactNode }) => (
 );
 
 const CourseHighlights = () => {
+  const { t } = useI18n();
   return (
     <div className="pt-16 bg-white">
       <div className="container-padding">
@@ -26,10 +28,10 @@ const CourseHighlights = () => {
                 
                 <div className="pt-1">
                   <h3 className="text-xl font-bold text-white mb-1.5">
-                    Vocational Learning
+                    {t('ch_vocational_title')}
                   </h3>
                   <p className="text-sm text-gray-300 tracking-wide max-w-[95%]">
-                    Practical, job-ready skills through real case studies and exercises.
+                    {t('ch_vocational_desc')}
                   </p>
                 </div>
               </div>
@@ -44,10 +46,10 @@ const CourseHighlights = () => {
                 
                 <div className="pt-1">
                   <h3 className="text-xl font-bold text-white mb-1.5">
-                    Interactive Sessions
+                    {t('ch_interactive_title')}
                   </h3>
                   <p className="text-sm text-gray-300 tracking-wide max-w-[95%]">
-                    Live, expert-led discussions to deepen your understanding.
+                    {t('ch_interactive_desc')}
                   </p>
                 </div>
               </div>
@@ -66,10 +68,10 @@ const CourseHighlights = () => {
                     </div>
                   </div>
                   <h3 className="text-xl font-bold text-white mb-1.5">
-                    GRI Certified Training Partner
+                    {t('ch_partner_title')}
                   </h3>
                   <p className="text-sm text-gray-300 tracking-wide">
-                    Delivered in collaboration with the Global Reporting Initiative.
+                    {t('ch_partner_desc')}
                   </p>
                 </div>
                 
@@ -98,10 +100,10 @@ const CourseHighlights = () => {
                 
                 <div className="pt-1">
                   <h3 className="text-xl font-bold text-white mb-1.5">
-                    Dual Certification
+                    {t('ch_dual_title')}
                   </h3>
                   <p className="text-sm text-gray-300 tracking-wide max-w-[95%]">
-                    Earn recognized certificates from GRI and RSM Saudi Academy.
+                    {t('ch_dual_desc')}
                   </p>
                 </div>
               </div>
@@ -116,10 +118,10 @@ const CourseHighlights = () => {
                 
                 <div className="pt-1">
                   <h3 className="text-xl font-bold text-white mb-1.5">
-                    Exclusive Q&A with ESG Expert
+                    {t('ch_qa_title')}
                   </h3>
                   <p className="text-sm text-gray-300 tracking-wide max-w-[95%]">
-                    Interact with regional sustainability leadership.
+                    {t('ch_qa_desc')}
                   </p>
                 </div>
               </div>

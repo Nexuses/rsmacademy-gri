@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useI18n } from "../utils/i18n"
 
 type FooterLink = {
   text: string;
@@ -59,34 +60,35 @@ const logoVariants = {
 }
 
 export default function Footer() {
+  const { t } = useI18n()
   const footerSections: FooterSection[] = [
     {
-      title: "National Center Policies",
+      title: t('footer_policies'),
       links: [
-        { text: "Attendance Policy", href: "https://rsmacademy-sa.com/attendance", target: "_blank", rel: "noopener noreferrer" },
-        { text: "Privacy and Usage Policy", href: "https://rsmacademy-sa.com/privacy", target: "_blank", rel: "noopener noreferrer" },
-        { text: "Technical and Educational Support Policy", href: "https://rsmacademy-sa.com/support", target: "_blank", rel: "noopener noreferrer" },
-        { text: "Academic Integrity", href: "https://rsmacademy-sa.com/integrity", target: "_blank", rel: "noopener noreferrer" },
-        { text: "Principles of Intellectual Property Rights and Copyrights", href: "https://rsmacademy-sa.com/copyright", target: "_blank", rel: "noopener noreferrer" }
+        { text: t('footer_attendance'), href: "https://rsmacademy-sa.com/attendance", target: "_blank", rel: "noopener noreferrer" },
+        { text: t('footer_privacy'), href: "https://rsmacademy-sa.com/privacy", target: "_blank", rel: "noopener noreferrer" },
+        { text: t('footer_support_policy'), href: "https://rsmacademy-sa.com/support", target: "_blank", rel: "noopener noreferrer" },
+        { text: t('footer_integrity'), href: "https://rsmacademy-sa.com/integrity", target: "_blank", rel: "noopener noreferrer" },
+        { text: t('footer_ip_rights'), href: "https://rsmacademy-sa.com/copyright", target: "_blank", rel: "noopener noreferrer" }
       ]
     },
     {
-      title: "Guidelines",
+      title: t('footer_guidelines'),
       links: [
-        { text: "Organizational Structure Document & Roles and Responsibilities", href: "https://rsmacademy-sa.com/staff", target: "_blank", rel: "noopener noreferrer" },
-        { text: "Trainee's Guide", href: "https://rsmacademy-sa.com/student_guide", target: "_blank", rel: "noopener noreferrer" },
-        { text: "Guidelines for Trainers and Trainees", href: "https://rsmacademy-sa.com/guidelines", target: "_blank", rel: "noopener noreferrer" },
-        { text: "Beneficiary Satisfaction Measurement Questionnaire", href: "https://rsmacademy-sa.com/feedback", target: "_blank", rel: "noopener noreferrer" }
+        { text: t('footer_org_structure'), href: "https://rsmacademy-sa.com/staff", target: "_blank", rel: "noopener noreferrer" },
+        { text: t('footer_student_guide'), href: "https://rsmacademy-sa.com/student_guide", target: "_blank", rel: "noopener noreferrer" },
+        { text: t('footer_guidelines_trainers'), href: "https://rsmacademy-sa.com/guidelines", target: "_blank", rel: "noopener noreferrer" },
+        { text: t('footer_beneficiary_survey'), href: "https://rsmacademy-sa.com/feedback", target: "_blank", rel: "noopener noreferrer" }
       ]
     },
     {
-      title: "Technical Support",
+      title: t('footer_support'),
       links: [
-        { text: "Complaints and Suggestions", href: "https://rsmacademy-sa.com/contact_us", target: "_blank", rel: "noopener noreferrer" }
+        { text: t('footer_complaints'), href: "https://rsmacademy-sa.com/contact_us", target: "_blank", rel: "noopener noreferrer" }
       ]
     },
     {
-      title: "National Center for E-Learning Accreditation",
+      title: t('footer_accreditation'),
       links: [],
       logo: "https://22527425.fs1.hubspotusercontent-na1.net/hubfs/22527425/RSM%20Academy%20Landing%20Page/image%20(23).png"
     }

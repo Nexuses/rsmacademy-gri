@@ -1,4 +1,5 @@
 import { Award, Lightbulb, BookOpen, Users, MessageCircle } from 'lucide-react';
+import { useI18n } from '../utils/i18n';
 // import { motion } from 'framer-motion';
 
 const TrainerProfile = () => {
@@ -65,6 +66,7 @@ const TrainerProfile = () => {
   //   }
   // };
 
+  const { t } = useI18n();
   return (
     // <div className="pb-16 bg-white">
     <div className="bg-white">
@@ -76,11 +78,9 @@ const TrainerProfile = () => {
               <Award className="w-6 h-6 text-blue-600" strokeWidth={1.75} />
             </div>
           </div>
-          <h2 className="text-3xl font-bold text-navy mb-3">Learn from GRI Certified Trainers</h2>
+          <h2 className="text-3xl font-bold text-navy mb-3">{t('tp_heading')}</h2>
           <p className="text-lg text-darkGray mx-auto" style={{ maxWidth: "90%", lineHeight: "1.5" }}>
-            Our training is delivered by GRI Certified Trainers with extensive experience in sustainability,
-            ESG strategy, and reporting. With backgrounds spanning architecture, engineering, consultancy,
-            and climate-risk management, they bring a wealth of knowledge and real-world expertise to the sessions.
+            {t('tp_paragraph')}
           </p>
 
           {/* Key gains */}
@@ -89,24 +89,24 @@ const TrainerProfile = () => {
               <div className="mb-2 bg-blue-50 p-2 rounded-full shadow-sm">
                 <Lightbulb className="w-5 h-5 text-primary" />
               </div>
-              <p className="text-navy font-semibold">Practical insights</p>
-              <p className="text-sm text-darkGray mt-1">Guidance from professionals who’ve led ESG transformations across industries.</p>
+              <p className="text-navy font-semibold">{t('tp_practical_insights')}</p>
+              <p className="text-sm text-darkGray mt-1">{t('tp_practical_insights_desc')}</p>
             </div>
 
             <div className="flex flex-col items-center text-center bg-white border border-primary rounded-xl p-5 shadow-sm">
               <div className="mb-2 bg-blue-50 p-2 rounded-full shadow-sm">
                 <BookOpen className="w-5 h-5 text-primary" />
               </div>
-              <p className="text-navy font-semibold">Hands-on learning</p>
-              <p className="text-sm text-darkGray mt-1">Real projects, case studies, and global best practices.</p>
+              <p className="text-navy font-semibold">{t('tp_hands_on')}</p>
+              <p className="text-sm text-darkGray mt-1">{t('tp_hands_on_desc')}</p>
             </div>
 
             <div className="flex flex-col items-center text-center bg-white border border-primary rounded-xl p-5 shadow-sm">
               <div className="mb-2 bg-blue-50 p-2 rounded-full shadow-sm">
                 <Users className="w-5 h-5 text-primary" />
               </div>
-              <p className="text-navy font-semibold">Expert-led guidance</p>
-              <p className="text-sm text-darkGray mt-1">On GRI Standards, stakeholder engagement, and materiality assessments.</p>
+              <p className="text-navy font-semibold">{t('tp_expert_guidance')}</p>
+              <p className="text-sm text-darkGray mt-1">{t('tp_expert_guidance_desc')}</p>
             </div>
           </div>
 
@@ -116,10 +116,9 @@ const TrainerProfile = () => {
               <div className="bg-blue-50 p-2 rounded-full shadow-sm">
                 <MessageCircle className="w-5 h-5 text-primary" />
               </div>
-              <p className="text-navy font-semibold">Special Highlight</p>
+              <p className="text-navy font-semibold">{t('tp_highlight')}</p>
               <p className="text-darkGray text-sm max-w-3xl">
-                An <span className="font-medium">exclusive Q&A with a senior ESG leader</span> sharing perspectives on
-                sustainability challenges and best practices in the MENA region.
+                {t('tp_highlight_desc')}
               </p>
             </div>
           </div>

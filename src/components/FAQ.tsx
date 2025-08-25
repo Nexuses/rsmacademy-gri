@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
+import { useI18n } from '../utils/i18n';
 
 type FAQItemProps = {
   question: string;
@@ -32,6 +33,7 @@ const FAQItem = ({ question, answer }: FAQItemProps) => {
 };
 
 const FAQ = () => {
+  const { t } = useI18n();
   const faqItems = [
     {
       question: "What is the GRI Certification and why is it valuable?",
@@ -63,9 +65,9 @@ const FAQ = () => {
     <div className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Frequently Asked Questions</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">{t('faq_title')}</h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Get answers to common questions about our GRI Certified Sustainability Professional Training.
+            {t('faq_intro')}
           </p>
         </div>
 
@@ -76,9 +78,9 @@ const FAQ = () => {
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-gray-600 mb-4">Don't see your question answered here?</p>
+          <p className="text-gray-600 mb-4">{t('faq_contact_cta')}</p>
           <button className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold transition shadow-md">
-            Contact Us
+            {t('contact_us')}
           </button>
         </div>
       </div>

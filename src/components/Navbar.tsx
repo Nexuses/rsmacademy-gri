@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X, Search, User, ChevronDown, ShoppingBag } from "lucide-react";
+import { useI18n } from "../utils/i18n";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -8,6 +9,7 @@ const Navbar = () => {
   const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
   const [isCoursesDropdownOpen, setIsCoursesDropdownOpen] = useState(false);
   
+  const { t } = useI18n();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -87,7 +89,7 @@ const Navbar = () => {
                 <button
                   className="flex items-center text-darkGray hover:text-primary focus:outline-none peer text-lg font-medium"
                 >
-                  About Us
+                  {t('nav_about_us')}
                   <ChevronDown className="ml-1 h-4 w-4" />
                 </button>
                 <div
@@ -100,35 +102,35 @@ const Navbar = () => {
                       target="_blank"
                       className="block text-lg font-medium text-darkGray hover:text-primary border-b border-gray-200 pb-3"
                     >
-                      Foreword
+                      {t('nav_about_foreword')}
                     </a>
                     <a
                       href="https://rsmacademy-sa.com/vision"
                       target="_blank"
                       className="block text-lg font-medium text-darkGray hover:text-primary border-b border-gray-200 pb-3"
                     >
-                      Vision
+                      {t('nav_about_vision')}
                     </a>
                     <a
                       href="https://rsmacademy-sa.com/mission"
                       target="_blank"
                       className="block text-lg font-medium text-darkGray hover:text-primary border-b border-gray-200 pb-3"
                     >
-                      Mission
+                      {t('nav_about_mission')}
                     </a>
                     <a
                       href="https://rsmacademy-sa.com/objectives"
                       target="_blank"
                       className="block text-lg font-medium text-darkGray hover:text-primary border-b border-gray-200 pb-3"
                     >
-                      Objectives
+                      {t('nav_about_objectives')}
                     </a>
                     <a
                       href="https://rsmacademy-sa.com/core_values"
                       target="_blank"
                       className="block text-lg font-medium text-darkGray hover:text-primary"
                     >
-                      Core Values
+                      {t('nav_about_core_values')}
                     </a>
                   </div>
                 </div>
@@ -137,7 +139,7 @@ const Navbar = () => {
                 <button
                   className="flex items-center text-darkGray hover:text-primary focus:outline-none peer text-lg font-medium"
                 >
-                  Courses
+                  {t('nav_courses')}
                   <ChevronDown className="ml-1 h-4 w-4" />
                 </button>
                 <div
@@ -150,14 +152,14 @@ const Navbar = () => {
                       target="_blank"
                       className="block text-lg font-medium text-darkGray hover:text-primary border-b border-gray-200 pb-3"
                     >
-                      Live Courses
+                      {t('nav_courses_live')}
                     </a>
                     <a
                       href="https://rsmacademy-sa.com/courses/recorded"
                       target="_blank"
                       className="block text-lg font-medium text-darkGray hover:text-primary"
                     >
-                      Recorded Courses
+                      {t('nav_courses_recorded')}
                     </a>
                   </div>
                 </div>
@@ -168,7 +170,7 @@ const Navbar = () => {
                   href="https://rsmacademy-sa.com/corporate-training"
                   target="_blank"
                 >
-                  Corporate Training
+                  {t('nav_corporate_training')}
                   {/* <ChevronDown className="ml-1 h-4 w-4" /> */}
                 </a>
                 {/* <div
@@ -191,21 +193,21 @@ const Navbar = () => {
                 target="_blank"
                 className="text-darkGray hover:text-primary text-lg font-medium"
               >
-                Training Calendar
+                {t('nav_training_calendar')}
               </a>
               <a
                 href="https://blog.rsmacademy-sa.com/"
                 target="_blank"
                 className="text-darkGray hover:text-primary text-lg font-medium"
               >
-                Blog
+                {t('nav_blog')}
               </a>
               <a
                 href="https://rsmacademy-sa.com/contact_us"
                 target="_blank"
                 className="text-darkGray hover:text-primary text-lg font-medium"
               >
-                Contact Us
+                {t('nav_contact_us')}
               </a>
             </div>
           </div>
@@ -214,7 +216,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-6">
             <a href="https://rsmacademy-sa.com/login" target="_blank" className="flex items-center text-darkGray hover:text-primary text-lg font-medium">
               <User className="h-5 w-5 mr-2" />
-              <span>Sign in</span>
+              <span>{t('nav_sign_in')}</span>
             </a>
             <div className="relative group flex items-center">
               <button 
@@ -226,7 +228,7 @@ const Navbar = () => {
                 className="absolute right-0 mt-2 w-64 bg-white shadow-lg rounded-lg py-6 px-6 z-20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out"
                 style={{ transform: "translateY(20px)", top: '100%', paddingTop: '10px' }}
               >
-                <p className="text-darkGray text-base">Your shopping bag is empty</p>
+                <p className="text-darkGray text-base">{t('bag_empty')}</p>
               </div>
             </div>
             <a href="https://rsmacademy-sa.com/courses/search/view" target="_blank" className="flex items-center">
@@ -263,7 +265,7 @@ const Navbar = () => {
                     toggleAboutDropdown();
                   }}
                 >
-                  About Us
+                  {t('nav_about_us')}
                   <ChevronDown className="ml-1 h-4 w-4" />
                 </button>
                 {isAboutDropdownOpen && (
@@ -273,35 +275,35 @@ const Navbar = () => {
                       target="_blank"
                       className="block text-darkGray hover:text-primary"
                     >
-                      Foreword
+                      {t('nav_about_foreword')}
                     </a>
                     <a
                       href="https://rsmacademy-sa.com/vision"
                       target="_blank"
                       className="block text-darkGray hover:text-primary"
                     >
-                      Vision
+                      {t('nav_about_vision')}
                     </a>
                     <a
                       href="https://rsmacademy-sa.com/mission"
                       target="_blank"
                       className="block text-darkGray hover:text-primary"
                     >
-                      Mission
+                      {t('nav_about_mission')}
                     </a>
                     <a
                       href="https://rsmacademy-sa.com/objectives"
                       target="_blank"
                       className="block text-darkGray hover:text-primary"
                     >
-                      Objectives
+                      {t('nav_about_objectives')}
                     </a>
                     <a
                       href="https://rsmacademy-sa.com/core_values"
                       target="_blank"
                       className="block text-darkGray hover:text-primary"
                     >
-                      Core Values
+                      {t('nav_about_core_values')}
                     </a>
                   </div>
                 )}
@@ -314,7 +316,7 @@ const Navbar = () => {
                     toggleCoursesDropdown();
                   }}
                 >
-                  Courses
+                  {t('nav_courses')}
                   <ChevronDown className="ml-1 h-4 w-4" />
                 </button>
                 {isCoursesDropdownOpen && (
@@ -324,14 +326,14 @@ const Navbar = () => {
                       target="_blank"
                       className="block text-darkGray hover:text-primary"
                     >
-                      Live Courses
+                      {t('nav_courses_live')}
                     </a>
                     <a
                       href="https://rsmacademy-sa.com/courses/recorded"
                       target="_blank"
                       className="block text-darkGray hover:text-primary"
                     >
-                      Recorded Courses
+                      {t('nav_courses_recorded')}
                     </a>
                   </div>
                 )}
@@ -342,7 +344,7 @@ const Navbar = () => {
                   target="_blank"
                   className="text-darkGray hover:text-primary"
                 >
-                  Corporate Training
+                  {t('nav_corporate_training')}
                 </a>
               </div>
               <a
@@ -350,21 +352,21 @@ const Navbar = () => {
                 target="_blank"
                 className="text-darkGray hover:text-primary"
               >
-                Training Calendar
+                {t('nav_training_calendar')}
               </a>
               <a
                 href="https://blog.rsmacademy-sa.com/"
                 target="_blank"
                 className="text-darkGray hover:text-primary"
               >
-                Blog
+                {t('nav_blog')}
               </a>
               <a
                 href="https://rsmacademy-sa.com/contact_us"
                 target="_blank"
                 className="text-darkGray hover:text-primary"
               >
-                Contact Us
+                {t('nav_contact_us')}
               </a>
               <div className="border-t border-gray-200 pt-4 mt-2 flex flex-col space-y-4">
                 <a
@@ -373,7 +375,7 @@ const Navbar = () => {
                   className="flex items-center text-darkGray hover:text-primary"
                 >
                   <User className="h-5 w-5 mr-2" />
-                  <span>Sign in</span>
+                  <span>{t('nav_sign_in')}</span>
                 </a>
                 <a
                   href="https://rsmacademy-sa.com/courses/search/view"
@@ -381,7 +383,7 @@ const Navbar = () => {
                   className="flex items-center text-darkGray hover:text-primary"
                 >
                   <Search className="h-5 w-5 mr-2" />
-                  <span>Search</span>
+                  <span>{t('nav_search')}</span>
                 </a>
               </div>
             </div>

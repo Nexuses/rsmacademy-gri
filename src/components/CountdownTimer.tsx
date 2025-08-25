@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useI18n } from '../utils/i18n';
 
 type CountdownTimerProps = {
   targetDate: string;
@@ -32,16 +33,17 @@ const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
     return () => clearInterval(timer);
   }, [targetDate]);
 
+  const { t } = useI18n();
   const timeUnits = [
-    { label: 'Days', value: timeLeft.days },
-    { label: 'Hours', value: timeLeft.hours },
-    { label: 'Minutes', value: timeLeft.minutes },
-    { label: 'Seconds', value: timeLeft.seconds }
+    { label: t('cd_days'), value: timeLeft.days },
+    { label: t('cd_hours'), value: timeLeft.hours },
+    { label: t('cd_minutes'), value: timeLeft.minutes },
+    { label: t('cd_seconds'), value: timeLeft.seconds }
   ];
 
   return (
     <div>
-      <h3 className="text-xl font-semibold mb-4 text-center">Registration Closes In:</h3>
+      <h3 className="text-xl font-semibold mb-4 text-center">{t('cd_registration_closes')}</h3>
       <div className="grid grid-cols-4 gap-2 text-center">
         {timeUnits.map((unit, index) => (
           <div key={index} className="flex flex-col">
