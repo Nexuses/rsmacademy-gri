@@ -368,7 +368,7 @@ const HeroSection = () => {
               </div>
 
               <div className="bg-navy/30 backdrop-blur-sm p-8 rounded-xl shadow-2xl">
-                <CountdownTimer targetDate="2025-09-07T17:00:00" />
+                <CountdownTimer targetDate="2025-09-07T17:00:00+03:00" />
                 <div className="text-center mt-6">
                   <p className="text-white mb-4">
                     {language === 'ar' ? 'سارع بالحجز قبل إغلاق التسجيل' : 'Secure your spot before registration closes'}
