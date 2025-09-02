@@ -27,8 +27,8 @@ const translations: TranslationsDict = {
   // Hero
   hero_limited_seats: { en: "Limited Seats Available", ar: "أماكن محدودة متاحة" },
   hero_title: { en: "GRI Certified Sustainability Professional Training", ar: "تدريب مهني معتمد من GRI في الاستدامة" },
-  hero_date: { en: "7th Sept - 10th Sept 2025", ar: "7 - 10 سبتمبر 2025" },
-  hero_time: { en: "5:00 PM - 10:00 PM KSA", ar: "5:00 مساءً - 10:00 مساءً بتوقيت السعودية" },
+  hero_date: { en: "7th Sept - 16th Sept 2025", ar: "7 - 16 سبتمبر 2025" },
+  hero_time: { en: "5:00 PM - 9:00 PM KSA", ar: "5:00 مساءً - 9:00 مساءً بتوقيت السعودية" },
   hero_mode: { en: "Mode: Virtual", ar: "النمط: افتراضي" },
   hero_desc: {
     en: "Become a GRI Certified Sustainability Professional and lead the way in transparent, impactful, and globally aligned sustainability reporting. This hands-on training is designed to equip professionals with in-demand ESG skills and prepare them for official GRI certification.",

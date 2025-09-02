@@ -301,7 +301,7 @@ const CourseAgenda = () => {
             Training Module Structure
           </h2>
           <p className="text-lg text-darkGray max-w-3xl mx-auto">
-            This 4-day GRI Certified Training is designed to guide participants
+            This 6-day GRI Certified Training is designed to guide participants
             through the key pillars of sustainability reporting. Each day builds
             on foundational knowledge, helping you apply the GRI Standards
             effectively while aligning with international ESG expectations.
