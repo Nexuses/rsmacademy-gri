@@ -203,6 +203,13 @@ const Navbar = () => {
                 {t('nav_blog')}
               </a>
               <a
+                href="https://rsmacademy-sa.com/gallery"
+                target="_blank"
+                className="text-darkGray hover:text-primary text-lg font-medium"
+              >
+                {t('nav_gallery')}
+              </a>
+              <a
                 href="https://rsmacademy-sa.com/contact_us"
                 target="_blank"
                 className="text-darkGray hover:text-primary text-lg font-medium"
@@ -360,6 +367,13 @@ const Navbar = () => {
                 className="text-darkGray hover:text-primary"
               >
                 {t('nav_blog')}
+              </a>
+              <a
+                href="https://rsmacademy-sa.com/gallery"
+                target="_blank"
+                className="text-darkGray hover:text-primary"
+              >
+                {t('nav_gallery')}
               </a>
               <a
                 href="https://rsmacademy-sa.com/contact_us"

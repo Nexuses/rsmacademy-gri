@@ -11,6 +11,7 @@ const translations: TranslationsDict = {
   nav_corporate_training: { en: "Corporate Training", ar: "تدريب المؤسسات" },
   nav_training_calendar: { en: "Training Calendar", ar: "التقويم" },
   nav_blog: { en: "Blog", ar: "المدونة" },
+  nav_gallery: { en: "Gallery", ar: "المعرض" },
   nav_contact_us: { en: "Contact Us", ar: "اتصل بنا" },
   nav_sign_in: { en: "Sign in", ar: "تسجيل الدخول" },
   nav_search: { en: "Search", ar: "بحث" },
