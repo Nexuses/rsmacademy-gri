@@ -9,7 +9,7 @@ const Navbar = () => {
   const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
   const [isCoursesDropdownOpen, setIsCoursesDropdownOpen] = useState(false);
   
-  const { t } = useI18n();
+  const { t, isRtl } = useI18n();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,26 +68,33 @@ const Navbar = () => {
         isScrolled ? "bg-white shadow-md" : "bg-white"
       } py-4`}
     >
-      <div className="container mx-auto px-4 sm:px-6 ">
+      <div className="w-full px-4 sm:px-6 ">
         <div className="flex justify-between items-center">
           {/* Left side with logo and navigation */}
-          <div className="flex items-center gap-16">
+          <div className={`flex items-center ${isRtl ? 'gap-8' : 'gap-12'}`}>
             {/* Logo */}
-            <div className="flex items-center">
+            <div className="flex items-center pr-2">
               <a href="https://rsmacademy-sa.com/" target="_blank">
                 <img
                   src="https://res.cloudinary.com/rsmglobal/image/fetch/t_default/f_auto/q_auto/https://www.rsm.global/profiles/rsm_global_platform/themes/rsm_global_platform_2022/images/logo@2x.png"
                   alt="RSM Logo"
-                  className="h-16"
+                  className="h-14 md:h-16"
                 />
               </a>
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-10">
+            <div className={`hidden xl:flex items-center ${isRtl ? 'space-x-reverse space-x-6' : 'space-x-6'}`}>
+              <a
+                href="https://rsmacademy-sa.com/"
+                target="_blank"
+                className="text-darkGray hover:text-primary text-base md:text-sm lg:text-base font-medium whitespace-nowrap"
+              >
+                {t('nav_home')}
+              </a>
               <div className="relative group">
                 <button
-                  className="flex items-center text-darkGray hover:text-primary focus:outline-none peer text-lg font-medium"
+                  className="flex items-center text-darkGray hover:text-primary focus:outline-none peer text-base md:text-sm lg:text-base font-medium whitespace-nowrap"
                 >
                   {t('nav_about_us')}
                   <ChevronDown className="ml-1 h-4 w-4" />
@@ -100,35 +107,35 @@ const Navbar = () => {
                     <a
                       href="https://rsmacademy-sa.com/foreword"
                       target="_blank"
-                      className="block text-lg font-medium text-darkGray hover:text-primary border-b border-gray-200 pb-3"
+                      className="block text-darkGray hover:text-primary text-base md:text-sm lg:text-base font-medium border-b border-gray-200 pb-3"
                     >
                       {t('nav_about_foreword')}
                     </a>
                     <a
                       href="https://rsmacademy-sa.com/vision"
                       target="_blank"
-                      className="block text-lg font-medium text-darkGray hover:text-primary border-b border-gray-200 pb-3"
+                      className="block text-darkGray hover:text-primary text-base md:text-sm lg:text-base font-medium border-b border-gray-200 pb-3"
                     >
                       {t('nav_about_vision')}
                     </a>
                     <a
                       href="https://rsmacademy-sa.com/mission"
                       target="_blank"
-                      className="block text-lg font-medium text-darkGray hover:text-primary border-b border-gray-200 pb-3"
+                      className="block text-darkGray hover:text-primary text-base md:text-sm lg:text-base font-medium border-b border-gray-200 pb-3"
                     >
                       {t('nav_about_mission')}
                     </a>
                     <a
                       href="https://rsmacademy-sa.com/objectives"
                       target="_blank"
-                      className="block text-lg font-medium text-darkGray hover:text-primary border-b border-gray-200 pb-3"
+                      className="block text-darkGray hover:text-primary text-base md:text-sm lg:text-base font-medium border-b border-gray-200 pb-3"
                     >
                       {t('nav_about_objectives')}
                     </a>
                     <a
                       href="https://rsmacademy-sa.com/core_values"
                       target="_blank"
-                      className="block text-lg font-medium text-darkGray hover:text-primary"
+                      className="block text-darkGray hover:text-primary text-base md:text-sm lg:text-base font-medium"
                     >
                       {t('nav_about_core_values')}
                     </a>
@@ -137,7 +144,7 @@ const Navbar = () => {
               </div>
               <div className="relative group">
                 <button
-                  className="flex items-center text-darkGray hover:text-primary focus:outline-none peer text-lg font-medium"
+                  className="flex items-center text-darkGray hover:text-primary focus:outline-none peer text-base md:text-sm lg:text-base font-medium whitespace-nowrap"
                 >
                   {t('nav_courses')}
                   <ChevronDown className="ml-1 h-4 w-4" />
@@ -150,14 +157,14 @@ const Navbar = () => {
                     <a
                       href="https://rsmacademy-sa.com/courses/online"
                       target="_blank"
-                      className="block text-lg font-medium text-darkGray hover:text-primary border-b border-gray-200 pb-3"
+                      className="block text-darkGray hover:text-primary text-base md:text-sm lg:text-base font-medium border-b border-gray-200 pb-3"
                     >
                       {t('nav_courses_live')}
                     </a>
                     <a
                       href="https://rsmacademy-sa.com/courses/recorded"
                       target="_blank"
-                      className="block text-lg font-medium text-darkGray hover:text-primary"
+                      className="block text-darkGray hover:text-primary text-base md:text-sm lg:text-base font-medium"
                     >
                       {t('nav_courses_recorded')}
                     </a>
@@ -166,7 +173,7 @@ const Navbar = () => {
               </div>
               <div className="relative group">
                 <a
-                  className="flex items-center text-darkGray hover:text-primary focus:outline-none peer text-lg font-medium"
+                  className="flex items-center text-darkGray hover:text-primary focus:outline-none peer text-base md:text-sm lg:text-base font-medium whitespace-nowrap"
                   href="https://rsmacademy-sa.com/corporate-training"
                   target="_blank"
                 >
@@ -191,28 +198,28 @@ const Navbar = () => {
               <a
                 href="https://training-calendar.rsmacademy-sa.co/"
                 target="_blank"
-                className="text-darkGray hover:text-primary text-lg font-medium"
+                className="text-darkGray hover:text-primary text-base md:text-sm lg:text-base font-medium whitespace-nowrap"
               >
                 {t('nav_training_calendar')}
               </a>
               <a
                 href="https://blog.rsmacademy-sa.com/"
                 target="_blank"
-                className="text-darkGray hover:text-primary text-lg font-medium"
+                className="text-darkGray hover:text-primary text-base md:text-sm lg:text-base font-medium whitespace-nowrap"
               >
                 {t('nav_blog')}
               </a>
               <a
                 href="https://rsmacademy-sa.com/gallery"
                 target="_blank"
-                className="text-darkGray hover:text-primary text-lg font-medium"
+                className="text-darkGray hover:text-primary text-base md:text-sm lg:text-base font-medium whitespace-nowrap"
               >
                 {t('nav_gallery')}
               </a>
               <a
                 href="https://rsmacademy-sa.com/contact_us"
                 target="_blank"
-                className="text-darkGray hover:text-primary text-lg font-medium"
+                className="text-darkGray hover:text-primary text-base md:text-sm lg:text-base font-medium whitespace-nowrap"
               >
                 {t('nav_contact_us')}
               </a>
@@ -220,8 +227,8 @@ const Navbar = () => {
           </div>
 
           {/* Right side icons */}
-          <div className="hidden md:flex items-center space-x-6">
-            <a href="https://rsmacademy-sa.com/login" target="_blank" className="flex items-center text-darkGray hover:text-primary text-lg font-medium">
+          <div className={`hidden xl:flex items-center ${isRtl ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
+            <a href="https://rsmacademy-sa.com/login" target="_blank" className="flex items-center text-darkGray hover:text-primary text-base md:text-sm lg:text-base font-medium whitespace-nowrap">
               <User className="h-5 w-5 mr-2" />
               <span>{t('nav_sign_in')}</span>
             </a>
@@ -246,7 +253,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="xl:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-navy"
@@ -262,8 +269,15 @@ const Navbar = () => {
 
         {/* Mobile menu */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 py-4 bg-white rounded-lg shadow-lg">
-            <div className="flex flex-col space-y-4 px-4">
+          <div className="xl:hidden mt-4 py-4 bg-white rounded-lg shadow-lg">
+            <div className="flex flex-col space-y-3 px-4">
+              <a
+                href="https://rsmacademy-sa.com/"
+                target="_blank"
+                className="text-darkGray hover:text-primary"
+              >
+                {t('nav_home')}
+              </a>
               <div>
                 <button
                   className="flex items-center text-darkGray hover:text-primary focus:outline-none"

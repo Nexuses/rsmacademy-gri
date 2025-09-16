@@ -6,6 +6,7 @@ type TranslationsDict = Record<string, Record<SupportedLanguage, string>>;
 
 const translations: TranslationsDict = {
   // Navbar
+  nav_home: { en: "Home", ar: "الرئيسية" },
   nav_about_us: { en: "About Us", ar: "عنّا" },
   nav_courses: { en: "Courses", ar: "البرامج التدريبية" },
   nav_corporate_training: { en: "Corporate Training", ar: "تدريب المؤسسات" },
