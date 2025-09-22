@@ -29,7 +29,7 @@ const translations: TranslationsDict = {
   // Hero
   hero_limited_seats: { en: "Limited Seats Available", ar: "أماكن محدودة متاحة" },
   hero_title: { en: "GRI Certified Sustainability Professional Training", ar: "تدريب مهني معتمد من GRI في الاستدامة" },
-  hero_date: { en: "21st Sept - 30th Sept 2025", ar: "21 - 30 سبتمبر 2025" },
+  hero_date: { en: "19th Oct - 28th Oct 2025", ar: "19 - 28 أكتوبر 2025" },
   hero_time: { en: "5:00 PM - 9:00 PM KSA", ar: "5:00 مساءً - 9:00 مساءً بتوقيت السعودية" },
   hero_mode: { en: "Mode: Virtual", ar: "النمط: افتراضي" },
   hero_desc: {
