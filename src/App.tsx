@@ -23,7 +23,7 @@ function App() {
     // Also update favicon to be more relevant (using a free favicon)
     const link = document.querySelector("link[rel='icon']");
     if (link) {
-      link.setAttribute('href', 'https://img.icons8.com/color/48/000000/leaf.png');
+      link.setAttribute('href', 'https://cdn-nexlink.s3.us-east-2.amazonaws.com/logo_76df713f-10c2-4778-9265-477ee0d1b41c.png');
     }
   }, []);
 
