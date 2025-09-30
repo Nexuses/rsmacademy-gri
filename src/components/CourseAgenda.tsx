@@ -369,7 +369,7 @@ const CourseAgenda = () => {
             </div>
             <div className="mt-6 md:mt-0">
               <a
-                href="https://rsmacademy-sa.com/courses/40"
+                href="https://rsmacademy-sa.com/courses/45"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3 bg-secondary hover:bg-secondary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-md inline-block"

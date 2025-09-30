@@ -323,7 +323,7 @@ const HeroSection = () => {
 
               <div className="flex flex-wrap gap-4">
                 <a
-                  href="https://rsmacademy-sa.com/courses/40"
+                  href="https://rsmacademy-sa.com/courses/45"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-8 py-4 bg-secondary hover:bg-secondary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-lg text-lg inline-block"
@@ -374,7 +374,7 @@ const HeroSection = () => {
                     {language === 'ar' ? 'سارع بالحجز قبل إغلاق التسجيل' : 'Secure your spot before registration closes'}
                   </p>
                   <a
-                    href="https://rsmacademy-sa.com/courses/40"
+                    href="https://rsmacademy-sa.com/courses/45"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full px-10 py-5 bg-primary hover:bg-primary/90 text-white rounded-lg font-bold transition transform hover:scale-105 shadow-lg text-xl inline-block text-center"
